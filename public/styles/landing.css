@@ -10,9 +10,10 @@
     --c_gray: #4C4C4C;
 }
 * {
-    /* border: 1px dotted white; */
+    /* border: 1px dotted red; */
     box-sizing: border-box;
     font-family: "DM Sans", sans-serif;
+    margin: 0;
 }
 
 /* Nav general */
@@ -22,6 +23,7 @@
     align-items: center;
     padding: 0 1rem;
     background-color: var(--c_green-primary);
+    height: 12vh;
 }
     /* Logo */
     .nav__logo img {
@@ -33,6 +35,7 @@
     /* Menu, buscador */
 .nav__containerMenu {
     margin-top: .5rem;
+
 }
 
 .nav__containerMenu__menu {
@@ -80,22 +83,57 @@
     }
 
     /* Botones usuario */
-    .nav__userButton button{
+
+    .button--outlined{
         margin: 0 1rem;
         padding: .5rem;
         border-radius: .5rem;
-    }
-
-    .button--outlined{
         border: 1px solid var(--c_beige-secondary);
         background-color: transparent;
         color: var(--c_beige-secondary);
+        font-weight: bold;
     }
 
     .button--filled{
+        margin: 0 1rem;
+        padding: .5rem;
+        border-radius: .5rem;
         border: 1px solid var(--c_beige-secondary);
         background-color: var(--c_beige-secondary);
         color: var(--c_green-primary);
+        font-weight: bold;
     }
+
+/* Main */
+.presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    background-image: url(../assets/img/pesentation__background.png);
+    height: 88vh;
+}
+.presentation h1 {
+    margin: 2rem;
+    font-size: 8rem;
+    color: var(--c_green-primary);
+}
+.presentation h1, .presentation__button {
+    display: flex;
+    justify-content: center;
+}
+
+.presentation p {
+    font-size: 1.8rem;
+    width: 40vw;
+    text-align: center;
+    color: var(--c_green-primary);
+}
+
+.presentation__button button {
+    font-size: 1.5rem;
+    padding: .5rem 1rem;
+    margin-top: 1.5rem;
+}
 
 
