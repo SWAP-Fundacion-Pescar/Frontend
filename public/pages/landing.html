@@ -3,39 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/landing.css">
     <title>Landing Page</title>
 </head>
 <body>
     <!-- Comienzo header -->
-     <!-- a -->
-      <!-- Un nuevo comentario -->
     <header>
-        <nav>
-            <!-- Search bar -->
-            <form action="GET">
-                <fieldset>
-                    <input 
-                    id="searchBar" 
-                    name="searchBar" 
-                    type="text"
-                    placeholder="">
-                    <label for="searchBar">
-                        
-                    </label>
+        <nav class="nav">
+            <!-- Logo -->
+            <div class="nav__logo">
+                <img src="../assets/img/ImagenLogo.png" alt="Logo Swap">
+            </div>
+            <div class="nav__containerMenu">
+                <!-- Search bar -->
+                <div class="nav__containerMenu__searchBar">
+                    <input id="searchBar" name="searchBar" type="text" placeholder="Buscar productos">
                     <button>
                         <img src="" alt="search icon">
                     </button>
-                </fieldset>
-            </form>
-            <!-- Nav bar links -->
-            <menu>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#intercambiar">Intercambiar</a></li>
-                <li><a href="#reseñas">Reseñas</a></li>
-                <li><a href="#quienesSomos">Quienes somos</a></li>
-            </menu>
+                </div>
+                <!-- Nav bar links -->
+                <menu class="nav__containerMenu__menu">
+                    <a href="#home">Home</a>
+                    <a href="#intercambiar">Intercambiar</a>
+                    <a href="#reseñas">Reseñas</a>
+                    <a href="#quienesSomos">Quienes somos</a>
+                </menu>
+            </div>
             <!-- Botones de usuario -->
-            <div>
+            <div class="nav__userButton">
                 <button>Iniciar Sesión</button>
                 <button>Registrate</button>
             </div>

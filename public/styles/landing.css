@@ -1,0 +1,28 @@
+* {
+    border: 1px dotted gray;
+}
+
+/* Nav general */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+    /* Logo */
+    .nav__logo img {
+        width: 100px;
+        height: auto;
+        
+    }
+
+.nav__containerMenu {
+
+}
+
+.nav__containerMenu__menu {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
