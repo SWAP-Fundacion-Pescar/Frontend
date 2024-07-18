@@ -201,6 +201,28 @@
     color: var(--c_gray);
     margin: 0 2.5rem;
 }
+/*Seccion 2 : swap*/
+.swap{
+
+}
+.swap__title{
+
+}
+.swap__card{
+
+}
+    .swap__card__title{
+
+    }
+    .swap__card__text{
+
+    }
+    .swap__like{
+
+    }
+    .swap__card__button{
+        
+    }
 @media screen and (max-width: 480px){ /*Celulares*/
     /*Navegacion*/
     .nav__logo img {
