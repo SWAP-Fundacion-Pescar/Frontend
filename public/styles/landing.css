@@ -18,8 +18,12 @@
 
 /* Nav general */
 .nav {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
     align-items: center;
     padding: 0 1rem;
     background-color: var(--c_green-primary);
@@ -27,6 +31,8 @@
 }
     /* Logo */
     .nav__logo img {
+        grid-column: 1/2;
+        grid-row: 1/3;
         width: 5vw;
         height: auto;
     }
@@ -34,6 +40,7 @@
 
     /* Menu, buscador */
 .nav__containerMenu {
+    grid-column: 3/4;
     margin-top: .5rem;
 
 }
@@ -83,7 +90,12 @@
     }
 
     /* Botones usuario */
-
+    .nav__userButton{
+        display:flex;
+        gap: 1rem;
+        grid-column: 5/6;
+        justify-self: center;
+    }
     .button--outlined{
         /* margin: 0 1rem; */
         padding: .5rem;
@@ -110,7 +122,7 @@
     flex-direction: column;
     align-items: center;
     margin: auto;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../assets/img/pesentation__background.png);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url(../assets/img/pesentation__background.png);
     background-size: cover;
     height: 88vh;
 }
@@ -149,12 +161,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 3rem 5rem;
+    border: 1px solid red;
 }
 .step__item__info{
     display: flex;
     align-items: center;
+    border: 1px solid red;
 }
 .step__item__num{
+    border: 1px solid red;
     font-size: 1.5rem;
     text-align: center;
     align-content: center;
@@ -169,6 +184,7 @@
 .step__item__text{
     color: var(--c_gray);
     max-width: 50vw;
+    border: 1px solid red;
 }
 .step__item__text h3{
     font-size: 1.5rem;
@@ -178,6 +194,7 @@
     transform: scale(4);
     color: var(--c_gray);
     margin: 0 2.5rem;
+    border: 1px solid red;
 }
 @media screen and (max-width: 480px){ /*Celulares*/
     /*Navegacion*/
