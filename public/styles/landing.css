@@ -16,6 +16,11 @@
     margin: 0;
 }
 
+/*Menú hamburguesa*/
+.nav__btnHamburger--open, .nav__btnHamburger--close{
+    display: none;
+    }
+
 /* Nav general */
 .nav {
     display: grid;
@@ -41,7 +46,6 @@
 .nav__containerMenu {
     grid-column: 3/4;
     margin-top: .5rem;
-
 }
 
 .nav__containerMenu__menu {
@@ -56,7 +60,7 @@
     .nav__containerMenu__menu a {
         text-decoration: none;
         color: var(--c_beige-secondary);
-
+        margin: 0 .8rem 0 0 ;
     }
 
 .nav__containerMenu__searchBar {
@@ -92,26 +96,26 @@
 
     .nav__userButton{
         grid-column: 5/6;
+        display: flex;
+        flex-wrap: nowrap;
     }
 
-    .button--outlined{
-        /* margin: 0 1rem; */
+    .button{
+        margin: 0 1rem;
         padding: .5rem;
         border-radius: .5rem;
+        font-weight: bold;
+    }
+    .button--outlined{
         border: 1px solid var(--c_beige-secondary);
         background-color: transparent;
         color: var(--c_beige-secondary);
-        font-weight: bold;
     }
 
     .button--filled{
-        /* margin: 0 1rem; */
-        padding: .5rem;
-        border-radius: .5rem;
         border: 1px solid var(--c_beige-secondary);
         background-color: var(--c_beige-secondary);
         color: var(--c_green-primary);
-        font-weight: bold;
     }
 
 /* Main */
@@ -203,25 +207,62 @@
 }
 /*Seccion 2 : swap*/
 .swap{
-
+    background-color: var(--c_green-primary);
+    padding: 2rem;
 }
 .swap__title{
-
+    color: var(--c_beige-secondary);
+}
+.swap__title h3{
+    font-size: 1.5rem;
 }
 .swap__card{
-
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 60% 20% 20%;
+    width: 20vw;
+    height: 35vh;
+    padding: .5rem;
+    margin: 1rem .5rem;
+    border: 1px solid var(--c_beige-secondary);
+    border-radius: .5rem;
+    background-color: var(--c_beige-secondary);
 }
+    .swap__card__img{
+        grid-column: 1/3;
+        background-image: url(../assets/img/pesentation__background.png);
+        background-size: cover;
+        border-radius: .5rem;
+        margin: 0 0 .5rem 0;
+    }
+    .swap__card__title, .swap__card__text{
+        color: var(--c_green-primary);
+        grid-column: 1/3;
+        grid-row: 2/3;  
+    }
     .swap__card__title{
-
+        align-self: start;
+        font-weight: 600;
     }
     .swap__card__text{
-
+        align-self: center;
     }
     .swap__like{
-
+        grid-column: 1/2;
+        grid-row: 3/4;
+        justify-self: start;
+        border: none;
+        background-color: transparent;
+        color: var(--c_green-primary);
+        font-size: 1.5rem;
     }
     .swap__card__button{
-        
+        grid-column: 2/3;
+        grid-row: 3/4;
+        align-self: center;
+        text-decoration: none;
+        color: var(--c_beige-secondary);
+        background-color: var(--c_green-primary);
     }
 @media screen and (max-width: 480px){ /*Celulares*/
     /*Navegacion*/
@@ -229,7 +270,63 @@
         width: 10vw;
     }
     .nav__containerMenu__menu{
-        width: fit-content;
+        flex-direction: column;
+        text-align: start;
+    }
+    .button{
+        padding: .3rem;
+    }
+    .button--outlined, .button--filled{
+        margin: .2rem;
+    }
+    .nav__userButton{
+        flex-wrap: wrap;
+    }
+    /*Menú hamburguesa*/
+    .nav__logo__img{
+        display: none;
+    }
+    .nav__containerMenu__menu{
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 40vw;
+        justify-content: start;
+
+        background-image: linear-gradient(rgba(75, 75, 75, 0.4), rgba(75, 75, 75, 0.4));
+        align-items: start;
+        padding: 2rem 0 0 1rem;
+        margin: 0;
+    }
+    .nav__containerMenu__menu a{
+        color: var(--c_beige-secondary);
+        padding: 1rem 0;
+    }
+    .nav__btnHamburger--open{
+        display: block;
+        margin: auto;
+        border: none;
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+        font-size: 2rem;
+    }
+    .nav__btnHamburger--close{
+        display: block;
+        border: none;
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+        font-size:1.3rem ;
+    }
+    .nav__hamburger--visible{
+        opacity: 1;
+        visibility: visible;
+    }
+    .nav__hamburger--invisible{
+        opacity: 0;
+        visibility: hidden;
     }
     /*Seccion 1: presentation*/
     .presentation{
@@ -248,7 +345,6 @@
         margin-top: 2.5rem;
     }
     /*Seccion 2: step*/
-
     .step__item{
         margin: auto;
         padding: .5rem;
@@ -278,14 +374,72 @@
 }
 @media screen and (min-width: 480px) and (max-width: 780px) { /*Tablets*/
     /*Navegacion*/
+    .nav{
+        justify-items: center;
+    }
     .nav__logo img {
         width: 10vw;
     }
     .nav__containerMenu__menu{
-        width:fit-content;
+        flex-direction: column;
     }
     .nav__containerMenu__menu a {
         margin: 0 1rem;
+    }
+    .button{
+        padding: .3rem;
+    }
+    .button--outlined, .button--filled{
+        margin: .2rem;
+    }
+    .nav__userButton{
+        flex-wrap: wrap;
+    }
+    /*Menú hamburguesa*/
+    .nav__logo__img{
+        display: none;
+    }
+    .nav__containerMenu__menu{
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 30vw;
+        justify-content: start;
+
+        background-image: linear-gradient(rgba(75, 75, 75, 0.4), rgba(75, 75, 75, 0.4));
+        align-items: start;
+        padding: 2rem 0 0 1rem;
+        margin: 0;
+    }
+    .nav__containerMenu__menu a{
+        color: var(--c_beige-secondary);
+        padding: 1rem 0;
+    }
+    .nav__btnHamburger--open{
+        display: block;
+        margin: auto;
+        border: none;
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+        font-size: 2rem;
+    }
+    .nav__btnHamburger--close{
+        display: block;
+        border: none;
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+        font-size:1.3rem ;
+    }
+    .nav__hamburger--visible{
+        opacity: 1;
+        visibility: visible;
+    }
+    .nav__hamburger--invisible{
+        opacity: 0;
+        visibility: hidden;
     }
     /*Seccion 1: presentation*/
     .presentation{
@@ -303,6 +457,7 @@
         font-size: 1.2rem;
         margin-top: 2.5rem;
     }
+    
     /*Seccion 2: step*/
     .step__item__num{
         width: 3rem;

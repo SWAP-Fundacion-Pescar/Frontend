@@ -1,0 +1,102 @@
+/*Menú hamburguesa*/
+.nav__btnHamburger--open, .nav__btnHamburger--close{
+display: none;
+}
+
+@media screen and (max-width: 480px){ /*Celulares*/
+    /*Menú hamburguesa*/
+    .nav__logo__img{
+        display: none;
+    }
+    .nav__containerMenu__menu{
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 40vw;
+        justify-content: start;
+
+        background-image: linear-gradient(rgba(75, 75, 75, 0.4), rgba(75, 75, 75, 0.4));
+        align-items: start;
+        padding: 2rem 0 0 1rem;
+        margin: 0;
+    }
+    .nav__containerMenu__menu a{
+        color: var(--c_beige-secondary);
+        padding: 1rem 0;
+    }
+    .nav__btnHamburger--open{
+        display: block;
+        margin: auto;
+        border: none;
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+        font-size: 2rem;
+    }
+    .nav__btnHamburger--close{
+        display: block;
+        border: none;
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+        font-size:1.3rem ;
+    }
+    .nav__hamburger--visible{
+        opacity: 1;
+        visibility: visible;
+    }
+    .nav__hamburger--invisible{
+        opacity: 0;
+        visibility: hidden;
+    }
+
+}
+@media screen and (min-width: 480px) and (max-width: 780px) { /*Tablets*/
+    /*Menú hamburguesa*/
+    .nav__logo__img{
+        display: none;
+    }
+    .nav__containerMenu__menu{
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 30vw;
+        justify-content: start;
+
+        background-image: linear-gradient(rgba(75, 75, 75, 0.4), rgba(75, 75, 75, 0.4));
+        align-items: start;
+        padding: 2rem 0 0 1rem;
+        margin: 0;
+    }
+    .nav__containerMenu__menu a{
+        color: var(--c_beige-secondary);
+        padding: 1rem 0;
+    }
+    .nav__btnHamburger--open{
+        display: block;
+        margin: auto;
+        border: none;
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+        font-size: 2rem;
+    }
+    .nav__btnHamburger--close{
+        display: block;
+        border: none;
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+        font-size:1.3rem ;
+    }
+    .nav__hamburger--visible{
+        opacity: 1;
+        visibility: visible;
+    }
+    .nav__hamburger--invisible{
+        opacity: 0;
+        visibility: hidden;
+    }
+}

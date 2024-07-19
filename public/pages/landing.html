@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../styles/landing.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Landing Page</title>
+    <link rel="stylesheet" href="../styles/hamburger.css">
 </head>
 <body>
     <!-- Comienzo header -->
@@ -13,7 +14,8 @@
         <nav class="nav">
             <!-- Logo -->
             <div class="nav__logo">
-                <img src="../assets/img/ImagenLogo.png" alt="Logo Swap">
+                <img src="../assets/img/ImagenLogo.png" alt="Logo Swap" class="nav__logo__img">
+                <button class="nav__btnHamburger--open" id="abrirMenu"><i class="fa-solid fa-bars"></i></button>
             </div>
             <div class="nav__containerMenu">
                 <!-- Search bar -->
@@ -22,9 +24,12 @@
                     <button>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
+                    
                 </div>
                 <!-- Nav bar links -->
-                <div class="nav__containerMenu__menu">
+                
+                <div class="nav__containerMenu__menu" id="menu">
+                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
                     <a href="#home">Home</a>
                     <a href="#intercambiar">Intercambiar</a>
                     <a href="#reseñas">Reseñas</a>
@@ -33,8 +38,8 @@
             </div>
             <!-- Botones de usuario -->
             <div class="nav__userButton">
-                <button class="button--outlined">Iniciar Sesión</button>
-                <button class="button--filled">Registrate</button>
+                <button class="button--outlined button">Iniciar Sesión</button>
+                <button class="button--filled button">Registrate</button>
             </div>
         </nav>
     </header>
@@ -48,7 +53,7 @@
                 <p>
                     Te invitamos a unirte, <b>recibí</b> algo que<br> necesitas y <b>da</b> algo que no usas.
                 </p>
-                <div class="presentation__button"><button class="button--filled">Sumate</button></div>
+                <div class="presentation__button"><button class="button--filled button">Sumate</button></div>
             </div>
         </section>
         <section id="home">
@@ -97,22 +102,25 @@
                 </div>
             </article>
         </section>
-        <section id="swap">
+        <section id="intercambiar" class="swap">
             <div class="swap__title">
                 <h3>Intercambia</h3>
-                <p>las prendas que ya no uses</p>
+                <p>Las prendas que ya no uses</p>
             </div>
             <div class="swap__card">
-                <img src="" alt="Imagen Card 01">
-                <p class="swap__card__title"></p>
-                <p class="swap__card__text"></p>
+                <img src="" alt="Imagen Card 01" class="swap__card__img">
+                <p class="swap__card__title">Remera de algodón</p>
+                <p class="swap__card__text">Morón, GBA</p>
                 <button class="swap__like"><i class="fa-regular fa-heart"></i></button>
-                <a href="" class="swap__card__button">Intercambiar</a>
+                <a href="" class="swap__card__button button">Intercambiar</a>
             </div>
         </section>
         <section id="reseñas"></section>
     </main>
     <!-- Comienzo footer -->
     <footer></footer>
+
+    <!-- Scripts -->
+    <script src="../js/landing.js"></script>
 </body>
 </html>
