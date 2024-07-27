@@ -12,7 +12,6 @@ cerrarMenu.addEventListener("click", ()=>{
     menu.classList.remove("nav__hamburger--visible");
     abrirMenu.classList.remove("nav__hamburger--invisible");
 })
-
 //SECCION INTERCAMBIA: Carrousel
 const swap__cards = document.querySelector(".swap__card--container"); 
 const swap__prevBtn = document.querySelector("#swap__prevBtn");
