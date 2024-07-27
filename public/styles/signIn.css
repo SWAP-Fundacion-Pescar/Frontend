@@ -1,0 +1,100 @@
+.signIn{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("../assets/img/signIn__background.jpg");
+    background-size: cover;
+}
+.signIn__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.signIn__title{
+    font-size: 4rem;
+    text-align: center;
+    color: var(--c_green-primary); 
+}
+.signIn__window form{ /*Se podría unificar con el login*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    
+    width: 30vw;
+    height: 65vh;
+
+    border-radius: .5rem;
+    background-color: var(--c_beige-secondary);
+    box-shadow: 3px 3px 10px -3px var(--c_gray);
+}
+input{
+    border-radius: .5rem;  
+    border: 1px solid transparent;
+    background-color: var(--c_white);
+    padding-left: .5rem;
+    width: 85%;
+    height: 4.5vh;
+    font-size: .9rem;
+}
+.signIn__field--container{
+    width: 85%;
+    margin: 0;
+    padding: 0;
+}
+.signIn__field--label{
+    color: var(--c_gray);
+    font-size: .9rem;
+}
+.signIn__field--input{
+    color: var(--c_gray);
+    padding-right: .5rem;
+    width: 100%;
+    margin-top: .3rem;
+}
+.signIn__button{
+    border: 1px solid var(--c_green-primary);
+    background-color: var(--c_green-primary);
+    color: var(--c_beige-secondary);
+    font-weight: 400;
+}
+.signIn__window__check{
+    text-align: center;
+    width: 85%;
+    color: var(--c_gray);
+    font-size: .8rem;
+    padding: 1rem;
+}
+.signIn__window__check a{
+    color: var(--c_gray);
+    text-decoration: underline;
+}
+.signIn__window__check input{
+    width: auto;
+    height: auto;
+}
+@media screen and (max-width: 480px){ /*Celulares*/
+    .signIn__title h1{
+        font-size: 4rem;
+    }
+    .signIn__birthday--label{
+        padding-left: 1rem;
+    }
+    .signIn__window form{
+        width: 80vw;
+        height: 65vh;
+    }
+}
+@media screen and (min-width: 480px) and (max-width: 780px) { /*Tablets*/
+    .signIn__title h1{
+        font-size: 4rem;
+    }
+    .signIn__birthday--label{
+        padding-left: 2rem;
+    }
+    .signIn__window form{
+        width: 50vw;
+        height: 65vh;
+    }
+}

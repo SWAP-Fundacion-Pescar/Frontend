@@ -1,0 +1,104 @@
+*{
+    box-sizing: border-box;
+}
+.logIn{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("../assets/img/logIn__background.jpg");
+    background-size: cover;
+}
+.logIn__container{
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+}
+.logIn__title{
+    width: 40vw;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 2rem;
+    color: var(--c_green-primary); 
+}
+.logIn__title h1{
+    font-size: 6rem;
+}
+
+.logIn__window form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.3rem;
+    
+    width: 30vw;
+    height: 40vh;
+    
+    border-radius: .5rem;
+    margin: auto;
+    
+    background-color: var(--c_beige-secondary);
+    box-shadow: 3px 3px 10px -3px var(--c_gray);
+}
+input{
+    border-radius: .5rem;  
+    border: 1px solid transparent;
+    background-color: var(--c_white);
+    padding-left: .5rem;
+}
+.logIn__getPassword{
+    text-decoration: none;
+    color: var(--c_gray);
+    font-size: .8rem;
+    text-align: center;
+}
+input, .logIn__button{
+    width: 85%;
+    height: 4.5vh;
+    font-size: .9rem;
+}
+.logIn__button{
+    border: 1px solid var(--c_green-primary);
+    background-color: var(--c_green-primary);
+    color: var(--c_beige-secondary);
+    font-weight: 400;
+}
+.signIn__button{
+    border: 1px solid var(--c_gray);
+    background-color: transparent;
+    color: var(--c_green-primary);
+    font-weight: 400;
+    width: 65%;
+    text-align: center;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 480px){ /*Celulares*/
+    .logIn__container{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .logIn__title{
+        font-size: 1rem;
+    }
+    .logIn__title h1{
+        font-size: 3.5rem;
+    }
+    .logIn__window form{
+        width: 65vw;
+    }
+}
+@media screen and (min-width: 480px) and (max-width: 780px) { /*Tablets*/
+    .logIn__container{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .logIn__title{
+        font-size: 1.2rem;
+    }
+    .logIn__title h1{
+        font-size: 5rem;
+    }
+    .logIn__window form{
+        width: 65vw;
+    }
+}
