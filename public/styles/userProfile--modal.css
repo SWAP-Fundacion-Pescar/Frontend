@@ -1,0 +1,99 @@
+.userProfile__swap{
+    width: 40vw;
+    height: 85vh;
+    background-color: var(--c_beige-secondary);
+    border: none;
+    margin: auto; 
+}
+.userProfile__swap__form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .2rem;
+    width: 85%;
+    margin: auto;
+    padding: .3rem 0;
+    color: var(--c_green-primary);
+}
+.userProfile__swap__field__container{
+    display: flex;
+    flex-direction: column;
+}
+    #match-text{
+        border-bottom: 1px solid var(--c_green-primary);
+        margin-top: 1.5rem;
+        font-weight: 600;
+    }
+    .userProfile__swap__field--label, 
+    .userProfile__swap__text{
+        text-align: center;
+        padding: .2rem;
+    }
+    .userProfile__swap__field--input, 
+    .userProfile__swap__field--select, 
+    .userProfile__swap__field--textarea{
+        border-radius: .5rem;  
+        border: 1px solid var(--c_green-primary);
+        color: var(--c_gray);
+        background-color: transparent;
+        padding-left: .5rem;
+        width: 100%;
+        height: 3vh;
+    }
+    .userProfile__swap__field--textarea{
+        height: 4.5vh;
+    }
+    .userProfile__swap__field--input:focus,
+    .userProfile__swap__field--select:focus, 
+    .userProfile__swap__field--textarea:focus{
+        outline: 1px solid var(--c_);
+    }
+.userProfile__swap::backdrop{ /*Para difuminar el fondo*/
+
+}
+/* Botones */
+.userProfile__swap__field__container--btn{
+    display: flex;
+    justify-content: end;
+    margin: 1.2rem 0;
+}
+#open-modal, #close-modal{
+    margin:0 0 0 .5rem;
+}
+#open-modal, 
+#add-product{
+    background-color: var(--c_green-primary);
+    color: var(--c_beige-secondary);
+    cursor: pointer;
+}
+#close-modal{
+    background-color: var(--c_beige-secondary);
+    color: var(--c_green-primary);
+    border: 1px solid var(--c_green-primary);
+    cursor: pointer;
+    align-self: flex-end;
+}
+@media screen and (max-width: 480px){ /*Celulares*/
+    .userProfile__swap{
+        width: 85vw;
+        overflow-y: auto;
+}
+    .userProfile__swap__field__container--btn{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+#close-modal, #add-product{
+    align-self: center;
+}
+}
+@media screen and (min-width: 480px) and (max-width: 780px) { /*Tablets*/
+    .userProfile__swap{
+        width: 60vw;
+        overflow-y: auto;
+}
+    .userProfile__swap__field__container--btn{
+    display: flex;
+    justify-content: center;
+}
+}

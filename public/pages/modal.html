@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../styles/default.css">
+    <link rel="stylesheet" href="../styles/userProfile--modal.css">
+    
+    <title>Perfil usuario</title>
+</head>
+<body>
+    <dialog class="userProfile__swap">
+        <form action="" method="" class="userProfile__swap__form">
+            <!-- Buscá tu match -->
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__name" class="userProfile__swap__field--label">NOMBRE</label>
+                <input type="text" id="swap__product__name" placeholder="Nombre de la prenda + Material" class="userProfile__swap__field--input">
+            </div>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__img" class="userProfile__swap__field--label">FOTO</label>
+                <input type="file" id="swap__product__img" placeholder="Subir archivo" class="userProfile__swap__field--input">
+            </div>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__size" class="userProfile__swap__field--label">TALLE</label>
+                <select name="select__size" id="swap__product__size" class="userProfile__swap__field--select">
+                    <option value="prenda__s/1">S/1</option>
+                    <option value="prenda__m/2" selected>M/2</option>
+                    <option value="prenda__l/3">L/3</option>
+                    <option value="prenda__xl/4">XL/4</option>
+                    <option value="prenda__xxl/5">XXL/5</option>
+                    <option value="prenda__xxXl/5">XXXL/6</option>
+                </select>
+            </div>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__category" class="userProfile__swap__field--label">CATEGORIA</label>
+                <select name="select__category" id="swap__product__category" class="userProfile__swap__field--select">
+                    <option value="prenda__arriba">Parte de arriba (remera, camisa, etc.)</option>
+                    <option value="prenda__abajo" selected>Parte de abajo (pantaón, short, pollera, etc.)</option>
+                    <option value="prenda__abrigo">Abrigo (campera, buzo, etc.) </option>
+                </select>
+            </div>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__gender" class="userProfile__swap__field--label">GENERO</label>
+                <select name="select__gender" id="swap__product__gender" class="userProfile__swap__field--select">
+                    <option value="hombre">Hombre</option>
+                    <option value="mujer" selected>Mujer</option>
+                    <option value="niño">Niño</option>
+                </select>
+            </div>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__description" class="userProfile__swap__field--label">DESCRIPCION</label>
+                <textarea 
+                id="swap__product__description" 
+                class="userProfile__swap__field--textarea"
+                name="swap__product__description" 
+                rows="4" cols="50" 
+                placeholder="Describa su prenda..."> </textarea>
+            </div>
+
+            <!-- Buscá tu match -->
+            <p id="match-text" class="userProfile__swap__text">BUSCA TU MATCH</p>
+            <p class="userProfile__swap__text">¿Qué prenda querés recibir?</p>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__size" class="userProfile__swap__field--label">TALLE</label>
+                <select name="select__size" id="swap__product__size" class="userProfile__swap__field--select">
+                    <option value="prenda__s/1">S/1</option>
+                    <option value="prenda__m/2" selected>M/2</option>
+                    <option value="prenda__l/3">L/3</option>
+                    <option value="prenda__xl/4">XL/4</option>
+                    <option value="prenda__xxl/5">XXL/5</option>
+                    <option value="prenda__xxXl/5">XXXL/6</option>
+                </select>
+            </div>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__category" class="userProfile__swap__field--label">CATEGORIA</label>
+                <select name="select__category" id="swap__product__category" class="userProfile__swap__field--select">
+                    <option value="prenda__arriba">Parte de arriba (remera, camisa, etc.)</option>
+                    <option value="prenda__abajo" selected>Parte de abajo (pantaón, short, pollera, etc.)</option>
+                    <option value="prenda__abrigo">Abrigo (campera, buzo, etc.) </option>
+                </select>
+            </div>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__gender" class="userProfile__swap__field--label">GENERO</label>
+                <select name="select__gender" id="swap__product__gender" class="userProfile__swap__field--select">
+                    <option value="hombre">Hombre</option>
+                    <option value="mujer" selected>Mujer</option>
+                    <option value="niño">Niño</option>
+                </select>
+            </div>
+            <div class="userProfile__swap__field__container">
+                <label for="swap__product__description" class="userProfile__swap__field--label">Sumá detalles de la prenda esperada</label>
+                <textarea 
+                id="swap__product__description" 
+                class="userProfile__swap__field--textarea"
+                name="swap__product__description" 
+                rows="4" cols="50" 
+                placeholder="Describa su prenda..."> </textarea>
+            </div>
+            <div class="userProfile__swap__field__container--btn">
+                <button id="close-modal"  class="button--outlined">Cerrar</button>
+                <button id="add-product" class="button--filled">Cargar prenda</button>
+            </div>
+        </form>
+    </dialog>
+    
+    <button id="open-modal" class="button--filled">Intercambiar</button>
+
+    <!-- Scripts -->
+    <script src="../js/userProfile.js"></script>
+</body>
+</html>
