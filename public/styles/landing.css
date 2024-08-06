@@ -210,7 +210,7 @@
     color: var(--c_gray);
     margin: 0 2.5rem;
 }
-/*Seccion: swap*/
+/*Seccion 3: swap*/
 .swap{
     background-color: var(--c_green-primary);
     padding: 2rem;
@@ -306,6 +306,80 @@
         color: var(--c_beige-secondary);
         background-color: var(--c_green-primary);
     }
+
+/* Sección 5 : Quienes somos*/
+.team{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5rem;
+
+    color: var(--c_gray);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)), url("../assets/img/team__background.jpg");
+    background-size: cover;
+
+    height: 80vh;
+}
+.team__text{
+
+}
+    .team__text__title{
+        font-size: 3rem;
+        margin: 5rem 0;
+    }
+    .team__text__p{
+        font-size: 1.3rem;
+        width: 40vw;
+        text-align: justify;
+        margin: 5rem 0;
+    }
+    .team__members__logo--container{
+        display: flex;
+        align-items: center;
+    }
+    .team__members__logo{
+        width: 20%;
+    }
+.team__members{
+
+}
+    .team__members__first{
+        
+    }
+    .team__members__item{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .team__members__item a{
+        color: var(--c_gray);
+        text-decoration: none;
+    }
+    .team__members__img{
+        border-radius: 50%;
+        width: 5vw;
+    }
+    .team__members__profile{
+
+    }
+/*Footer*/
+footer{
+    height: 10vh;
+    background-color: var(--c_green-primary);
+}
+.footer__contact{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3rem;
+    height: 100%;
+    margin-right: 2rem;
+}
+.footer__contact i{
+    transform: scale(2.5);
+    color: var(--c_beige-secondary);
+    opacity: 0.7;
+}
 @media screen and (max-width: 480px){ /*Celulares*/
     /*Navegacion*/
     .nav__logo img {
