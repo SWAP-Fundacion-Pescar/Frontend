@@ -306,7 +306,109 @@
         color: var(--c_beige-secondary);
         background-color: var(--c_green-primary);
     }
+/* Seccion 4: Reseñas*/
+/* Reseñas */
+.reviews{
+    background-color: var(--c_beige-secondary);
+    box-sizing: border-box;
+    height: 100vh;
+    padding: 1rem;
+}
+.reviews__top{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    margin: auto;
 
+}
+#reviews__top--left{
+    grid-column: 1/2;
+}
+
+#reviews__top--right{
+    display: flex;
+    align-items: center;
+    padding-right: 3rem;
+    grid-column: 2/3;
+}
+.reviews__bottom{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+#reviews__bottom--left{
+    display: flex;
+    align-items: center;
+    padding-left: 3rem;
+    grid-column: 1/2;
+}
+.reviews__bottom--right{
+    grid-column: 2/3;
+}
+
+.reviews__title{
+    color: var(--c_green-primary);
+    font-size: 1.5rem;
+    align-items: center;
+}
+
+.reviews_top, .reviews_bottom{
+    display: flex;
+    flex-direction: row;
+    margin-left: 6vw;
+}
+
+.reviews__top{
+    margin-bottom: 13vh;
+    margin-left: 8.3vw;
+}
+
+.reviews__bottom img{
+    margin: 0 18vw 0 4vw;
+}
+.reviews__top img{
+    margin: 0 4vw 0 18vw;
+}
+
+/* Titulos */
+    .reviews__title h3{
+        font-size: 4rem;
+        
+    }
+    .reviews__title p{
+        font-size: 2rem;
+        
+    }
+
+    /* Card */
+    .reviews__card{
+        display: grid;
+        width: 26vw;
+        height: 14vh;
+        border: 2px solid var(--c_gray);
+        border-radius: .625rem;
+        padding: 0rem 1rem 0rem 1rem ;
+        box-shadow: 0 .2rem rgba(0, 0, 0, 0.116);
+        margin: 1.25vh 0 1.25vh 0;
+    }
+    .right{
+        margin-left: 2vw;
+    }
+
+        /* Titulo */
+        .reviews_card_title{
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--c_gray);
+            padding-top: 1rem ;
+            height: min-content;
+        }
+
+        /* Comentario */
+        .reviews_card_coment{
+            color: var(--c_gray);
+        }
 /* Sección 5 : Quienes somos*/
 .team{
     display: flex;
@@ -328,7 +430,7 @@
         margin: 5rem 0;
     }
     .team__text__p{
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         width: 40vw;
         text-align: justify;
         margin: 5rem 0;
@@ -341,7 +443,8 @@
         width: 20%;
     }
 .team__members{
-
+    display: flex;
+    align-items: center;
 }
     .team__members__first{
         
@@ -350,6 +453,7 @@
         display: flex;
         align-items: center;
         gap: 1rem;
+        margin: 1.5rem 0;
     }
     .team__members__item a{
         color: var(--c_gray);
@@ -360,7 +464,7 @@
         width: 5vw;
     }
     .team__members__profile{
-
+        font-size: 1.2rem;
     }
 /*Footer*/
 footer{
@@ -380,6 +484,8 @@ footer{
     color: var(--c_beige-secondary);
     opacity: 0.7;
 }
+
+
 @media screen and (max-width: 480px){ /*Celulares*/
     /*Navegacion*/
     .nav__logo img {
