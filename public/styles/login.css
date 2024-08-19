@@ -71,6 +71,11 @@ input, .logIn__button{
     text-align: center;
     text-decoration: none;
 }
+.unauthorized
+{
+    display: none;
+    color: #ed4956;
+}
 
 @media screen and (max-width: 480px){ /*Celulares*/
     .logIn__container{
