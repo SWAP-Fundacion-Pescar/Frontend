@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Prendas</title>
+    <link rel="stylesheet" href="../styles/catalogo.css">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <!-- Logo -->
+            <div class="nav__logo">
+                <img src="../assets/img/ImagenLogo.png" alt="Logo Swap" class="nav__logo__img">
+                <button class="nav__btnHamburger--open" id="abrirMenu"><i class="fa-solid fa-bars"></i></button>
+            </div>
+            <div class="nav__containerMenu">
+                <!-- Search bar -->
+                <div class="nav__containerMenu__searchBar">
+                    <input id="searchBar" name="searchBar" type="text" placeholder="Buscar productos">
+                    <button>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <!-- Nav bar links -->
+                
+                <div class="nav__containerMenu__menu" id="menu">
+                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
+                    <a href="../pages/landing.html">Home</a>
+                    <a href="#intercambiar">Intercambiar</a>
+                    <a href="#reseñas">Reseñas</a>
+                    <a href="#quienesSomos">Quienes somos</a>
+                </div>
+            </div>
+            <!-- Botones de usuario -->
+            <div class="nav__userButton">
+                <!-- <button class="button--outlined button">Iniciar Sesión</button>
+                <button class="button--filled button">Registrate</button> -->
+                <a href="../pages/logIn.html" class="button--outlined button">Iniciar Sesión</a>
+                <a href="../pages/signIn.html" class="button--filled button">Registrate</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="filters">
+        <h2>Filtros:</h2>
+        <ul>
+            <li><a href="#">Categoría</a></li>
+            <li><a href="#">Género</a></li>
+            <li><a href="#">Talle</a></li>
+            <li><a href="#">Lugar</a></li>
+        </ul>
+    </section>
+
+    <section id="catalogo">
+
+
+            <div class="actions">
+                <button class="favorite"><i class="fa fa-heart"></i></button>
+                <button class="exchange">Intercambiar</button>
+            </div>
+        </div>
+        <!-- Repetir según sea necesario -->
+    </section>
+
+    <footer>
+        <ul class="pagination">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+        </ul>
+    </footer>
+    <script src="../js/catalogo.js"></script>
+</body>
+</html>
