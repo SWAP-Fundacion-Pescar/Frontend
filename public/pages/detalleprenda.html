@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Prenda</title>
+    <link rel="stylesheet" href="../styles/detalleprenda.css">
+</head>
+<body>
+    <header>
+        <header>
+            <nav class="nav">
+                <!-- Logo -->
+                <div class="nav__logo">
+                    <img src="../assets/img/ImagenLogo.png" alt="Logo Swap" class="nav__logo__img">
+                    <button class="nav__btnHamburger--open" id="abrirMenu"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="nav__containerMenu">
+                    <!-- Search bar -->
+                    <div class="nav__containerMenu__searchBar">
+                        <input id="searchBar" name="searchBar" type="text" placeholder="Buscar productos">
+                        <button>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <!-- Nav bar links -->
+                    
+                    <div class="nav__containerMenu__menu" id="menu">
+                        <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
+                        <a href="#home">Home</a>
+                        <a href="#intercambiar">Intercambiar</a>
+                        <a href="#reseñas">Reseñas</a>
+                        <a href="#quienesSomos">Quienes somos</a>
+                    </div>
+                </div>
+                <!-- Botones de usuario -->
+                <div class="nav__userButton">
+                    <!-- <button class="button--outlined button">Iniciar Sesión</button>
+                    <button class="button--filled button">Registrate</button> -->
+                    <a href="../pages/logIn.html" class="button--outlined button">Iniciar Sesión</a>
+                    <a href="../pages/signIn.html" class="button--filled button">Registrate</a>
+                </div>
+            </nav>
+        </header>
+    </header>
+    <main>
+        <section class="detalle-prenda">
+            <div class="detalle-prenda-imagen">
+                <img id="prenda-imagen" src="" alt="Imagen de la prenda">
+            </div>
+            <div class="detalle-prenda-info">
+                <h1 id="prenda-nombre"></h1>
+                <p id="prenda-lugar"></p>
+                <h3>Detalles de la prenda:</h3>
+                <ul>
+                    <li>Color: <span id="prenda-color"></span></li>
+                    <li>Talle: <span id="prenda-talle"></span></li>
+                    <li>Categoría: <span id="prenda-categoria"></span></li>
+                </ul>
+                <h3>Detalles de la prenda a intercambiar:</h3>
+                <ul>
+                    <li>Color: <span id="intercambio-color"></span></li>
+                    <li>Talle: <span id="intercambio-talle"></span></li>
+                    <li>Categoría: <span id="intercambio-categoria"></span></li>
+                </ul>
+                <h3>Descripción</h3>
+                <p id="prenda-descripcion"></p>
+                <button id="intercambiar-btn">Intercambiar</button>
+            </div>
+        </section>
+        <section class="prendas-relacionadas">
+            <h2>Prendas que también te podrían interesar!</h2>
+            <div class="carrusel">
+                <button class="carrusel-prev">&lt;</button>
+                <div id="carrusel-items" class="carrusel-items">
+                    <!-- Prendas relacionadas cargadas dinámicamente -->
+                </div>
+                <button class="carrusel-next">&gt;</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <!-- Tu código de footer aquí -->
+    </footer>
+    <script src="../js/detalleprenda.js"></script>
+</body>
+</html>
