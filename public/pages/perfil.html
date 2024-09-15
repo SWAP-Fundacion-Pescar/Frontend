@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Usuario</title>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="../styles/perfil.css">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <!-- Logo -->
+            <div class="nav__logo">
+                <img src="../assets/img/ImagenLogo.png" alt="Logo Swap" class="nav__logo__img">
+                <button class="nav__btnHamburger--open" id="abrirMenu"><i class="fa-solid fa-bars"></i></button>
+            </div>
+            <div class="nav__containerMenu">
+                <!-- Search bar -->
+                <div class="nav__containerMenu__searchBar">
+                    <input id="searchBar" name="searchBar" type="text" placeholder="Buscar productos">
+                    <button>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <!-- Nav bar links -->
+                
+                <div class="nav__containerMenu__menu" id="menu">
+                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
+                    <a href="#home">Home</a>
+                    <a href="#intercambiar">Intercambiar</a>
+                    <a href="#reseñas">Reseñas</a>
+                    <a href="#quienesSomos">Quienes somos</a>
+                </div>
+            </div>
+            <!-- Botones de usuario -->
+            <div class="nav__userButton">
+                <!-- <button class="button--outlined button">Iniciar Sesión</button>
+                <button class="button--filled button">Registrate</button> -->
+                <a href="../pages/logIn.html" class="button--outlined button">Iniciar Sesión</a>
+                <a href="../pages/signIn.html" class="button--filled button">Registrate</a>
+            </div>
+        </nav>
+    </header>
+    <!-- Contenedor del perfil -->
+    <section class="perfil-container">
+        <div class="perfil-header">
+            <img id="foto-perfil" class="foto-perfil" alt="Foto de perfil">
+            <div class="info-usuario">
+                <h1 id="nombre-usuario">Nombre Usuario</h1>
+                <p id="ubicacion-usuario">Ubicación</p>
+                <p id="descripcion-usuario">Descripción del usuario</p>
+                <button id="editar-perfil">Editar Perfil</button>
+            </div>
+        </div>
+        <div class="reputacion-usuario">
+            <img src="../img/reputacion.svg" alt="Reputación">
+            <!-- Puedes cargar aquí dinámicamente la reputación si la tienes en el microservicio -->
+        </div>
+    </section>
+
+    <!-- Publicaciones, Favoritos, Reseñas -->
+    <section class="contenidos">
+        <div class="tabs">
+            <button class="tab-button" onclick="mostrarSeccion('publicaciones')">Publicaciones</button>
+            <button class="tab-button" onclick="mostrarSeccion('favoritos')">Favoritos</button>
+            <button class="tab-button" onclick="mostrarSeccion('resenas')">Reseñas</button>
+        </div>
+
+        <div id="publicaciones" class="tab-content">
+            <!-- Aquí se cargarán las publicaciones del usuario -->
+            <div class="publicaciones-container" id="publicaciones-container"></div>
+        </div>
+
+        <div id="favoritos" class="tab-content hidden">
+            <!-- Aquí se cargarán los favoritos del usuario -->
+            <div class="favoritos-container" id="favoritos-container"></div>
+        </div>
+
+        <div id="resenas" class="tab-content hidden">
+            <!-- Aquí se cargarán las reseñas del usuario -->
+            <div class="resenas-container" id="resenas-container"></div>
+        </div>
+    </section>
+
+    <!-- Enlace al archivo JS -->
+    <script src="../js/perfil.js"></script>
+</body>
+</html>

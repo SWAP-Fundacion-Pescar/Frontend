@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+:root {
+    /* Fuentes */
+    font-family: "DM Sans", sans-serif;
+    /* Colores */
+    --c_white: #fff;
+    --c_black: #000;
+    --c_green-primary: #727A4B;
+    --c_beige-secondary: #F3E8DA;
+    --c_gray: #4C4C4C;
+}
+* {
+    /* border: 1px dotted white; */
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+}
+
+/*Menú hamburguesa*/
+.nav__btnHamburger--open, .nav__btnHamburger--close{
+    display: none;
+    }
+
+/* Nav general */
+.nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    justify-items: center;
+    /* display: flex;
+    justify-content: space-between; */
+    align-items: center;
+    padding: 0 1rem;
+    background-color: var(--c_green-primary);
+    height: 12vh;
+}
+    /* Logo */
+    .nav__logo img {
+        grid-column: 1/2;
+        width: 5vw;
+        height: auto;
+    }
+
+
+    /* Menu, buscador */
+.nav__containerMenu {
+    grid-column: 3/4;
+    margin-top: .5rem;
+}
+
+.nav__containerMenu__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    width: 22vw;
+    margin-top: .5rem;
+}
+
+    .nav__containerMenu__menu a {
+        text-decoration: none;
+        color: var(--c_beige-secondary);
+        margin: 0 .8rem 0 0 ;
+    }
+
+.nav__containerMenu__searchBar {
+    display: flex;
+    justify-content: center;
+    
+}
+
+    .nav__containerMenu__searchBar button {
+        border-style: none;
+        background-color: transparent;
+    }
+
+        .nav__containerMenu__searchBar button i {
+            color: var(--c_beige-secondary);
+            transform: scale(1.5);
+            margin-left: .5rem;
+        }
+
+    .nav__containerMenu__searchBar input:focus{
+        outline: none;
+    }
+
+    #searchBar {
+        width: 20vw;
+        height: 3vh;
+        border-radius: 50px;
+        padding-left: .5rem;
+        border: none;
+    }
+
+    /* Botones usuario */
+
+    .nav__userButton{
+        grid-column: 5/6;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .button{
+        margin: 0 1rem;
+        padding: .5rem;
+        border-radius: .5rem;
+        font-weight: bold;
+    }
+    .nav__userButton a{
+        text-decoration: none;
+        align-self: center;
+        text-align: center;
+        width: 8rem;
+    }
+    .button--outlined {
+        border: 1px solid var(--c_beige-secondary);
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+    }
+
+    .button--filled{
+        border: 1px solid var(--c_beige-secondary);
+        background-color: var(--c_beige-secondary);
+        color: var(--c_green-primary);
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #F3E8DA;
+        color: #333;
+    }
+    
+    .container {
+        display: flex;
+        min-height: 100vh;
+    }
+    
+    .sidebar {
+        background-color: #e0eaf5;
+        padding: 20px;
+        width: 300px;
+    }
+    
+    .profile-section {
+        text-align: center;
+    }
+    
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+        background-color: #91b783;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+    
+    .profile-initial {
+        font-size: 36px;
+        color: white;
+    }
+    
+    h2 {
+        margin-top: 10px;
+        font-size: 24px;
+    }
+    
+    .my-account-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        background-color: #D6D6D6;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    
+    .main-content {
+        padding: 40px;
+        width: 100%;
+        background-color: white;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header h2 {
+        font-size: 28px;
+    }
+    
+    .header p {
+        font-size: 16px;
+        color: #555;
+    }
+    
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .discard-btn {
+        background-color: #F3E8DA;
+        color: #333;
+    }
+    
+    .save-btn {
+        background-color: #727A4B;
+        color: white;
+    }
+    
+    .personal-info,
+    .session-info {
+        margin-top: 30px;
+    }
+    
+    .personal-info h3,
+    .session-info h3 {
+        font-size: 22px;
+    }
+    
+    .personal-info p,
+    .session-info p {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .form-group {
+        margin-top: 15px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .form-group input:focus {
+        border-color: #91b783;
+        outline: none;
+    }
