@@ -1,6 +1,4 @@
-*{
-    box-sizing: border-box;
-}
+/*LOG IN */
 .logIn{
     background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url("../assets/img/logIn__background.jpg");
     background-size: cover;
