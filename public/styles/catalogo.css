@@ -55,11 +55,9 @@
 #catalogo {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
     gap: 2vw;
     background-color: #727A4B;
     padding: 3vw 5vw;
-    /* justify-content: center; */
 }
 
 .swap__card__button {
