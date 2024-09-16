@@ -1,3 +1,7 @@
+function setCookie(name, value, seconds) {
+    document.cookie = `${name}=${encodeURIComponent(value)}; max-age=${seconds};`;
+}
+
 document.getElementById('login').addEventListener('submit', async function(e)
 {
     e.preventDefault();
@@ -31,8 +35,8 @@ document.getElementById('login').addEventListener('submit', async function(e)
         else
         {
             const data = await response.json();
-            document.cookie = `token = ${data.token}`;
-            document.cookie = `ID = ${data.userId}`
+            setCookie('token', data.token, 3600)
+            setCookie('ID', data.userId, 3600)
             console.log(data);
             window.open('../pages/landing.html', '_self');
         }                
