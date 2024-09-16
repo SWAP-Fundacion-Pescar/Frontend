@@ -1,3 +1,6 @@
+import { addEventToSearchBar } from "./helpers.js";
+
+addEventToSearchBar();
 // NAV: Menú hamburguesa
 const menu = document.getElementById("menu")
 const abrirMenu = document.getElementById("abrirMenu")
