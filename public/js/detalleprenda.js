@@ -1,4 +1,6 @@
+import { addEventToSearchBar } from "./helpers.js";
 document.addEventListener('DOMContentLoaded', function () {
+    addEventToSearchBar();
     const url = handleUrl();
     renderCard(url);
 });

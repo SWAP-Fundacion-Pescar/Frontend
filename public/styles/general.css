@@ -10,8 +10,8 @@
     --c_gray: #4C4C4C;
 }
 * {
-    border: 1px dotted white;
-    box-sizing: border-box;
+    /* border: 1px dotted white; */
+    /* box-sizing: border-box; */  /* Esto causa problema con las cards de catalogo */
     font-family: "DM Sans", sans-serif;
     margin: 0;
 }

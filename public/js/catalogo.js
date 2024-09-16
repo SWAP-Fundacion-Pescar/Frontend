@@ -1,8 +1,7 @@
+import { addEventToSearchBar } from "./helpers.js";
 const catalogContainer = document.getElementById('catalogo');
-const baseClotheUrl = 'https://microservicio-prendas.vercel.app/api/clothes';
-let currentPage = 1;
-
 document.addEventListener('DOMContentLoaded', () => {
+    addEventToSearchBar();
     const url = handleUrl();
     renderCards(url);
     getQueryParams();
@@ -55,10 +54,9 @@ function getQueryParams() {
     return Object.fromEntries(params.entries());
 }
 
-function handleUrl()
-{
+function handleUrl() {
     let baseClotheUrl = "https://microservicio-prendas.vercel.app/api/clothes?"
-    const { category, page, search} = getQueryParams();
+    const { category, page, search } = getQueryParams();
     if (category != null && category != "") {
         baseClotheUrl += `&category=${category}`;
     }
@@ -67,7 +65,7 @@ function handleUrl()
         baseClotheUrl += `&offset=${offset}`;
     }
     if (search != null && search != "") {
-        baseClotheUrl += `&search=${search}`;
+        baseClotheUrl += `&name=${search}`;
     }
     return baseClotheUrl;
 }

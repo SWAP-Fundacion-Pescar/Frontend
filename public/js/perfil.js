@@ -1,4 +1,6 @@
+import { addEventToSearchBar } from "./helpers.js";
 
+addEventToSearchBar()
 const apiUrl = 'http://localhost:3000/api/users/';
 const usuarioId = 'idDelUsuario'; 
 

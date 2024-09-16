@@ -1,4 +1,6 @@
+import { addEventToSearchBar } from "./helpers.js";
 document.addEventListener("DOMContentLoaded", function() {
+    addEventToSearchBar();
     const nombreInput = document.getElementById('nombre');
     const apellidoInput = document.getElementById('apellido');
     const telefonoInput = document.getElementById('telefono');
