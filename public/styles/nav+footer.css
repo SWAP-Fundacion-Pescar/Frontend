@@ -73,26 +73,42 @@
         padding-left: .5rem;
         border: none;
     }
+    /* Botones usuario */
 
     /* Usuario logueado */
     .nav__userButton-logged{
         grid-column: 5/6;
+        grid-row: 1/2;
         display: flex;
-        justify-content: space-between;
-        width: 8vw;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        padding: .3rem;
     }
     .nav__userButton-logged i{
         color: var(--c_beige-secondary);
         transform: scale(2);
     }
-    /* Botones usuario */
-
+    #logoutBtn{
+        margin: 0;
+    }
+    /* Visibilidad gral */
+    .nav__userButton--visible{
+            opacity: 1;
+            visibility: visible;
+        }
+    .nav__userButton--invisible{
+            opacity: 0;
+            visibility: hidden;
+        }
+    
+    /* Usuario no logueado */
     .nav__userButton{
         grid-column: 5/6;
+        grid-row: 1/2;
         display: flex;
         flex-wrap: nowrap;
     }
-
     .button{
         margin: 0 1rem;
         padding: .5rem;
