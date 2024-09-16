@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de la Prenda</title>
     <link rel="stylesheet" href="../styles/detalleprenda.css">
 </head>
+
 <body>
     <header>
         <header>
@@ -24,9 +26,10 @@
                         </button>
                     </div>
                     <!-- Nav bar links -->
-                    
+
                     <div class="nav__containerMenu__menu" id="menu">
-                        <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
+                        <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i>
+                        </button>
                         <a href="#home">Home</a>
                         <a href="#intercambiar">Intercambiar</a>
                         <a href="#reseñas">Reseñas</a>
@@ -51,18 +54,24 @@
             <div class="detalle-prenda-info">
                 <h1 id="prenda-nombre"></h1>
                 <p id="prenda-lugar"></p>
-                <h3>Detalles de la prenda:</h3>
-                <ul>
-                    <li>Color: <span id="prenda-color"></span></li>
-                    <li>Talle: <span id="prenda-talle"></span></li>
-                    <li>Categoría: <span id="prenda-categoria"></span></li>
-                </ul>
-                <h3>Detalles de la prenda a intercambiar:</h3>
-                <ul>
-                    <li>Color: <span id="intercambio-color"></span></li>
-                    <li>Talle: <span id="intercambio-talle"></span></li>
-                    <li>Categoría: <span id="intercambio-categoria"></span></li>
-                </ul>
+                <div class="prenda-detalles">
+                    <div>
+                        <h3>Detalles de la prenda:</h3>
+                        <ul>
+                            <li>Color: <span id="prenda-color"></span></li>
+                            <li>Talle: <span id="prenda-talle"></span></li>
+                            <li>Categoría: <span id="prenda-categoria"></span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Detalles de la prenda a intercambiar:</h3>
+                        <ul>
+                            <li>Color: <span id="intercambio-color"></span></li>
+                            <li>Talle: <span id="intercambio-talle"></span></li>
+                            <li>Categoría: <span id="intercambio-categoria"></span></li>
+                        </ul>
+                    </div>
+                </div>                
                 <h3>Descripción</h3>
                 <p id="prenda-descripcion"></p>
                 <button id="intercambiar-btn">Intercambiar</button>
@@ -84,4 +93,5 @@
     </footer>
     <script src="../js/detalleprenda.js"></script>
 </body>
+
 </html>
