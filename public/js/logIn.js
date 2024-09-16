@@ -10,7 +10,7 @@ document.getElementById('login').addEventListener('submit', async function(e)
     };
     try
     {
-        const response = await fetch(`http://localhost:3000/api/users/login`, 
+        const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/login`, 
             {
                 method: 'POST',
                 headers: 
@@ -31,7 +31,9 @@ document.getElementById('login').addEventListener('submit', async function(e)
         else
         {
             const data = await response.json();
-            document.cookie = `token = ${data}`;
+            document.cookie = `token = ${data.token}`;
+            document.cookie = `ID = ${data.userId}`
+            console.log(data);
             window.open('../pages/landing.html', '_self');
         }                
     }

@@ -1,5 +1,17 @@
-document.getElementById('signIn').addEventListener('submit', async function(e)
-{
+document.addEventListener('DOMContentLoaded', () => {
+    const token = getCookie('ID')
+    if(token)
+        {
+            window.open('../pages/landing.html', '_self');
+        }
+})
+
+function getCookie(name) {
+    let value = (`; ${document.cookie}`);
+    let parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+document.getElementById('signIn').addEventListener('submit', async function (e) {
     e.preventDefault();
     const username = document.getElementById('signIn__username').value;
     const email = document.getElementById('signIn__email').value;
@@ -7,7 +19,7 @@ document.getElementById('signIn').addEventListener('submit', async function(e)
     const lastName = document.getElementById('signIn__lastname').value;
     const password = document.getElementById('signIn__password').value;
     const city = document.getElementById('signIn__city').value;
-    const body = 
+    const body =
     {
         username: username,
         name: name,
@@ -18,32 +30,27 @@ document.getElementById('signIn').addEventListener('submit', async function(e)
     };
     // TODO: 
     // Verificar que el usuario y mail esten disponibles-
-    try
-    {
-        console.log("HEEEEEEEERE")
-        const response = await fetch(`http://localhost:3000/api/users/register`, 
+    try {
+        const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/register`,
             {
                 method: 'POST',
-                headers: 
+                headers:
                 {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(body)
             });
-        if(!response.ok)
-            {
-                
-                const data = await response.json()
-                console.log(data);
-            }
-        else
-        {
+        if (!response.ok) {
+
+            const data = await response.json()
+            console.log(data);
+        }
+        else {
             alert('Usuario creado con exito!');
             window.open('../pages/landing.html', '_self');
-        }                
+        }
     }
-    catch(error)
-    {
+    catch (error) {
         console.log('Error:', error);
     }
 });
