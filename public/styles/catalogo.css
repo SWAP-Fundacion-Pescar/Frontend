@@ -1,4 +1,7 @@
 @import url(../styles/catalogo/card.css);
+*{
+    box-sizing:content-box;
+}
 /* Filtros */
 .filters {
     padding: 20px;
