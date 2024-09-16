@@ -5,44 +5,59 @@ main {
 .detalle-prenda {
     display: flex;
     gap: 20px;
-    background-color: #ece3d0;
+    background-color: var(--c_beiger_terciary);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 5px 0.5rem rgb(121, 121, 121);
     height: 70vh;
 }
 .prenda-detalles
 {
     display: flex;
     justify-content: space-between;
+    height: 5rem;
 }
 .detalle-prenda-imagen img {
     width: 40vw;
     height: 65vh;
     border-radius: 10px;
     object-fit: cover;
+    margin: 1rem;
+    box-shadow: 1px 2.5px 0.5rem rgb(121, 121, 121);
+
 }
 .detalle-prenda-info {
-    margin-left: 2rem;
+    display: grid;
+    grid-template-rows: repeat(4);
+    width: 100%;
+    margin: 1rem 2rem;
+}
+.prenda-header
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 1rem;
 }
 
 .detalle-prenda-info h1 {
     font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.detalle-prenda-info h3 {
-    margin-top: 20px;
-    font-size: 18px;
 }
 
 .detalle-prenda-info ul {
     list-style-type: none;
     padding: 0;
 }
+.detalle-prenda-info ul svg
+{
+    margin-right: 0.5rem;
+}
 
 .detalle-prenda-info ul li {
-    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin: 1rem 0;
 }
 
 .detalle-prenda-info button {
@@ -53,10 +68,23 @@ main {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    box-shadow: 1px 2.5px 0.5rem #303124;
 }
 
 .detalle-prenda-info button:hover {
     background-color: #69704a;
+}
+.prenda-bottom
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+.prenda-bottom button
+{
+    width: 30vw;
 }
 
 .prendas-relacionadas {
