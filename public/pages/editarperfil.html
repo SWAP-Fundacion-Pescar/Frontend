@@ -40,18 +40,21 @@
                 <i class="fa-regular fa-bell"></i>
                 <i class="fa-regular fa-message"></i>
                 <i class="fa-solid fa-gear"></i>
+                <a href="../pages/perfil.html"><i class="fa-solid fa-user"></i></a>
                 <button class="button button--filled" id="logoutBtn">Salir</button>
             </div>
         </nav>
     </header>
+    <main>
     <div class="container">
         <div class="sidebar">
             <div class="profile-section">
                 <div class="profile-picture">
-                    <span class="profile-initial" id="profile-initial">N</span>
+                    <img src="../assets/img/userPhoto_example.jpg" alt="Imagen Perfil">
+                    <!-- <span class="profile-initial" id="profile-initial">N</span> -->
                 </div>
                 <h2 id="nombre-completo"></h2>
-                <button class="my-account-btn">Mi Cuenta</button>
+                <button class="changePhoto-btn">+</button>
             </div>
         </div>
         <div class="main-content">
@@ -59,7 +62,7 @@
                 <h2>Cuenta</h2>
                 <p>Mira y edita tu información personal.</p>
                 <div class="actions">
-                    <button class="btn discard-btn">Descartar</button>
+                    <a href="../pages/perfil.html" class="btn discard-btn">Descartar</a>
                     <button class="btn save-btn" id="save-btn">Actualizar información</button>
                 </div>
             </div>
@@ -95,7 +98,7 @@
             </div>
         </div>
     </div>
-
+    </main>
     <script src="../js/editarperfil.js" type="module"></script>
     <script src="../js/header.js"></script>
 </body>

@@ -69,6 +69,7 @@
         border: 1px solid var(--c_gray);
         cursor: pointer;
         color: var(--c_gray);
+        text-decoration: none;
     }
     
     .tabs {

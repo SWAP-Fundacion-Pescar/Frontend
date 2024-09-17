@@ -60,6 +60,7 @@
             color: var(--c_beige-secondary);
             transform: scale(1.5);
             margin-left: .5rem;
+            cursor: pointer;
         }
 
     .nav__containerMenu__searchBar input:focus{
@@ -84,6 +85,7 @@
         align-items: center;
         gap: 2.5rem;
         padding: .3rem;
+        cursor: pointer;
     }
     .nav__userButton-logged i{
         color: var(--c_beige-secondary);
@@ -91,6 +93,7 @@
     }
     #logoutBtn{
         margin: 0;
+        cursor: pointer;
     }
     /* Visibilidad gral */
     .nav__userButton--visible{
@@ -108,6 +111,7 @@
         grid-row: 1/2;
         display: flex;
         flex-wrap: nowrap;
+        cursor: pointer;
     }
     .button{
         margin: 0 1rem;
