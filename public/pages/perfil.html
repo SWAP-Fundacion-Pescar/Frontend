@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="../styles/general.css">
     <link rel="stylesheet" href="../styles/nav+footer.css">
     <link rel="stylesheet" href="../styles/perfil.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -44,7 +46,6 @@
                 <i class="fa-regular fa-bell"></i>
                 <i class="fa-regular fa-message"></i>
                 <i class="fa-solid fa-gear"></i>
-                <a href="../pages/perfil.html"><i class="fa-solid fa-user"></i></a>
                 <button class="button button--filled" id="logoutBtn">Salir</button>
             </div>
         </nav>
@@ -52,7 +53,7 @@
     <!-- Contenedor del perfil -->
     <section class="perfil-container">
         <div class="perfil-header">
-            <img src="../assets/img/userPhoto_example.jpg" id="foto-perfil" class="foto-perfil" alt="Foto de perfil">
+            <img id="foto-perfil" class="foto-perfil" alt="Foto de perfil">
             <div class="reputacion-usuario">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_384_1365" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="40"
@@ -110,19 +111,21 @@
                     </g>
                 </svg>
             </div>
-                <!-- Puedes cargar aquí dinámicamente la reputación si la tienes en el microservicio -->
+            <!-- Puedes cargar aquí dinámicamente la reputación si la tienes en el microservicio -->
         </div>
 
         <div class="info-usuario">
             <div class="info-usuario-personal">
-                <h1 id="nombre-usuario">Ana Lopez</h1>
+                <h1 id="nombre-usuario">Nombre Usuario</h1>
                 <a href="../pages/editarperfil.html" class="button" id="editar-perfil">Editar Perfil</a>
             </div>
-            <p id="ubicacion-usuario">Flores, CABA.</p>
-            <p id="descripcion-usuario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, quaerat. Tenetur, soluta cumque corrupti fugiat quidem possimus excepturi? Unde modi, magni molestias iste libero temporibus tempore est doloribus reprehenderit eveniet.</p>
-            
+            <p id="ubicacion-usuario">Ubicación</p>
+            <p id="descripcion-usuario">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, quaerat. Tenetur,
+                soluta cumque corrupti fugiat quidem possimus excepturi? Unde modi, magni molestias iste libero
+                temporibus tempore est doloribus reprehenderit eveniet.</p>
+
         </div>
-        
+
     </section>
 
     <!-- Publicaciones, Favoritos, Reseñas -->
@@ -135,7 +138,15 @@
 
         <div id="publicaciones" class="tab-content">
             <!-- Aquí se cargarán las publicaciones del usuario -->
-            <div class="publicaciones-container" id="publicaciones-container"></div>
+            <div class="publicaciones-container" id="publicaciones-container">
+                <div class="add-clothe">
+                    <svg id="add-clothe-btn" width="174" height="173" viewBox="0 0 174 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M87.001 52.9871V119.917M53.001 86.4518H121.001M172.001 86.4518C172.001 132.657 133.945 170.114 87.001 170.114C40.0568 170.114 2.00098 132.657 2.00098 86.4518C2.00098 40.2467 40.0568 2.79004 87.001 2.79004C133.945 2.79004 172.001 40.2467 172.001 86.4518Z"
+                            stroke="#F3E8DA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
         </div>
 
         <div id="favoritos" class="tab-content hidden">
@@ -148,6 +159,46 @@
             <div class="resenas-container" id="resenas-container"></div>
         </div>
     </section>
+    <!-- Modal Structure -->
+    <div id="add-clothe-modal" class="modal">
+        <div class="modal-content">
+            <h2>Agregar prenda</h2>
+            <label for="name">Nombre de la prenda:</label>
+            <input type="text" id="name" name="name" placeholder="Nombre..." required>
+
+            <label for="category">Categoria:</label>
+            <input type="text" id="category" name="category" placeholder="Categoria..." required>
+
+            <label for="expectedCategory">Categoria esperada:</label>
+            <input type="text" id="expectedCategory" name="expectedCategory" placeholder="Categoria esperada..." required>
+
+            <label for="size">Tamaño:</label>
+            <input type="text" id="size" name="size" placeholder="Tamaño..." required>
+
+            <label for="expectedSize">Tamaño esperado:</label>
+            <input type="text" id="expectedSize" name="expectedSize" placeholder="Tamaño esperado..." required>
+
+            <label for="gender">Genero:</label>
+            <input type="text" id="gender" name="gender" placeholder="Genero..." required>
+
+            <label for="expectedGender">Genero esperado:</label>
+            <input type="text" id="expectedGender" name="expectedGender" placeholder="Genero esperado..." required>
+
+            <label for="description">Descripción:</label>
+            <input type="textarea" id="description" name="description" placeholder="Descripción..." required>
+
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" placeholder="Color..." required>
+
+            <label for="expectedColor">Color esperado:</label>
+            <input type="text" id="expectedColor" name="expectedColor" placeholder="Color esperado..." required>
+
+            <label for="file">Imagen:</label>
+            <input type="file" id="file" name="file" placeholder="Imagen..." required>
+
+            <button class="swap__card__button" id="add-btn">Crear</button>
+        </div>
+    </div>
 
     <!-- Enlace al archivo JS -->
     <script src="../js/perfil.js" type="module"></script>
