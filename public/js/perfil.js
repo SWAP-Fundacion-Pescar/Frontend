@@ -17,8 +17,8 @@ const heart = `<svg width="40" height="40" viewBox="0 0 41 41" fill="none" xmlns
 </g>
 </svg>
 `;
-const userMS = 'https://microservicio-usuarios-three.vercel.app/api/users';
-const clotheMS = `https://microservicio-prendas.vercel.app/api/clothes/users`;
+const userMS = 'http://localhost:3000/api/users';
+const clotheMS = `http://localhost:3001/api/clothes/users`;
 document.addEventListener('DOMContentLoaded', async () => {
     addEventToSearchBar();
     addEventListeners();
@@ -106,7 +106,7 @@ async function addClothe() {
     formData.append('expectedColor', expectedColor);
     formData.append('media', media);
     try {
-        const response = await fetch(`https://microservicio-prendas.vercel.app/api/clothes`,
+        const response = await fetch(`http://localhost:3001/api/clothes`,
             {
                 method: 'POST',
                 headers: {
