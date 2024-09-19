@@ -1,4 +1,4 @@
-import { addEventToSearchBar } from "./helpers.js";
+import { addEventToSearchBar, getQueryParams } from "./helpers.js";
 document.addEventListener('DOMContentLoaded', function () {
     addEventToSearchBar();
     const url = handleUrl();
@@ -37,13 +37,6 @@ async function renderCard(url) {
 
 function irADetalle(prendaId) {
     window.location.href = `detalle.html?id=${prendaId}`;
-}
-
-function getQueryParams() {
-    const currentUrl = window.location.href;
-    const url = new URL(currentUrl);
-    const params = new URLSearchParams(url.search);
-    return Object.fromEntries(params.entries());
 }
 function handleUrl() {
     let baseClotheUrl = 'https://microservicio-prendas.vercel.app/api/clothes';

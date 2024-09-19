@@ -1,4 +1,4 @@
-import { addEventToSearchBar } from "./helpers.js";
+import { addEventToSearchBar, getQueryParams } from "./helpers.js";
 const catalogContainer = document.getElementById('catalogo');
 const threeDotsSVG = `<svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0_384_1261" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="26">
@@ -74,14 +74,6 @@ async function createCard(clothe) {
     `;
     catalogContainer.appendChild(clotheContainer);
 }
-
-function getQueryParams() {
-    const currentUrl = window.location.href;
-    const url = new URL(currentUrl);
-    const params = new URLSearchParams(url.search);
-    return Object.fromEntries(params.entries());
-}
-
 function handleUrl() {
     let baseClotheUrl = "https://microservicio-prendas.vercel.app/api/clothes?"
     const { category, page, search } = getQueryParams();

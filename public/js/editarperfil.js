@@ -1,4 +1,4 @@
-import { addEventToSearchBar } from "./helpers.js";
+import { addEventToSearchBar, getCookie } from "./helpers.js";
 document.addEventListener("DOMContentLoaded", function () {
     addEventToSearchBar();
     addEventListeners();
@@ -38,13 +38,6 @@ async function updateUser() {
     console.log(content);
     window.open(`../pages/perfil.html?id=${getCookie('ID')}`, '_self');
 }
-
-function getCookie(name) {
-    let value = (`; ${document.cookie}`);
-    let parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
 async function loadUserData()
 {
     const response = await fetch(`http://localhost:3000/api/users/${getCookie('ID')}`);
@@ -59,20 +52,3 @@ async function loadUserData()
     document.getElementById('profile-initial').value = userData.name.charAt(0);
     document.getElementById('nombre-completo').value = `${userData.name} ${userData.lastName}`;
 }
-// // carga los datos del usuario desde el microservicio
-// function cargarDatosUsuario() {
-//     fetch('http://localhost:3000/api/users/')
-//         .then(response => response.json())
-//         .then(data => {
-//             nombreInput.value = data.name;
-//             apellidoInput.value = data.lastname;
-//             telefonoInput.value = data.telefono;
-//             userInput.value = data.user;
-//             emailUsuario.textContent = data.email;
-//             nombreCompleto.textContent = `${data.name} ${data.lastname}`;
-//             profileInitial.textContent = data.name.charAt(0); // primera letra 
-//         })
-//         .catch(error => console.error('Error al cargar los datos:', error));
-// }
-// // Llamar a la función para cargar los datos del usuario
-// cargarDatosUsuario();

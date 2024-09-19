@@ -1,4 +1,4 @@
-import { addEventToSearchBar } from "./helpers.js";
+import { addEventToSearchBar, getCookie, getQueryParams } from "./helpers.js";
 const threeDotsSVG = `<svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0_384_1261" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="26">
 <rect x="0.410156" y="0.901367" width="24.15" height="24.2769" fill="#D9D9D9"/>
@@ -120,17 +120,6 @@ async function addClothe() {
     catch (error) {
         console.error('Error:', error)
     }
-}
-function getCookie(name) {
-    let value = (`; ${document.cookie}`);
-    let parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-function getQueryParams() {
-    const currentUrl = window.location.href;
-    const url = new URL(currentUrl);
-    const params = new URLSearchParams(url.search);
-    return Object.fromEntries(params.entries());
 }
 function mostrarSeccion(seccionId) {
     const secciones = document.querySelectorAll('.tab-content');
