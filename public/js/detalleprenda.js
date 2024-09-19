@@ -1,28 +1,45 @@
-import { addEventToSearchBar, getQueryParams } from "./helpers.js";
+import { addEventToSearchBar, getQueryParams, getCookie } from "./helpers.js";
 document.addEventListener('DOMContentLoaded', function () {
     addEventToSearchBar();
-    const url = handleUrl();
-    renderCard(url);
+    const url = handleUrl();  
+    renderCard(url);  
 });
-
-async function renderCard(url) {
-    const response = await fetch(url);
-    if (!response) {
-        throw new Error('Network response was not ok');
-
+async function retrieveClothe(url) {
+    try
+    {
+        const response = await fetch(url);
+        if (!response) {
+            throw new Error('Network response was not ok');
+        }
+        const clothe = await response.json();
+        return clothe;
     }
-    const clothe = await response.json()
-    let userInfo;
+    catch (error)
+    {
+        console.error('Error al obtener informacion de la prenda: ', error)
+    }
+}
+async function retrieveUserInfo(userId)
+{
     try {
-        const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/${clothe.userId}`)
+        const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/${userId}`)
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        userInfo = await response.json();
+        const userInfo = await response.json();
+        return userInfo;
     }
     catch (error) {
         console.error('Error al cargar informacion del usuario: ', error);
     }
+}
+async function renderCard(url) {
+    const clothe = await retrieveClothe(url);
+    const userInfo = await retrieveUserInfo(clothe.userId);
+    if(userInfo.id == getCookie('ID'))
+        {
+            //TODO: Cambiar vista porque el usuario es el due;o de la prenda;
+        }
     document.getElementById('prenda-imagen').src = clothe.media[0].url;
     document.getElementById('prenda-nombre').textContent = clothe.name;
     document.getElementById('prenda-lugar').textContent = userInfo.city;
@@ -33,10 +50,6 @@ async function renderCard(url) {
     document.getElementById('intercambio-color').textContent = clothe.expectedColor;
     document.getElementById('intercambio-talle').textContent = clothe.expectedSize;
     document.getElementById('intercambio-categoria').textContent = clothe.expectedCategory;
-}
-
-function irADetalle(prendaId) {
-    window.location.href = `detalle.html?id=${prendaId}`;
 }
 function handleUrl() {
     let baseClotheUrl = 'https://microservicio-prendas.vercel.app/api/clothes';
