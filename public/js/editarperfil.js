@@ -5,13 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
     loadUserData();
 });
 
-function addEventListeners()
-{
+function addEventListeners() {
     const btn = document.getElementById('save-btn');
-    btn.addEventListener('click', () => 
-        {
-            updateUser();
-        })
+    btn.addEventListener('click', () => {
+        updateUser();
+    })
 }
 async function updateUser() {
     let body = {};
@@ -19,29 +17,28 @@ async function updateUser() {
     const lastName = document.getElementById('apellido').value;
     const username = document.getElementById('user').value;
     const city = document.getElementById('city').value;
-    if(name) body.name = name;
-    if(lastName) body.lastName = lastName;
-    if(username) body.username = username;
-    if(city) body.city = city;
-    const response = await fetch(`http://localhost:3000/api/users/info`, 
+    if (name) body.name = name;
+    if (lastName) body.lastName = lastName;
+    if (username) body.username = username;
+    if (city) body.city = city;
+    const response = await fetch(`http://localhost:3000/api/users/info`,
         {
             method: 'PUT',
-            headers: 
+            headers:
             {
                 'Authorization': `Bearer ${getCookie('token')}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)
         })
-    if (!response) console.error('Error: ', response.status)        
+    if (!response) console.error('Error: ', response.status)
     const content = await response.json();
     console.log(content);
     window.open(`../pages/perfil.html?id=${getCookie('ID')}`, '_self');
 }
-async function loadUserData()
-{
+async function loadUserData() {
     const response = await fetch(`http://localhost:3000/api/users/${getCookie('ID')}`);
-    if(!response) console.error('Error:', response.status);
+    if (!response) console.error('Error:', response.status);
     const userData = await response.json();
     console.log(userData);
     document.getElementById('nombre').value = userData.name;
@@ -51,4 +48,27 @@ async function loadUserData()
     document.getElementById('email-usuario').value = userData.email;
     document.getElementById('profile-initial').value = userData.name.charAt(0);
     document.getElementById('nombre-completo').value = `${userData.name} ${userData.lastName}`;
+};
+
+async function updateProfilePicture() {
+    try {
+        const profilePicture = document.getElementById('pfp').files[0];
+        const formData = new FormData();
+        formData.append('pfp', profilePicture);
+        const response = await fetch(`http://localhost:3000/api/users/pfp`,
+            {
+                method: 'PUT',
+                headers:
+                {
+                    'Authorization': `Bearer ${getCookie('token')}`,
+                    'Content-Type': 'multipart/form-data'
+                },
+                body: formData
+            })
+        if (!response) console.error('Error: ', response.status)
+        window.open(`../pages/perfil.html?id=${getCookie('ID')}`, '_self');
+    }
+    catch (error) {
+        console.error('Ocurrio un error al actualizar la foto de perfil: ', error)
+    }
 }
