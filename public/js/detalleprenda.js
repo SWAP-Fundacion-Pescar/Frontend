@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const url = handleUrl();  
     renderCard(url);  
 });
+let clothe;
 async function retrieveClothe(url) {
     try
     {
@@ -11,8 +12,7 @@ async function retrieveClothe(url) {
         if (!response) {
             throw new Error('Network response was not ok');
         }
-        const clothe = await response.json();
-        return clothe;
+        clothe = await response.json();
     }
     catch (error)
     {
@@ -34,7 +34,7 @@ async function retrieveUserInfo(userId)
     }
 }
 async function renderCard(url) {
-    const clothe = await retrieveClothe(url);
+    await retrieveClothe(url);
     const userInfo = await retrieveUserInfo(clothe.userId);
     if(userInfo.id == getCookie('ID'))
         {
@@ -50,12 +50,40 @@ async function renderCard(url) {
     document.getElementById('intercambio-color').textContent = clothe.expectedColor;
     document.getElementById('intercambio-talle').textContent = clothe.expectedSize;
     document.getElementById('intercambio-categoria').textContent = clothe.expectedCategory;
+    console.log(clothe)
+    sendExchangeRequest('Test');
 }
 function handleUrl() {
     let baseClotheUrl = 'https://microservicio-prendas.vercel.app/api/clothes';
     const { id } = getQueryParams();
     baseClotheUrl += `/${id}`;
     return baseClotheUrl;
+}
+
+async function sendExchangeRequest(senderClotheId)
+{
+    const userId = getCookie('ID');
+    const body = 
+    {
+        senderUserId: userId,
+        senderClotheId: senderClotheId,
+        receiverUserId: clothe.userId,
+        receiverClotheId: clothe.id
+    };
+    const response = await fetch('http://localhost:3002/api/exchange', 
+        {
+            method: 'POST',
+            headers:
+            {
+                'Authorization': `Bearer ${getCookie('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+    if(!response.ok) console.error('Error', response.status);
+    //TODO Mostrar algun tipo de confirmacion de que la solicitud fue enviada correctamente 
+    const exchange = await response.json();
+    console.log(exchange);   
 }
 function cargarPrendasRelacionadas(category) {
     fetch(`${apiUrl}?categoria=${category}`)
