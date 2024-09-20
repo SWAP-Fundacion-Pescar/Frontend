@@ -37,12 +37,32 @@ main {
     height: 75px;
     margin-right: 1rem;
 }
-
+.chat-info
+{
+    width: 100%;
+}
 .chat-name {
     color: var(--c_green-primary);
     margin-bottom: 1.25rem;
 }
-
+.message-counter
+{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    padding: 1rem;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 2rem;
+    background-color: var(--c_green-primary);
+    align-self: center;
+    color: var(--c_beige-secondary);
+}
+.active
+{
+    display: flex;
+}
 .currentChat {
     display: flex;
     flex-direction: column;

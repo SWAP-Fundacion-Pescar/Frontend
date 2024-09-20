@@ -29,9 +29,9 @@ async function renderChatsCard() {
         const receiverUserInfo = await retrieveUserInfo(receiverUserId);
         const chatCard = document.createElement('div');
         chatCard.classList.add('chat');
-        chatCard.classList.add(`${chat._id}`)
+        chatCard.classList.add(`id_${chat._id}`)
         let lastMessage = '';
-        if (chat.message) {
+        if (chat.messages) {
             lastMessage = chat.messages[chat.messages.length - 1].content
         }
         chatCard.innerHTML = `
@@ -40,6 +40,7 @@ async function renderChatsCard() {
                             <h4 class="chat-name">${receiverUserInfo.username}</h4>
                             <p class="chat-lastMessage">${lastMessage}</p>
                         </div>
+                        <div class="message-counter"></div>   
             `;
         chatContainer.append(chatCard);
         chatCard.addEventListener('click', () => {
@@ -55,16 +56,14 @@ async function retrieveUserInfo(id) {
 }
 
 function renderCurrentChatMessages(chatId) {
-    currentChatId = chatId;    
+    currentChatId = chatId;
     const currentChatContainer = document.querySelector('.currentChat-messages');
     currentChatContainer.innerHTML = '';
     const currentChat = chats.find(chat => chat._id == chatId);
-    if(currentChat.senderUserId == userId) 
-        {
-            receiverUserId = currentChat.receiverUserId;
-        }
-    else
-    {
+    if (currentChat.senderUserId == userId) {
+        receiverUserId = currentChat.receiverUserId;
+    }
+    else {
         receiverUserId = currentChat.senderUserId;
     }
     currentChat.messages.forEach(message => {
@@ -102,25 +101,54 @@ function sendMessage(content) {
     };
     chatSocket.emit('msg', msg, msg.chatId);
 }
-function renderMessage(msg)
-{
+function renderMessage(msg) {
     const currentChatContainer = document.querySelector('.currentChat-messages');
     const messageContainer = document.createElement('div');
-        messageContainer.classList.add('message');
-        if (msg.userId == userId) {
-            messageContainer.classList.add('sender')
-        }
-        else {
-            messageContainer.classList.add('receiver');
-        }
-        const date = new Date(msg.createdAt)
-        const formattedTime = formatter.format(date);
-        messageContainer.innerHTML = `
+    messageContainer.classList.add('message');
+    if (msg.userId == userId) {
+        messageContainer.classList.add('sender')
+    }
+    else {
+        messageContainer.classList.add('receiver');
+    }
+    const date = new Date(msg.createdAt)
+    const formattedTime = formatter.format(date);
+    messageContainer.innerHTML = `
             <p class="message-content">${msg.content}</p>
             <span class="message-time">${formattedTime}</span>
         `;
-        currentChatContainer.append(messageContainer);
+    currentChatContainer.append(messageContainer);
+    const readRequest =
+    {
+        messageId: msg._id,
+        chatId: currentChatId
+    }
+    chatSocket.emit('read', readRequest)
 }
-chatSocket.on('msg', (content) => {   
-    renderMessage(content);
+function isUserInTheSameChat(content) {
+    if (currentChatId) {
+        const currentChat = chats.find(chat => chat._id == currentChatId);
+        if (currentChat.receiverUserId == content.userId || currentChat.senderUserId == content.userId) {
+            renderMessage(content);
+        }
+    }
+    else {
+        const chat = chats.find(chat => chat.senderUserId == content.userId || chat.receiverUserId == content.userId);        
+        const chatCard = document.querySelector(`.id_${chat._id}`);
+        chatCard.classList.toggle('top');
+        const messageCounter = chatCard.lastElementChild;
+        let amount = 1;
+        if(messageCounter.textContent)
+            {
+                amount = parseInt(messageCounter.textContent) + amount;
+            }        
+        messageCounter.textContent = amount;
+        messageCounter.style.display = 'flex';
+    }
+
+
+}
+chatSocket.on('msg', (content) => {
+    console.log(content);
+    isUserInTheSameChat(content);
 });
