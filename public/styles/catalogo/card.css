@@ -12,7 +12,7 @@
 .card {
     display: flex;
     flex-direction: column;
-    background-color: var(--c_beige-secondary);
+    background-color: #f4f0e9;
     border-radius: 10px;
     padding: 15px;
     width: 15vw;

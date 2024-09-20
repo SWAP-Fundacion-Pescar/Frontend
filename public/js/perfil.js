@@ -17,6 +17,61 @@ const heart = `<svg width="40" height="40" viewBox="0 0 41 41" fill="none" xmlns
 </g>
 </svg>
 `
+
+//USUARIO LOGUEADO: Iconos desplegables 
+
+function crearDesplegable(prendaId) {
+    let dropdownBtnDots;
+    let dropdownMenuDots;
+
+        dropdownBtnDots = document.getElementById(`btn_${prendaId}`);
+        dropdownMenuDots = document.getElementById(`${prendaId}`);
+
+        // Toggle dropdown se abre/cierra con click
+        dropdownBtnDots.addEventListener('click', function(e){
+            e.stopPropagation();
+            const padre = dropdownMenuDots.parentElement
+            const dropdownMenu = padre.children[1];
+            toggleDropdown(dropdownMenu);
+        })
+
+
+    //Cerrar si se cliquea por fuera
+    document.documentElement.addEventListener("click", function () {
+        if (dropdownMenuDots.classList.contains("show")) {
+            toggleDropdown(dropdownMenuDots);
+        }
+    });
+
+    
+}
+
+const toggleDropdown = function (menu) {
+        menu.classList.toggle("show");
+    }
+
+function editarPrenda(prendaId){
+    let editBtn
+
+    const editClothe = document.getElementById('edit-clothe')
+    editBtn = document.getElementById(`edit_${prendaId}`)
+    editBtn.addEventListener('click', function(){
+        editClothe.style.display="flex";
+    }) 
+    console.log(editClothe) 
+}
+
+function eliminarPrenda(prendaId){
+    let deleteBtn
+
+    const deleteClothe = document.getElementById('delete-clothe')
+    deleteBtn = document.getElementById(`delete_${prendaId}`)
+    deleteBtn.addEventListener('click', function(){
+        deleteClothe.style.display="flex";
+    }) 
+    console.log(deleteClothe) 
+}
+
 addEventToSearchBar()
 addEventListeners();
 const apiUrl = 'https://microservicio-usuarios-three.vercel.app/api/users';
@@ -41,9 +96,19 @@ fetch(`${apiUrl}/${usuarioId}`)
             const publicacionDiv = document.createElement('div');
             publicacionDiv.classList.add('card');
             publicacionDiv.innerHTML = `
-        <div class="dots-container">
-            ${threeDotsSVG}
+        
+        <div class="dropdown__container">
+            <button class="dropdown__btn" id="btn_${clothe.id}">
+                <div class="dots-container">
+                    ${threeDotsSVG}
+                </div>
+            </button>
+            <div class="dropdown__window menu_dots" id=${clothe.id}>
+                <p id="edit_${clothe.id}">Editar prenda</p>
+                <p id="delete_${clothe.id}">Eliminar prenda</p>
+            </div>
         </div>
+        
         <div class="card-img">
             <img src="${clothe.media[0].url}" alt="${clothe.name}" class="card__img">
         </div>
@@ -57,8 +122,11 @@ fetch(`${apiUrl}/${usuarioId}`)
         </div>
     `;
             publicacionesContainer.appendChild(publicacionDiv);
+            crearDesplegable(clothe.id);
+            editarPrenda(clothe.id);
+            eliminarPrenda(clothe.id)
         });
-
+    
         // carga favoritos 
     })
     .catch(error => console.error('Error al cargar el perfil:', error));
@@ -78,10 +146,12 @@ function addEventListeners() {
         addClothe();
     })
     window.onclick = function (event) {
-        if (event.target === document.querySelector('.modal')) {
-            document.querySelector('.modal').style.display = 'none';
-        }
-    }
+        const modales = document.querySelectorAll('.modal')
+        modales.forEach(modal=>{
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        })}
 }
 async function addClothe() {
     const name = document.getElementById('name').value;
@@ -130,3 +200,13 @@ function getCookie(name) {
     let parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
+//************************* */
+
+
+
+
+
+
+
+
+

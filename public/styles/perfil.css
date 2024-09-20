@@ -205,7 +205,7 @@
     }
 
     /* Modal Styles */
-    .modal {
+    .modal, #edit-clothe, #delete-clothe {
         display: none;
         flex-direction: column;
         position: fixed;
@@ -243,3 +243,4 @@
     #add-btn{
         align-self: end;
     }
+    
