@@ -19,7 +19,6 @@ const heart = `<svg width="40" height="40" viewBox="0 0 41 41" fill="none" xmlns
 `
 
 //USUARIO LOGUEADO: Iconos desplegables 
-
 function crearDesplegable(prendaId) {
     let dropdownBtnDots;
     let dropdownMenuDots;
@@ -50,29 +49,46 @@ const toggleDropdown = function (menu) {
         menu.classList.toggle("show");
     }
 
+// USUARIO LOGUEADO: Editar y eliminar prenda
+
 function editarPrenda(prendaId){
     let editBtn
 
-    const editClothe = document.getElementById('edit-clothe')
+    const modal = document.getElementById('edit-clothe')
+    const confirmBtn = document.getElementById('modify-btn')
+
+    // Mostrar modal
     editBtn = document.getElementById(`edit_${prendaId}`)
     editBtn.addEventListener('click', function(){
-        editClothe.style.display="flex";
+        modal.style.display="flex";
+        confirmBtn.addEventListener('click', function(){
+            editClothe(prendaId)
+        })
     }) 
-    console.log(editClothe) 
 }
 
 function eliminarPrenda(prendaId){
     let deleteBtn
-
-    const deleteClothe = document.getElementById('delete-clothe')
+    const confirmBtn = document.getElementById('delete-btn')
+    const modal = document.getElementById('delete-clothe')
+    const closeModal = document.getElementById('close-modal')
+    console.log(closeModal)
     deleteBtn = document.getElementById(`delete_${prendaId}`)
     deleteBtn.addEventListener('click', function(){
-        deleteClothe.style.display="flex";
+        modal.style.display="flex";
+        confirmBtn.addEventListener('click', ()=>{
+            deleteClothe(prendaId)
+        })
+        closeModal.addEventListener('click', ()=>{
+            modal.style.display="none";
+        })
     }) 
-    console.log(deleteClothe) 
 }
 
+// USUARIO NO LOGUEADO/LOGUEADO: 
 addEventToSearchBar()
+
+// USUARIO LOGUEADO: Generación de cards
 addEventListeners();
 const apiUrl = 'https://microservicio-usuarios-three.vercel.app/api/users';
 const usuarioId = '66e8e9faa5db0b49c0a600e3';
@@ -131,28 +147,7 @@ fetch(`${apiUrl}/${usuarioId}`)
     })
     .catch(error => console.error('Error al cargar el perfil:', error));
 
-// para alternar entre las secciones (publicaciones, favoritos, reseñas)
-function mostrarSeccion(seccionId) {
-    const secciones = document.querySelectorAll('.tab-content');
-    secciones.forEach(seccion => seccion.classList.add('hidden'));
 
-    document.getElementById(seccionId).classList.remove('hidden');
-}
-function addEventListeners() {
-    document.getElementById('add-clothe-btn').addEventListener('click', () => {
-        document.querySelector('.modal').style.display = 'flex';
-    })
-    document.getElementById('add-btn').addEventListener('click', () => {
-        addClothe();
-    })
-    window.onclick = function (event) {
-        const modales = document.querySelectorAll('.modal')
-        modales.forEach(modal=>{
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        })}
-}
 async function addClothe() {
     const name = document.getElementById('name').value;
     const category = document.getElementById('category').value;
@@ -195,12 +190,114 @@ async function addClothe() {
         console.error('Error:', error)
     }
 }
+
+async function editClothe(prendaId) {
+    let body = {
+        userId: getCookie('ID'),
+        clotheId: prendaId
+    };
+    const name = document.getElementById('newName');
+    const category = document.getElementById('newCategory');
+    const expectedCategory = document.getElementById('newExpectedCategory');
+    const size = document.getElementById('newSize');
+    const expectedSize = document.getElementById('newExpectedSize');
+    const gender = document.getElementById('newGender');
+    const expectedGender = document.getElementById('newExpectedGender');
+    const description = document.getElementById('newDescription');
+    const color = document.getElementById('newColor');
+    const expectedColor = document.getElementById('newExpectedColor');
+    // const media = document.getElementById('newFile').files[0];
+
+    if(name.value) body.name = name.value; 
+    if(category.value) body.category = category.value;
+    if(expectedCategory.value) body.expectedCategory = expectedCategory.value;
+    if(size.value) body.size = size.value;
+    if(expectedSize.value) body.expectedSize = expectedSize.value;
+    if(gender.value) body.gender = gender.value;
+    if(expectedGender.value) body.expectedGender = expectedGender.value;
+    if(description.value) body.description = description.value;
+    if(color.value) body.color = color.value;
+    if(expectedColor.value) body.expectedColor = expectedColor.value;
+
+    try {
+        const response = await fetch(`http://localhost:3001/api/clothes/update`,
+        {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${getCookie('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body),
+        })
+        if (!response) console.log('Error')
+        const result = await response.json();
+        console.log(result);
+        // window.location.reload();
+    }
+    catch (error) {
+        console.error('Error:', error)
+    }
+}
+
+async function deleteClothe(prendaId) {
+    let body = {
+        userId: getCookie('ID'),
+        clotheId: prendaId
+    };
+
+    try {   //Modificar endpoint 
+        const response = await fetch(`http://localhost:3001/api/clothes/delete`, 
+        {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${getCookie('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body),
+        })
+        if (!response) console.log('Error')
+        const result = await response.json();
+        console.log(result);
+        // window.location.reload();
+    }
+    catch (error) {
+        console.error('Error:', error)
+    }
+}
+
 function getCookie(name) {
     let value = (`; ${document.cookie}`);
     let parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
-//************************* */
+
+
+
+
+/*A REVISAR*/
+// para alternar entre las secciones (publicaciones, favoritos, reseñas)
+function mostrarSeccion(seccionId) {
+    const secciones = document.querySelectorAll('.tab-content');
+    secciones.forEach(seccion => seccion.classList.add('hidden'));
+
+    document.getElementById(seccionId).classList.remove('hidden');
+}
+function addEventListeners() {
+    document.getElementById('add-clothe-btn').addEventListener('click', () => {
+        document.querySelector('.modal').style.display = 'flex';
+    })
+    document.getElementById('add-btn').addEventListener('click', () => {
+        addClothe();
+    })
+    window.onclick = function (event) {
+        const modales = document.querySelectorAll('.modal')
+        modales.forEach(modal=>{
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        })}
+}
+
 
 
 
