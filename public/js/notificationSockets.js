@@ -4,13 +4,12 @@ const notificationSocket = io(socketUrl, {
     extraHeaders: {
         authorization: `bearer ${getCookie('token')}`
     }
-})
+});
 document.addEventListener('DOMContentLoaded', () => {
     const userId = getCookie('ID');
     notificationSocket.emit('join', userId)
     notificationSocket.emit('getNotificationsChat', userId);
     notificationSocket.emit('getNotificationsExchange', userId);
-
 })
 notificationSocket.on('connect', () => {
     console.log('Connected to the Socket.IO server.');
