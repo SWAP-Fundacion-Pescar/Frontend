@@ -85,6 +85,43 @@ async function sendExchangeRequest(senderClotheId)
     const exchange = await response.json();
     console.log(exchange);   
 }
+
+async function updateClotheDetails()
+{
+    let body = {}
+    const updatedName = document.getElementById('updatedName').value;
+    const updatedCategory = document.getElementById('updatedCategory').value;
+    const updatedExpectedCategory = document.getElementById('updatedExpectedCategory').value;
+    const updatedSize = document.getElementById('updatedSize').value;
+    const updatedExpectedSize = document.getElementById('updatedExpectedSize').value;
+    const updatedGender = document.getElementById('updatedGender').value;
+    const updatedExpectedGender = document.getElementById('updatedExpectedGender').value;
+    const updatedDescription = document.getElementById('updatedDescription').value;
+    const updatedColor= document.getElementById('updatedColor').value;
+    const updatedExpectedColor = document.getElementById('updatedExpectedColor').value;
+    if(updatedName) body.updatedName = updatedName;
+    if(updatedCategory) body.updatedCategory = updatedCategory;
+    if(updatedExpectedCategory) body.updatedExpectedCategory = updatedExpectedCategory;
+    if(updatedSize) body.updatedSize = updatedSize;
+    if(updatedExpectedSize) body.updatedExpectedSize = updatedExpectedSize;
+    if(updatedGender) body.updatedGender = updatedGender;
+    if(updatedExpectedGender) body.updatedExpectedGender = updatedExpectedGender;
+    if(updatedDescription) body.updatedDescription = updatedDescription;
+    if(updatedColor) body.updatedColor = updatedColor;
+    if(updatedExpectedColor) body.updatedExpectedColor = updatedExpectedColor;
+    const response = await fetch('http://localhost:3001/clothes/update', 
+        {
+            method: 'PUT',
+            headers:
+            {
+                'Authorization': `Bearer ${getCookie('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        })
+    if(!response.ok) console.error('Error: ', response.status);
+    window.location.reload();
+}
 function cargarPrendasRelacionadas(category) {
     fetch(`${apiUrl}?categoria=${category}`)
         .then(response => response.json())
