@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Prenda</title>
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/nav+footer.css">
+    <link rel="stylesheet" href="../styles/detalleprenda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <header>
+            <nav class="nav">
+                <!-- Logo -->
+                <div class="nav__logo">
+                    <img src="../assets/img/ImagenLogo.png" alt="Logo Swap" class="nav__logo__img">
+                    <button class="nav__btnHamburger--open" id="abrirMenu"><i class="fa-solid fa-bars"></i></button>
+                </div>
+                <div class="nav__containerMenu">
+                    <!-- Search bar -->
+                    <div class="nav__containerMenu__searchBar">
+                        <input id="searchBar" name="searchBar" type="text" placeholder="Buscar productos">
+                        <button>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <!-- Nav bar links -->
+                    <!-- No logueado -->
+                    <div class="nav__containerMenu__menu" id="nav__menu">
+                        <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <a href="#intercambiar">Intercambiar</a>
+                        <a href="#reseñas">Reseñas</a>
+                        <a href="#quienesSomos">Quienes somos</a>
+                    </div>
+                    <!-- Logueado -->
+                    <div class="nav__containerMenu__menu" id="nav__menu-logged">
+                        <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <a href="../pages/catalogo.html">Catálogo</a>
+                        <a href="../pages/chat.html">Chat</a>
+                        <a href="../pages/favoritos.html">Favoritos</a>
+                    </div>
+                </div>
+                <!-- Botones de usuario -->
+
+                <!-- No logueado -->
+                <div class="nav__userButton" id="nav__userButton">
+                    <a href="../pages/logIn.html" class="button--outlined button">Iniciar Sesión</a>
+                    <a href="../pages/signIn.html" class="button--filled button">Registrate</a>
+                </div>
+
+                <!-- Logueado -->
+                <div class="nav__userButton-logged" id="nav__userButton-logged">
+
+                    <div class="dropdown__container">
+                        <button class="dropdown__btn" id="btn_bell">
+                            <i class="fa-regular fa-bell"></i>
+                        </button>
+                        <div class="dropdown__window" id="menu_bell">
+                            <a href="#">
+                                Not. General 1
+                            </a>
+                            <a href="#">
+                                Not. General 2
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown__container">
+                        <button class="dropdown__btn" id="btn_chat">
+                            <i class="fa-regular fa-message"></i>
+                        </button>
+                        <div class="dropdown__window" id="menu_chat">
+                            <a href="#">
+                                Not. Chat 1
+                            </a>
+                            <a href="#">
+                                Not. Chat 2
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown__container">
+                        <button class="dropdown__btn" id="btn_user">
+                            <i class="fa-regular fa-user"></i>
+                        </button>
+                        <div class="dropdown__window" id="menu_user">
+                            <a href="../pages/perfil.html">
+                                Ver perfil
+                            </a>
+                            <a href="../pages/editarperfil.html">
+                                Editar Perfil
+                            </a>
+                            <a id="logoutBtn" href="#">
+                                Cerrar sesión
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- <button class="button button--filled" id="logoutBtn">Salir</button> -->
+                </div>
+            </nav>
+        </header>
+    </header>
+    <main>
+        <section class="detalle-prenda">
+            <div class="detalle-prenda-imagen">
+                <img id="prenda-imagen" src="" alt="Imagen de la prenda">
+            </div>
+            <div class="detalle-prenda-info">
+                <div class="prenda-header">
+                    <div class="prenda-header-text">
+                        <h1 id="prenda-nombre"></h1>
+                        <h3 id="prenda-lugar"></h3>
+                    </div>
+                    <svg width="40" height="40" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <mask id="mask0_384_1259" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                            width="50" height="50">
+                            <rect width="50" height="50" fill="#D9D9D9" />
+                        </mask>
+                        <g mask="url(#mask0_384_1259)">
+                            <path
+                                d="M19.9919 35.7942L17.5599 33.6023C14.7366 31.0452 12.4025 28.8393 10.5576 26.9846C8.71261 25.13 7.24505 23.4651 6.15486 21.9898C5.06467 20.5145 4.30293 19.1586 3.86965 17.9222C3.43637 16.6858 3.21973 15.4213 3.21973 14.1286C3.21973 11.4872 4.10027 9.2813 5.86134 7.51097C7.62242 5.74064 9.81678 4.85547 12.4444 4.85547C13.898 4.85547 15.2817 5.16457 16.5955 5.78279C17.9094 6.401 19.0415 7.27212 19.9919 8.39614C20.9423 7.27212 22.0744 6.401 23.3883 5.78279C24.7021 5.16457 26.0858 4.85547 27.5394 4.85547C30.167 4.85547 32.3614 5.74064 34.1225 7.51097C35.8835 9.2813 36.7641 11.4872 36.7641 14.1286C36.7641 15.4213 36.5474 16.6858 36.1142 17.9222C35.6809 19.1586 34.9191 20.5145 33.8289 21.9898C32.7388 23.4651 31.2712 25.13 29.4262 26.9846C27.5813 28.8393 25.2472 31.0452 22.4239 33.6023L19.9919 35.7942ZM19.9919 31.2419C22.6754 28.8252 24.8838 26.7528 26.6169 25.0246C28.35 23.2964 29.7198 21.7931 30.7261 20.5145C31.7324 19.2359 32.4313 18.0978 32.8226 17.1003C33.214 16.1027 33.4096 15.1122 33.4096 14.1286C33.4096 12.4426 32.8506 11.0376 31.7324 9.91357C30.6143 8.78954 29.2166 8.22753 27.5394 8.22753C26.2256 8.22753 25.0096 8.59987 23.8914 9.34453C22.7733 10.0892 22.0046 11.0376 21.5853 12.1897H18.3985C17.9792 11.0376 17.2105 10.0892 16.0924 9.34453C14.9742 8.59987 13.7582 8.22753 12.4444 8.22753C10.7672 8.22753 9.36952 8.78954 8.25138 9.91357C7.13323 11.0376 6.57416 12.4426 6.57416 14.1286C6.57416 15.1122 6.76984 16.1027 7.16119 17.1003C7.55254 18.0978 8.25138 19.2359 9.25771 20.5145C10.264 21.7931 11.6338 23.2964 13.3669 25.0246C15.1 26.7528 17.3084 28.8252 19.9919 31.2419Z"
+                                fill="#727A4B" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="prenda-detalles">
+                    <div>
+                        <h2>Detalles de la prenda:</h2>
+                        <ul>
+                            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_384_1552" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="24">
+                                        <rect width="24" height="24" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_384_1552)">
+                                        <path
+                                            d="M12 22C10.6333 22 9.34167 21.7375 8.125 21.2125C6.90833 20.6875 5.84583 19.9708 4.9375 19.0625C4.02917 18.1542 3.3125 17.0917 2.7875 15.875C2.2625 14.6583 2 13.3667 2 12C2 10.6167 2.27083 9.31667 2.8125 8.1C3.35417 6.88333 4.0875 5.825 5.0125 4.925C5.9375 4.025 7.01667 3.3125 8.25 2.7875C9.48333 2.2625 10.8 2 12.2 2C13.5333 2 14.7917 2.22917 15.975 2.6875C17.1583 3.14583 18.1958 3.77917 19.0875 4.5875C19.9792 5.39583 20.6875 6.35417 21.2125 7.4625C21.7375 8.57083 22 9.76667 22 11.05C22 12.9667 21.4167 14.4375 20.25 15.4625C19.0833 16.4875 17.6667 17 16 17H14.15C14 17 13.8958 17.0417 13.8375 17.125C13.7792 17.2083 13.75 17.3 13.75 17.4C13.75 17.6 13.875 17.8875 14.125 18.2625C14.375 18.6375 14.5 19.0667 14.5 19.55C14.5 20.3833 14.2708 21 13.8125 21.4C13.3542 21.8 12.75 22 12 22ZM6.5 13C6.93333 13 7.29167 12.8583 7.575 12.575C7.85833 12.2917 8 11.9333 8 11.5C8 11.0667 7.85833 10.7083 7.575 10.425C7.29167 10.1417 6.93333 10 6.5 10C6.06667 10 5.70833 10.1417 5.425 10.425C5.14167 10.7083 5 11.0667 5 11.5C5 11.9333 5.14167 12.2917 5.425 12.575C5.70833 12.8583 6.06667 13 6.5 13ZM9.5 9C9.93333 9 10.2917 8.85833 10.575 8.575C10.8583 8.29167 11 7.93333 11 7.5C11 7.06667 10.8583 6.70833 10.575 6.425C10.2917 6.14167 9.93333 6 9.5 6C9.06667 6 8.70833 6.14167 8.425 6.425C8.14167 6.70833 8 7.06667 8 7.5C8 7.93333 8.14167 8.29167 8.425 8.575C8.70833 8.85833 9.06667 9 9.5 9ZM14.5 9C14.9333 9 15.2917 8.85833 15.575 8.575C15.8583 8.29167 16 7.93333 16 7.5C16 7.06667 15.8583 6.70833 15.575 6.425C15.2917 6.14167 14.9333 6 14.5 6C14.0667 6 13.7083 6.14167 13.425 6.425C13.1417 6.70833 13 7.06667 13 7.5C13 7.93333 13.1417 8.29167 13.425 8.575C13.7083 8.85833 14.0667 9 14.5 9ZM17.5 13C17.9333 13 18.2917 12.8583 18.575 12.575C18.8583 12.2917 19 11.9333 19 11.5C19 11.0667 18.8583 10.7083 18.575 10.425C18.2917 10.1417 17.9333 10 17.5 10C17.0667 10 16.7083 10.1417 16.425 10.425C16.1417 10.7083 16 11.0667 16 11.5C16 11.9333 16.1417 12.2917 16.425 12.575C16.7083 12.8583 17.0667 13 17.5 13ZM12 20C12.15 20 12.2708 19.9583 12.3625 19.875C12.4542 19.7917 12.5 19.6833 12.5 19.55C12.5 19.3167 12.375 19.0417 12.125 18.725C11.875 18.4083 11.75 17.9333 11.75 17.3C11.75 16.6 11.9917 16.0417 12.475 15.625C12.9583 15.2083 13.55 15 14.25 15H16C17.1 15 18.0417 14.6792 18.825 14.0375C19.6083 13.3958 20 12.4 20 11.05C20 9.03333 19.2292 7.35417 17.6875 6.0125C16.1458 4.67083 14.3167 4 12.2 4C9.93333 4 8 4.775 6.4 6.325C4.8 7.875 4 9.76667 4 12C4 14.2167 4.77917 16.1042 6.3375 17.6625C7.89583 19.2208 9.78333 20 12 20Z"
+                                            fill="#527D43" />
+                                    </g>
+                                </svg>
+                                Color: &nbsp <span id="prenda-color"></span></li>
+                            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_384_1571" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="24">
+                                        <rect width="24" height="24" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_384_1571)">
+                                        <path
+                                            d="M4 18C3.45 18 2.97917 17.8042 2.5875 17.4125C2.19583 17.0208 2 16.55 2 16V8C2 7.45 2.19583 6.97917 2.5875 6.5875C2.97917 6.19583 3.45 6 4 6H20C20.55 6 21.0208 6.19583 21.4125 6.5875C21.8042 6.97917 22 7.45 22 8V16C22 16.55 21.8042 17.0208 21.4125 17.4125C21.0208 17.8042 20.55 18 20 18H4ZM4 16H20V8H17V12H15V8H13V12H11V8H9V12H7V8H4V16Z"
+                                            fill="#527D43" />
+                                    </g>
+                                </svg>
+                                Talle: &nbsp <span id="prenda-talle"></span></li>
+                            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_384_1564" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="24">
+                                        <rect width="24" height="24" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_384_1564)">
+                                        <path
+                                            d="M5.99993 10.95L4.99993 11.5C4.7666 11.6333 4.5166 11.6667 4.24993 11.6C3.98327 11.5333 3.78327 11.3833 3.64994 11.15L1.64993 7.65C1.5166 7.41667 1.48327 7.16667 1.54993 6.9C1.6166 6.63333 1.7666 6.43333 1.99993 6.3L7.74993 3H9.49994C9.64993 3 9.77077 3.04583 9.86244 3.1375C9.9541 3.22917 9.99994 3.35 9.99994 3.5V4C9.99994 4.55 10.1958 5.02083 10.5874 5.4125C10.9791 5.80417 11.4499 6 11.9999 6C12.5499 6 13.0208 5.80417 13.4124 5.4125C13.8041 5.02083 13.9999 4.55 13.9999 4V3.5C13.9999 3.35 14.0458 3.22917 14.1374 3.1375C14.2291 3.04583 14.3499 3 14.4999 3H16.2499L21.9999 6.3C22.2333 6.43333 22.3833 6.63333 22.4499 6.9C22.5166 7.16667 22.4833 7.41667 22.3499 7.65L20.3499 11.15C20.2166 11.3833 20.0208 11.5292 19.7624 11.5875C19.5041 11.6458 19.2499 11.6083 18.9999 11.475L17.9999 10.975V20C17.9999 20.2833 17.9041 20.5208 17.7124 20.7125C17.5208 20.9042 17.2833 21 16.9999 21H6.99993C6.7166 21 6.4791 20.9042 6.28744 20.7125C6.09577 20.5208 5.99993 20.2833 5.99993 20V10.95ZM7.99994 7.6V19H15.9999V7.6L19.0999 9.3L20.1499 7.55L15.8499 5.05C15.5999 5.9 15.1291 6.60417 14.4374 7.1625C13.7458 7.72083 12.9333 8 11.9999 8C11.0666 8 10.2541 7.72083 9.56244 7.1625C8.87077 6.60417 8.39994 5.9 8.14994 5.05L3.84994 7.55L4.89993 9.3L7.99994 7.6Z"
+                                            fill="#527D43" />
+                                    </g>
+                                </svg>
+                                Categoría: &nbsp<span id="prenda-categoria"></span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Detalles de la prenda a intercambiar:</h2>
+                        <ul>
+                            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_384_1552" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="24">
+                                        <rect width="24" height="24" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_384_1552)">
+                                        <path
+                                            d="M12 22C10.6333 22 9.34167 21.7375 8.125 21.2125C6.90833 20.6875 5.84583 19.9708 4.9375 19.0625C4.02917 18.1542 3.3125 17.0917 2.7875 15.875C2.2625 14.6583 2 13.3667 2 12C2 10.6167 2.27083 9.31667 2.8125 8.1C3.35417 6.88333 4.0875 5.825 5.0125 4.925C5.9375 4.025 7.01667 3.3125 8.25 2.7875C9.48333 2.2625 10.8 2 12.2 2C13.5333 2 14.7917 2.22917 15.975 2.6875C17.1583 3.14583 18.1958 3.77917 19.0875 4.5875C19.9792 5.39583 20.6875 6.35417 21.2125 7.4625C21.7375 8.57083 22 9.76667 22 11.05C22 12.9667 21.4167 14.4375 20.25 15.4625C19.0833 16.4875 17.6667 17 16 17H14.15C14 17 13.8958 17.0417 13.8375 17.125C13.7792 17.2083 13.75 17.3 13.75 17.4C13.75 17.6 13.875 17.8875 14.125 18.2625C14.375 18.6375 14.5 19.0667 14.5 19.55C14.5 20.3833 14.2708 21 13.8125 21.4C13.3542 21.8 12.75 22 12 22ZM6.5 13C6.93333 13 7.29167 12.8583 7.575 12.575C7.85833 12.2917 8 11.9333 8 11.5C8 11.0667 7.85833 10.7083 7.575 10.425C7.29167 10.1417 6.93333 10 6.5 10C6.06667 10 5.70833 10.1417 5.425 10.425C5.14167 10.7083 5 11.0667 5 11.5C5 11.9333 5.14167 12.2917 5.425 12.575C5.70833 12.8583 6.06667 13 6.5 13ZM9.5 9C9.93333 9 10.2917 8.85833 10.575 8.575C10.8583 8.29167 11 7.93333 11 7.5C11 7.06667 10.8583 6.70833 10.575 6.425C10.2917 6.14167 9.93333 6 9.5 6C9.06667 6 8.70833 6.14167 8.425 6.425C8.14167 6.70833 8 7.06667 8 7.5C8 7.93333 8.14167 8.29167 8.425 8.575C8.70833 8.85833 9.06667 9 9.5 9ZM14.5 9C14.9333 9 15.2917 8.85833 15.575 8.575C15.8583 8.29167 16 7.93333 16 7.5C16 7.06667 15.8583 6.70833 15.575 6.425C15.2917 6.14167 14.9333 6 14.5 6C14.0667 6 13.7083 6.14167 13.425 6.425C13.1417 6.70833 13 7.06667 13 7.5C13 7.93333 13.1417 8.29167 13.425 8.575C13.7083 8.85833 14.0667 9 14.5 9ZM17.5 13C17.9333 13 18.2917 12.8583 18.575 12.575C18.8583 12.2917 19 11.9333 19 11.5C19 11.0667 18.8583 10.7083 18.575 10.425C18.2917 10.1417 17.9333 10 17.5 10C17.0667 10 16.7083 10.1417 16.425 10.425C16.1417 10.7083 16 11.0667 16 11.5C16 11.9333 16.1417 12.2917 16.425 12.575C16.7083 12.8583 17.0667 13 17.5 13ZM12 20C12.15 20 12.2708 19.9583 12.3625 19.875C12.4542 19.7917 12.5 19.6833 12.5 19.55C12.5 19.3167 12.375 19.0417 12.125 18.725C11.875 18.4083 11.75 17.9333 11.75 17.3C11.75 16.6 11.9917 16.0417 12.475 15.625C12.9583 15.2083 13.55 15 14.25 15H16C17.1 15 18.0417 14.6792 18.825 14.0375C19.6083 13.3958 20 12.4 20 11.05C20 9.03333 19.2292 7.35417 17.6875 6.0125C16.1458 4.67083 14.3167 4 12.2 4C9.93333 4 8 4.775 6.4 6.325C4.8 7.875 4 9.76667 4 12C4 14.2167 4.77917 16.1042 6.3375 17.6625C7.89583 19.2208 9.78333 20 12 20Z"
+                                            fill="#527D43" />
+                                    </g>
+                                </svg>
+                                Color: &nbsp<span id="intercambio-color"></span></li>
+                            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_384_1571" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="24">
+                                        <rect width="24" height="24" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_384_1571)">
+                                        <path
+                                            d="M4 18C3.45 18 2.97917 17.8042 2.5875 17.4125C2.19583 17.0208 2 16.55 2 16V8C2 7.45 2.19583 6.97917 2.5875 6.5875C2.97917 6.19583 3.45 6 4 6H20C20.55 6 21.0208 6.19583 21.4125 6.5875C21.8042 6.97917 22 7.45 22 8V16C22 16.55 21.8042 17.0208 21.4125 17.4125C21.0208 17.8042 20.55 18 20 18H4ZM4 16H20V8H17V12H15V8H13V12H11V8H9V12H7V8H4V16Z"
+                                            fill="#527D43" />
+                                    </g>
+                                </svg>
+                                Talle: &nbsp<span id="intercambio-talle"></span></li>
+                            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <mask id="mask0_384_1564" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
+                                        y="0" width="24" height="24">
+                                        <rect width="24" height="24" fill="#D9D9D9" />
+                                    </mask>
+                                    <g mask="url(#mask0_384_1564)">
+                                        <path
+                                            d="M5.99993 10.95L4.99993 11.5C4.7666 11.6333 4.5166 11.6667 4.24993 11.6C3.98327 11.5333 3.78327 11.3833 3.64994 11.15L1.64993 7.65C1.5166 7.41667 1.48327 7.16667 1.54993 6.9C1.6166 6.63333 1.7666 6.43333 1.99993 6.3L7.74993 3H9.49994C9.64993 3 9.77077 3.04583 9.86244 3.1375C9.9541 3.22917 9.99994 3.35 9.99994 3.5V4C9.99994 4.55 10.1958 5.02083 10.5874 5.4125C10.9791 5.80417 11.4499 6 11.9999 6C12.5499 6 13.0208 5.80417 13.4124 5.4125C13.8041 5.02083 13.9999 4.55 13.9999 4V3.5C13.9999 3.35 14.0458 3.22917 14.1374 3.1375C14.2291 3.04583 14.3499 3 14.4999 3H16.2499L21.9999 6.3C22.2333 6.43333 22.3833 6.63333 22.4499 6.9C22.5166 7.16667 22.4833 7.41667 22.3499 7.65L20.3499 11.15C20.2166 11.3833 20.0208 11.5292 19.7624 11.5875C19.5041 11.6458 19.2499 11.6083 18.9999 11.475L17.9999 10.975V20C17.9999 20.2833 17.9041 20.5208 17.7124 20.7125C17.5208 20.9042 17.2833 21 16.9999 21H6.99993C6.7166 21 6.4791 20.9042 6.28744 20.7125C6.09577 20.5208 5.99993 20.2833 5.99993 20V10.95ZM7.99994 7.6V19H15.9999V7.6L19.0999 9.3L20.1499 7.55L15.8499 5.05C15.5999 5.9 15.1291 6.60417 14.4374 7.1625C13.7458 7.72083 12.9333 8 11.9999 8C11.0666 8 10.2541 7.72083 9.56244 7.1625C8.87077 6.60417 8.39994 5.9 8.14994 5.05L3.84994 7.55L4.89993 9.3L7.99994 7.6Z"
+                                            fill="#527D43" />
+                                    </g>
+                                </svg>
+                                Categoría: &nbsp<span id="intercambio-categoria"></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="description-container">
+                    <h2>Descripción</h2>
+                    <p id="prenda-descripcion"></p>
+                </div>
+
+                <div class="prenda-bottom">
+                    <button id="rechazar-intercambio-btn">Rechazar</button>
+                    <button id="aceptar-intercambiao-btn">Aceptar</button>
+                </div>
+            </div>
+        </section>
+        <section class="prendas-relacionadas">
+            <h2>Prendas que también te podrían interesar!</h2>
+            <div class="carrusel">
+                <button class="carrusel-prev">&lt;</button>
+                <div id="carrusel-items" class="carrusel-items">
+                    <!-- Prendas relacionadas cargadas dinámicamente -->
+                </div>
+                <button class="carrusel-next">&gt;</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <!-- Tu código de footer aquí -->
+    </footer>
+    <script src="../js/detalleprendaintercambio.js" type="module"></script>
+    <script src="../js/header.js"></script>
+    <script src="../js/generales/navegacion.js"></script>
+    <script src="../js/generales/sesion.js"></script>
+</body>
+
+</html>
