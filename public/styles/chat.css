@@ -28,9 +28,7 @@ main {
 
 .chat {
     display: flex;
-    /* padding: 1rem; */
     order: 1;
-    /* Default order */
 }
 
 .chat-pfp {
@@ -73,7 +71,44 @@ main {
 .currentChat-name {
     color: var(--c_green-primary);
 }
-
+.currentChat-messages{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    overflow-y: scroll;
+}
+.message
+{
+    display: flex;
+    margin: 0.25rem 0;
+    border-radius: 10px;
+    background-color: var(--c_green-primary);
+    width: fit-content;
+    text-align: center;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+}
+.message-content
+{
+    word-wrap: break-word;
+}
+.receiver
+{
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+.sender
+{
+    margin-right: 2rem;
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+.message-time {
+    font-size: 14px;
+    margin-left: 10px;
+    align-self: flex-end;
+}
 .currentChat-input {
     display: flex;
     justify-content: center;
