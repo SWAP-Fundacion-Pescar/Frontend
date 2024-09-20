@@ -12,10 +12,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         chatSocket.emit('join', chat._id);
     });
 });
-chatSocket.on('msg', (content) => {
-    //Todo Actualizar contenido visual con el nuevo mensaje
-    console.log(content);
-});
 async function retrieveChats() {
     const response = await fetch(`http://localhost:3003/api/chats/${getCookie('ID')}`);
     if (!response.ok) console.error('Error:', response.status);
