@@ -109,7 +109,7 @@ async function updateClotheDetails()
     if(updatedDescription) body.updatedDescription = updatedDescription;
     if(updatedColor) body.updatedColor = updatedColor;
     if(updatedExpectedColor) body.updatedExpectedColor = updatedExpectedColor;
-    const response = await fetch('http://localhost:3001/clothes/update', 
+    const response = await fetch('http://localhost:3001/api/clothes/update', 
         {
             method: 'PUT',
             headers:
