@@ -119,7 +119,7 @@ fetch(`${apiUrl}/${usuarioId}`)
                     ${threeDotsSVG}
                 </div>
             </button>
-            <div class="dropdown__window menu_dots" id=${clothe.id}>
+            <div class="dropdown__window dropdown__window-perfil menu_dots" id=${clothe.id}>
                 <p id="edit_${clothe.id}">Editar prenda</p>
                 <p id="delete_${clothe.id}">Eliminar prenda</p>
             </div>

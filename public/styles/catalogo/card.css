@@ -12,6 +12,7 @@
 .card {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     background-color: #f4f0e9;
     border-radius: 10px;
     padding: 15px;
@@ -58,4 +59,53 @@
 .card p {
     color: var(--c_green-primary);
     margin: 10px 0;
+}
+
+/* PERFIL: Card editable */
+/* Desplegable */
+.dropdown__container{
+    position: relative;
+}
+.dropdown__btn {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    margin-left: 80%;
+}
+
+.dropdown__window {
+    position: absolute;
+    right: -1px;
+    width: 8vw;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    background: var(--c_white);
+    box-shadow: 1px 1px 15px var(--c_gray);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    visibility: hidden;
+    opacity: 0;
+}
+.dropdown__window-perfil{
+    padding: 0.5rem .8rem;
+    
+}
+.dropdown__btn-perfil{
+    color: var(--c_gray);
+}
+
+
+.dropdown__window-perfil p:hover {
+    color: var(--c_green-primary);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0rem);
 }
