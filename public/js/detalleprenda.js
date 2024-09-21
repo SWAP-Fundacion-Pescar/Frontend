@@ -2,7 +2,8 @@ import { addEventToSearchBar } from "./helpers.js";
 document.addEventListener('DOMContentLoaded', function () {
     addEventToSearchBar();
     const url = handleUrl();
-    renderCard(url);
+    const { category } = renderCard(url);
+    getRelatedClothes('https://microservicio-prendas.vercel.app/api/clothes', category)
 });
 
 async function renderCard(url) {
@@ -33,6 +34,7 @@ async function renderCard(url) {
     document.getElementById('intercambio-color').textContent = clothe.expectedColor;
     document.getElementById('intercambio-talle').textContent = clothe.expectedSize;
     document.getElementById('intercambio-categoria').textContent = clothe.expectedCategory;
+    return clothe.category
 }
 
 function irADetalle(prendaId) {
@@ -51,7 +53,7 @@ function handleUrl() {
     baseClotheUrl += `/${id}`;
     return baseClotheUrl;
 }
-function cargarPrendasRelacionadas(category) {
+function getRelatedClothes(apiUrl, category) {
     fetch(`${apiUrl}?categoria=${category}`)
         .then(response => response.json())
         .then(prendas => {
@@ -61,14 +63,22 @@ function cargarPrendasRelacionadas(category) {
             prendas.forEach(prenda => {
                 const itemDiv = document.createElement('div');
                 itemDiv.classList.add('carrusel-item');
+                itemDiv.classList.add('card');
 
                 itemDiv.innerHTML = `
-                    <img src="${prenda.media[0].url}" alt="${prenda.name}">
-                    <h3>${prenda.name}</h3>
-                    <button onclick="irADetalle('${prenda._id}')">Intercambiar</button>
+                    <div class="card-img">
+                        <img src="${prenda.media[0].url}" alt="${prenda.name}" class="card__img">
+                    </div>
+                    <div class="card-content">
+                        <h3>${prenda.name}</h3>
+                    </div>
+                    <div class="card-bottom">
+                        <a href="../pages/detalleprenda.html?id=${prenda._id}" class="swap__card__button button">Intercambiar</a>      
+                    </div>
                 `;
 
                 carrusel.appendChild(itemDiv);
+
             });
         })
         .catch(error => console.error('Error al cargar prendas relacionadas:', error));

@@ -21,4 +21,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f2efe7;
+    scrollbar-width: thin;          /* "auto" or "thin" */
+    scrollbar-color: var(--c_green-primary) transparent;   /* scroll thumb and track */
 }
