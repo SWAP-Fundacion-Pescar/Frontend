@@ -73,7 +73,7 @@ function getRelatedClothes(apiUrl, category) {
                         <h3>${prenda.name}</h3>
                     </div>
                     <div class="card-bottom">
-                        <a href="../pages/detalleprenda.html?id=${prenda._id}" class="swap__card__button button">Intercambiar</a>      
+                        <a href="../pages/detalleprenda.html?id=${prenda._id}" class="swap__card__button button" id="detalle_prenda_btn">Intercambiar</a>      
                     </div>
                 `;
 

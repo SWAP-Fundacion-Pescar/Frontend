@@ -8,7 +8,9 @@
     color: var(--c_beige-secondary);
     background-color: var(--c_green-primary);
 }
-
+#detalle_prenda_btn{
+    margin-right: auto;
+}
 .card {
     display: flex;
     flex-direction: column;
