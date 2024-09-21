@@ -31,7 +31,7 @@ async function renderChatsCard() {
         chatCard.classList.add('chat');
         chatCard.classList.add(`id_${chat._id}`)
         let lastMessage = '';
-        if (chat.messages) {
+        if (chat.messages.length > 0) {
             lastMessage = chat.messages[chat.messages.length - 1].content
         }
         chatCard.innerHTML = `
@@ -74,6 +74,10 @@ function renderCurrentChatMessages(chatId) {
         }
         else {
             messageContainer.classList.add('receiver');
+            if(message.isRead == false)
+                {
+                    readMessage(message);
+                };
         }
         const date = new Date(message.createdAt)
         const formattedTime = formatter.format(date);
@@ -85,11 +89,12 @@ function renderCurrentChatMessages(chatId) {
     });
     const input = document.querySelector('.currentChat-input');
     input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && e.target.value != '') {
             sendMessage(e.target.value);
             e.target.value = '';
         }
     })
+    scrollToBottom()
 }
 function sendMessage(content) {
     const msg =
@@ -110,6 +115,7 @@ function renderMessage(msg) {
     }
     else {
         messageContainer.classList.add('receiver');
+        readMessage(msg)
     }
     const date = new Date(msg.createdAt)
     const formattedTime = formatter.format(date);
@@ -118,12 +124,16 @@ function renderMessage(msg) {
             <span class="message-time">${formattedTime}</span>
         `;
     currentChatContainer.append(messageContainer);
+    scrollToBottom();
+}
+function readMessage(msg)
+{
     const readRequest =
     {
         messageId: msg._id,
         chatId: currentChatId
     }
-    chatSocket.emit('read', readRequest)
+    chatSocket.emit('read', readRequest);
 }
 function isUserInTheSameChat(content) {
     if (currentChatId) {
@@ -133,20 +143,21 @@ function isUserInTheSameChat(content) {
         }
     }
     else {
-        const chat = chats.find(chat => chat.senderUserId == content.userId || chat.receiverUserId == content.userId);        
+        const chat = chats.find(chat => chat.senderUserId == content.userId || chat.receiverUserId == content.userId);
         const chatCard = document.querySelector(`.id_${chat._id}`);
         chatCard.classList.toggle('top');
         const messageCounter = chatCard.lastElementChild;
         let amount = 1;
-        if(messageCounter.textContent)
-            {
-                amount = parseInt(messageCounter.textContent) + amount;
-            }        
+        if (messageCounter.textContent) {
+            amount = parseInt(messageCounter.textContent) + amount;
+        }
         messageCounter.textContent = amount;
         messageCounter.style.display = 'flex';
     }
-
-
+}
+function scrollToBottom() {
+    var container = document.querySelector('.currentChat-messages');
+    container.scrollTop = container.scrollHeight;
 }
 chatSocket.on('msg', (content) => {
     console.log(content);

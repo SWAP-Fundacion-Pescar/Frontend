@@ -17,8 +17,10 @@ main {
 }
 
 .chats {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
+    /* display: grid;
+    grid-template-rows: repeat(3, 1fr); */
     width: 22vw;
     gap: 1rem;
     overflow-y: scroll;
@@ -145,7 +147,7 @@ main {
 }
 
 .top {
-    order: 0;
+    order: -1;
 }
 
 /* width */
