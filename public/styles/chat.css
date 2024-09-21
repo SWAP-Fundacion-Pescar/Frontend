@@ -107,13 +107,15 @@ main {
     border-radius: 10px;
     background-color: var(--c_green-primary);
     width: fit-content;
-    text-align: center;
+    max-width: 50%;
     align-items: center;
     padding: 0.25rem 0.5rem;
+    flex-wrap: wrap; 
 }
 .message-content
 {
-    word-wrap: break-word;
+    word-break: break-word; 
+    overflow-wrap: break-word; 
 }
 .receiver
 {
