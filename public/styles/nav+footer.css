@@ -180,6 +180,7 @@
         padding: .5rem;
         border-radius: .5rem;
         font-weight: bold;
+        cursor: pointer;
     }
     .nav__userButton a{
         text-decoration: none;

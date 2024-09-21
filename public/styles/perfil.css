@@ -208,6 +208,7 @@
     .modal, #edit-clothe, #delete-clothe {
         display: none;
         flex-direction: column;
+        justify-content: center;
         position: fixed;
         z-index: 1;
         left: 0;
@@ -233,7 +234,7 @@
         color: var(--c_gray);
         margin: 10% auto;
         padding: 20px;
-        width: 50%;
+        width: 40%;
         border-radius: 8px;
         box-shadow: 3px 3px 10px -3px var(--c_gray);
     }
@@ -243,4 +244,27 @@
     #add-btn{
         align-self: end;
     }
-    
+
+    .delete-modal{
+        width: 25%;
+        padding: 2rem;
+        align-items: center ;
+    }
+    .delete-modal-buttons{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+    }
+    #delete-btn, #close-modal{
+        width: 30%;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        margin: 1rem 0;
+    }
+    #delete-btn{
+        color: var(--c_beige-secondary);
+        background-color: var(--c_red);
+    }
+    #close-modal{
+        color: var(--c_red);
+    }
