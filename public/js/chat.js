@@ -2,8 +2,10 @@ import { chatSocket } from '../js/chatSocket.js';
 import { getCookie } from './helpers.js';
 const userId = getCookie('ID');
 let receiverUserId;
-let currentChatId;
+let currentChatId = '';
 let chats;
+let order = -1;
+let usersInfo = {};
 const formatter = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit' });
 document.addEventListener('DOMContentLoaded', async () => {
     await renderChatsCard();
@@ -27,6 +29,7 @@ async function renderChatsCard() {
             receiverUserId = chat.senderUserId;
         }
         const receiverUserInfo = await retrieveUserInfo(receiverUserId);
+        usersInfo[chat._id] = receiverUserInfo;
         const chatCard = document.createElement('div');
         chatCard.classList.add('chat');
         chatCard.classList.add(`id_${chat._id}`)
@@ -34,19 +37,26 @@ async function renderChatsCard() {
         if (chat.messages.length > 0) {
             lastMessage = chat.messages[chat.messages.length - 1].content
         }
+        const unreadMessagesCount = chat.messages.filter(message => message.isRead === false).length;
         chatCard.innerHTML = `
                     <img src="${receiverUserInfo.profilePictureUrl}" alt="" class="chat-pfp">
                         <div class="chat-info">
                             <h4 class="chat-name">${receiverUserInfo.username}</h4>
                             <p class="chat-lastMessage">${lastMessage}</p>
                         </div>
-                        <div class="message-counter"></div>   
             `;
+        const messageCounter = document.createElement('div');
+        messageCounter.classList.add('message-counter');
+        messageCounter.innerText = unreadMessagesCount;
+        console.log(unreadMessagesCount);
+        if (unreadMessagesCount > 0) { messageCounter.style.display = 'flex' };
+        chatCard.append(messageCounter);
         chatContainer.append(chatCard);
         chatCard.addEventListener('click', () => {
             renderCurrentChatMessages(chat._id);
         })
     }
+    renderCurrentChatMessages(chats[0]._id);
 }
 async function retrieveUserInfo(id) {
     const response = await fetch(`http://localhost:3000/api/users/${id}`);
@@ -60,6 +70,10 @@ function renderCurrentChatMessages(chatId) {
     const currentChatContainer = document.querySelector('.currentChat-messages');
     currentChatContainer.innerHTML = '';
     const currentChat = chats.find(chat => chat._id == chatId);
+    const chatCard = document.querySelector(`.id_${chatId}`);
+    const messageCounter = chatCard.lastElementChild;
+    messageCounter.innerHTML = '';
+    messageCounter.style.display = 'none';
     if (currentChat.senderUserId == userId) {
         receiverUserId = currentChat.receiverUserId;
     }
@@ -74,10 +88,9 @@ function renderCurrentChatMessages(chatId) {
         }
         else {
             messageContainer.classList.add('receiver');
-            if(message.isRead == false)
-                {
-                    readMessage(message);
-                };
+            if (message.isRead == false) {
+                readMessage(message);
+            };
         }
         const date = new Date(message.createdAt)
         const formattedTime = formatter.format(date);
@@ -94,7 +107,15 @@ function renderCurrentChatMessages(chatId) {
             e.target.value = '';
         }
     })
+    renderCurrentChatMessagesHeader(chatId)
     scrollToBottom()
+}
+function renderCurrentChatMessagesHeader(chatId)
+{
+    const currentPFP = document.querySelector('.currentChat-pfp');
+    currentPFP.src = usersInfo[chatId].profilePictureUrl;
+    const currentChatName = document.querySelector('.currentChat-name');
+    currentChatName.innerText = usersInfo[chatId].username;
 }
 function sendMessage(content) {
     const msg =
@@ -126,8 +147,7 @@ function renderMessage(msg) {
     currentChatContainer.append(messageContainer);
     scrollToBottom();
 }
-function readMessage(msg)
-{
+function readMessage(msg) {
     const readRequest =
     {
         messageId: msg._id,
@@ -136,16 +156,18 @@ function readMessage(msg)
     chatSocket.emit('read', readRequest);
 }
 function isUserInTheSameChat(content) {
-    if (currentChatId) {
-        const currentChat = chats.find(chat => chat._id == currentChatId);
-        if (currentChat.receiverUserId == content.userId || currentChat.senderUserId == content.userId) {
-            renderMessage(content);
-        }
+    const currentChat = chats.find(chat => chat._id == currentChatId);
+    if (currentChat.receiverUserId == content.userId || currentChat.senderUserId == content.userId) {
+        currentChat.messages.push(content);
+        updateLastMessageContent(content, currentChatId);
+        renderMessage(content);
     }
     else {
         const chat = chats.find(chat => chat.senderUserId == content.userId || chat.receiverUserId == content.userId);
+        chat.messages.push(content);
+        updateLastMessageContent(content, chat._id);
         const chatCard = document.querySelector(`.id_${chat._id}`);
-        chatCard.classList.toggle('top');
+        chatCard.style.order = --order;
         const messageCounter = chatCard.lastElementChild;
         let amount = 1;
         if (messageCounter.textContent) {
@@ -154,6 +176,12 @@ function isUserInTheSameChat(content) {
         messageCounter.textContent = amount;
         messageCounter.style.display = 'flex';
     }
+}
+function updateLastMessageContent(msg, currentChatId) {
+    const chatCard = document.querySelector(`.id_${currentChatId}`);
+    const lastMessage = chatCard.querySelector('.chat-lastMessage');
+    lastMessage.innerHTML = msg.content;
+    chatCard.style.order = --order;
 }
 function scrollToBottom() {
     var container = document.querySelector('.currentChat-messages');
