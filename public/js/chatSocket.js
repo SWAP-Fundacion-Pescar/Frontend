@@ -1,5 +1,5 @@
 import { getCookie } from "./helpers.js";
-const socketUrl = 'http://localhost:3003';
+const socketUrl = 'https://microservicio-chats.onrender.com';
 const chatSocket = io(socketUrl, {
     extraHeaders: {
         authorization: `bearer ${getCookie('token')}`
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 });
 async function retrieveChats() {
-    const response = await fetch(`http://localhost:3003/api/chats/${getCookie('ID')}`);
+    const response = await fetch(`https://microservicio-chats.onrender.com/api/chats/${getCookie('ID')}`);
     if (!response.ok) console.error('Error:', response.status);
     const chats = await response.json();
     return chats;

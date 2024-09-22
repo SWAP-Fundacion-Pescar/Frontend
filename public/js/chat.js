@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function retrieveUserChats() {
-    const response = await fetch(`http://localhost:3003/api/chats/${userId}`);
+    const response = await fetch(`https://microservicio-chats.onrender.com/api/chats/${userId}`);
     if (!response.ok) console.error('Error: ', response.status);
     const chats = await response.json();
     return chats;
@@ -61,7 +61,7 @@ async function renderChatsCard() {
     renderCurrentChatMessages(chats[0]._id);
 }
 async function retrieveUserInfo(id) {
-    const response = await fetch(`http://localhost:3000/api/users/${id}`);
+    const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/${id}`);
     if (!response.ok) console.error('Error: ', response.status);
     const userInfo = await response.json();
     return userInfo;

@@ -21,7 +21,7 @@ async function updateUser() {
     if (lastName) body.lastName = lastName;
     if (username) body.username = username;
     if (city) body.city = city;
-    const response = await fetch(`http://localhost:3000/api/users/info`,
+    const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/info`,
         {
             method: 'PUT',
             headers:
@@ -37,7 +37,7 @@ async function updateUser() {
     window.open(`../pages/perfil.html?id=${getCookie('ID')}`, '_self');
 }
 async function loadUserData() {
-    const response = await fetch(`http://localhost:3000/api/users/${getCookie('ID')}`);
+    const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/${getCookie('ID')}`);
     if (!response) console.error('Error:', response.status);
     const userData = await response.json();
     console.log(userData);
@@ -55,7 +55,7 @@ async function updateProfilePicture() {
         const profilePicture = document.getElementById('pfp').files[0];
         const formData = new FormData();
         formData.append('pfp', profilePicture);
-        const response = await fetch(`http://localhost:3000/api/users/pfp`,
+        const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/pfp`,
             {
                 method: 'PUT',
                 headers:

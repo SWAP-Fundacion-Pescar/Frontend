@@ -2,7 +2,7 @@ const btn = document.getElementById('get');
 
 btn.addEventListener('click', async function()
 {
-    const response = await fetch('http://localhost:3001/api/clothes')
+    const response = await fetch('https://microservicio-prendas.vercel.app/api/clothes')
     if(!response.ok)
         {
             alert("Ha fallado");

@@ -9,7 +9,6 @@ main {
 
 .chats-section {
     border-right: 2px solid var(--c_green-primary);
-    /* margin-left: 2rem; */
 }
 
 .chats-section h3 {
@@ -38,6 +37,7 @@ main {
 .chat:hover
 {
     background-color: var(--c_beiger_terciary);
+    cursor: pointer;
 }
 .active-chat
 {
@@ -78,7 +78,6 @@ main {
     padding: 1rem;
     width: 2rem;
     height: 2rem;
-    /* margin: 0 2rem; */
     background-color: var(--c_green-primary);
     align-self: center;
     color: var(--c_beige-secondary);
@@ -198,7 +197,7 @@ main {
 }
 
 ::-webkit-scrollbar {
-    width: 2px;
+    width: 7.25px;
 }
 
 ::-webkit-scrollbar-track {
