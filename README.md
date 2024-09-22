@@ -18,3 +18,4 @@ Para levantar los servidores, en una terminal, tienen que ejecutar el comando:<b
 **npm run dev**<br>
 
 Para cerrar el servidor, en la terminal, tienen que apretar CTRL + C
++
