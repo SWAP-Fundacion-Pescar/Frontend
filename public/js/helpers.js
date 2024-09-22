@@ -65,7 +65,6 @@ export
 {
     addEventToSearchBar, 
     addClothe,
-    addEventToSearchBar,
     getCookie,
     getQueryParams
 };

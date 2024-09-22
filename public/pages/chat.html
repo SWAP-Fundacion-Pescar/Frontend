@@ -30,23 +30,79 @@
                     </button>
                 </div>
                 <!-- Nav bar links -->
-
-                <div class="nav__containerMenu__menu" id="menu">
-                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <a href="../pages//landing.html">Home</a>
-                    <a href="../pages/catalogo.html">Intercambiar</a>
+                <!-- No logueado -->
+                <div class="nav__containerMenu__menu" id="nav__menu">
+                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
+                    <a href="#intercambiar">Intercambiar</a>
                     <a href="#reseñas">Reseñas</a>
                     <a href="#quienesSomos">Quienes somos</a>
                 </div>
+                <!-- Logueado -->
+                <div class="nav__containerMenu__menu" id="nav__menu-logged">
+                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <a href="../pages/catalogo.html">Catálogo</a>
+                    <a href="../pages/chat.html">Chat</a>
+                    <a href="../pages/favoritos.html">Favoritos</a>
+                </div>
             </div>
             <!-- Botones de usuario -->
+            
+            <!-- No logueado -->
+            <div class="nav__userButton" id="nav__userButton">
+                <a href="../pages/logIn.html" class="button--outlined button">Iniciar Sesión</a>
+                <a href="../pages/signIn.html" class="button--filled button">Registrate</a>
+            </div>
+
+            <!-- Logueado -->
             <div class="nav__userButton-logged" id="nav__userButton-logged">
-                <i class="fa-regular fa-bell"></i>
-                <i class="fa-regular fa-message"></i>
-                <i class="fa-solid fa-gear"></i>
-                <a href="../pages/perfil.html"><i class="fa-solid fa-user"></i></a>
-                <button class="button button--filled" id="logoutBtn">Salir</button>
+        
+                <div class="dropdown__container">
+                    <button class="dropdown__btn" id="btn_bell">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                    <div class="dropdown__window" id="menu_bell">
+                        <a href="#">
+                            Not. General 1
+                        </a>
+                        <a href="#">
+                            Not. General 2
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="dropdown__container">
+                    <button class="dropdown__btn" id="btn_chat">
+                        <i class="fa-regular fa-message"></i>
+                    </button>
+                    <div class="dropdown__window" id="menu_chat">
+                        <a href="#">
+                            Not. Chat 1
+                        </a>
+                        <a href="#">
+                            Not. Chat 2
+                        </a>
+                    </div>
+                </div>
+
+                <div class="dropdown__container">
+                    <button class="dropdown__btn" id="btn_user">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="dropdown__window" id="menu_user">
+                        <a id="user-profile" href="../pages/perfil.html">
+                            Ver perfil
+                        </a>
+                        <a href="../pages/editarperfil.html">
+                            Editar Perfil
+                        </a>
+                        <a id="logoutBtn" href="#">
+                            Cerrar sesión
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- <button class="button button--filled" id="logoutBtn">Salir</button> -->
             </div>
         </nav>
     </header>
@@ -151,6 +207,7 @@
     </main>
     <script src="/socket.io/socket.io.js"></script>
     <script src="../js/chat.js" type="module"></script>
+    <script src="../js/generales/navegacion.js"></script>
 </body>
 
 </html>

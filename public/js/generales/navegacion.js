@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', () => 
+    {
+        updateNav();
+    })
 //NAV
 
 //USUARIO LOGUEADO - NO LOGUEADO
@@ -23,6 +27,8 @@ function updateNav() {
     const loggedIn = isLoggedIn();
 
     if (loggedIn) {
+        const userProfile = document.getElementById('user-profile');
+        userProfile.href = `../pages/perfil.html?id=${getCookie('ID')}`
         botonesUsuario.classList.add("nav__userButton--invisible");
         botonesUsuarioLogueado.classList.add("nav__userButton--visible");
 
@@ -36,7 +42,6 @@ function updateNav() {
         linksCentralesLogueado.classList.add("nav__userButton--invisible")
     }
 }
-updateNav();
 
 
 
