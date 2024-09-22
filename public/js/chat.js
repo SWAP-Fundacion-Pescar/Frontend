@@ -125,11 +125,23 @@ function sendMessage(content) {
         chatId: currentChatId,
         content: content
     };
-    const media = document.getElementById('mediaInput');
-    if (media.files.length > 0) {
-        msg.media = media.files[0];
+    const mediaInput = document.getElementById('mediaInput');
+    if (mediaInput.files.length > 0) {
+        const file = mediaInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const base64String = event.target.result.split(',')[1]; 
+            msg.media = {
+                filename: file.name,
+                content: base64String,
+                mimeType: file.type 
+            };
+            chatSocket.emit('msg', msg, msg.chatId);
+        };
+        reader.readAsDataURL(file);
+    } else {        
+        chatSocket.emit('msg', msg, msg.chatId);
     }
-    chatSocket.emit('msg', msg, msg.chatId);
 }
 function renderMessage(msg) {
     const currentChatContainer = document.querySelector('.currentChat-messages');
