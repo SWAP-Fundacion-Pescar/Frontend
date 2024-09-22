@@ -1,8 +1,11 @@
 import { addEventToSearchBar } from "./helpers.js";
+import { addClothe } from '../js/helpers.js';
+
 document.addEventListener('DOMContentLoaded', function () {
     addEventToSearchBar();
     const url = handleUrl();
     renderTotal(url)
+    startExchange(url);
 });
 
 function irADetalle(prendaId) {
@@ -32,7 +35,6 @@ async function renderCard(url) {
     const clothe = await response.json()
     let userInfo;
     try {
-        
         const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/${clothe.userId}`)
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -110,3 +112,143 @@ function getRelatedClothes(relatedClothesUrl) {
         .catch(error => console.error('Error al cargar prendas relacionadas:', error))
         .finally(()=>{if(preloader) preloader.style.display = 'none'})
 }
+
+async function startExchange(urlReceiverInfo){
+    // Mostrar modal
+    const exchangeBtn = document.getElementById('intercambiar-btn');
+    const exchangeModal = document.getElementById('exchange-modal');
+    
+    exchangeBtn.addEventListener('click', ()=>{
+        exchangeModal.style.display="flex";
+    })
+
+    const oldClotheId = await oldClotheOption();
+    const newClotheId = await newClotheOption(exchangeModal);
+    console.log(oldClotheId)
+    console.log(newClotheId)
+
+    // Iniciar intercambio
+    const exchangeUrl = `https://microservicio-intercambios.vercel.app/api/exchange`
+    const usuarioId = '66e8e9faa5db0b49c0a600e3';
+    const{clotheId, userId} = getReceiverInfo(urlReceiverInfo)
+
+    let body = {
+        senderUserId: usuarioId,
+        senderClotheId: oldClotheId && newClotheId,
+        receiverUserId: userId,
+        receiverClotheId: clotheId
+    }
+
+    try{
+        const response = await fetch(exchangeUrl, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${getCookie('token')}`
+            },
+            body: JSON.stringify(body)
+        })
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const message = await response.json();
+        console.log(message)
+    }
+    catch (error){
+        console.log(error)
+    }   
+}
+
+async function getReceiverInfo(url){
+    // Obtener datos de prenda
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const clothe = await response.json()
+
+    // Obtener datos de usuario
+    let userInfo;
+    try {
+        const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/${clothe.userId}`)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        userInfo = await response.json();
+    }
+    catch (error) {
+        console.error('Error al cargar informacion del usuario: ', error);
+    } 
+
+    // Devolver lo obtenido
+    const receiverInfo = {
+        clotheId: clothe.id,
+        userId: clothe.userId
+    }
+    return receiverInfo
+}
+
+// Opcion: Prenda propia
+async function oldClotheOption(){
+    const clotheUrl = `https://microservicio-prendas.vercel.app/api/clothes/users`
+    const usuarioId = '66e8e9faa5db0b49c0a600e3';
+
+    return new Promise(async (resolve, reject) => {  
+        try {
+            const response = await fetch(`${clotheUrl}/${usuarioId}`);
+            if (!response.ok) throw new Error('Error al obtener prendas');
+            const clothes = await response.json();
+            console.log(clothes);
+
+            // Mostrar prendas en select
+            const oldClothesSelect = document.getElementById('oldClothe-select');
+            oldClothesSelect.innerHTML = '';
+            clothes.forEach(clothe => {
+                const option = document.createElement('option');
+                option.value = clothe.id; 
+                option.textContent = clothe.name;
+                oldClothesSelect.appendChild(option);
+            });
+
+            // Enviar prenda seleccionada
+            const oldClotheBtn = document.getElementById('oldClothe-btn');
+            oldClotheBtn.addEventListener('click', () => {
+                const selectedValue = oldClothesSelect.value; 
+                console.log('Valor seleccionado:', selectedValue);
+                resolve(selectedValue); // Se resuelve la promesa
+            });
+        } catch (error) {
+            reject(error); // Se rechaza la promesa en caso de error
+        }
+    });
+
+}
+
+// Opcion: Nueva prenda
+async function newClotheOption(modal){
+    const newClotheBtn = document.getElementById('newClothe-btn');
+    const addClotheModal = document.getElementById('add-clothe-modal');
+    const addClotheBtn = document.getElementById('add-btn');
+
+    newClotheBtn.addEventListener('click', async ()=>{
+        modal.style.display="none";
+        addClotheModal.style.display="flex";
+    })
+    addClotheBtn.addEventListener('click', async ()=>{
+        
+        try{
+            await addClothe()
+            console.log("se deberia haber creado")
+        }catch(error) {
+            console.error('Error:', error);
+        }
+    })
+}
+
+// FALTA: Cerrar el modal cuando se cliquea por fuera
+// document.documentElement.addEventListener("click", function () {
+    //     if (modal.style.display="flex") {
+    //         modal.style.display="none";
+    //     } else if(addClotheModal.style.display="flex"){
+    //         addClotheModal.style.display="none"
+    //     }
+    // });

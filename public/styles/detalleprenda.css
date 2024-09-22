@@ -137,3 +137,103 @@ main {
     height: 40px;
     cursor: pointer;
 } */
+
+/* Modal Intercambio */
+#exchange-modal{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid transparent;
+}
+.exchange-modal{
+    align-items: center;
+}
+.exchange-modal-title{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.exchange-modal-controls{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    padding: .5rem 0;
+}
+.oldClothe-divSelect{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+#newClothe-btn, #oldClothe-btn{
+    border: 1px solid transparent;
+    color: var(--c_beige-secondary);
+    background-color: var(--c_green-primary);
+}
+#oldClothe-select{
+    border-radius: .5rem;  
+    border: 1px solid var(--c_green-primary);
+    padding-left: .5rem;
+    font-size: .9rem;
+    color: var(--c_green-primary);
+    background-color: var(--c_beige-secondary);
+    
+}
+#oldClothe-select:focus{
+    outline: none;
+}
+#newClothe-btn, #oldClothe-btn, #oldClothe-select{
+    width: 8vw;
+    height: 2rem;
+}
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background-color: var(--c_beige-secondary);
+    color: var(--c_gray);
+    margin: 10% auto;
+    padding: 20px;
+    width: 40%;
+    border-radius: 8px;
+    box-shadow: 3px 3px 10px -3px var(--c_gray);
+}
+/* Modal agregar prenda */
+.modal {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid transparent;
+}
+.modal-content input, .add-clothe_select, .add-clothe_textarea{
+    border-radius: .5rem;  
+    border: 1px solid transparent;
+    padding-left: .5rem;
+    height: 3vh;
+    font-size: .9rem;
+    color: var(--c_gray);
+}
+.modal-content input:focus, .add-clothe_select:focus, .add-clothe_textarea:focus{
+    outline: none;
+}
+a{
+    text-decoration: none;
+}
+#add-btn{
+    border: 1px solid transparent;
+    align-self: end;
+}

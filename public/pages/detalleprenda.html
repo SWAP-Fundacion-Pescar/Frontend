@@ -278,6 +278,92 @@
     <footer>
         <!-- Tu código de footer aquí -->
     </footer>
+    <!-- Modal Intercambio -->
+    <div id="exchange-modal" class="modal">
+        <div class="modal-content exchange-modal">
+                <p class="exchange-modal-title">¡Estas por iniciar un intercambio!</p>
+                <p>Es necesario que selecciones una prenda propia. ¿De qué forma te gustaría hacerlo?</p>
+            <div class="exchange-modal-controls">
+                <button id="newClothe-btn" class="button button--filled">Crear nueva prenda</button>
+                <div class="oldClothe-divSelect">
+                    <select name="oldClothe-select" id="oldClothe-select">
+                    </select>
+                    <button class="button" id="oldClothe-btn">Seleccionar prenda</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal crear prenda -->
+    <div id="add-clothe-modal" class="modal">
+        <div class="modal-content">
+            <h2>Agregar prenda</h2>
+            <label for="name">Nombre de la prenda:</label>
+            <input type="text" id="name" name="name" placeholder="Nombre..." required>
+
+            <label for="category">Categoria:</label>
+            <select name="category" id="category" class="add-clothe_select" required>
+                <option value="parte de arriba">Parte de arriba</option>
+                <option value="parte de abajo">Parte de abajo</option>
+                <option value="abrigo">Abrigo</option>
+            </select>
+
+            <label for="expectedCategory">Categoria esperada:</label>
+            <select name="expectedCategory" id="expectedCategory" class="add-clothe_select" required>
+                <option value="parte de arriba">Parte de arriba</option>
+                <option value="parte de abajo">Parte de abajo</option>
+                <option value="abrigo">Abrigo</option>
+            </select>
+
+            <label for="size">Tamaño:</label>
+            <select name="size" id="size" class="add-clothe_select" required>
+                <option value="S/1">S/1</option>
+                <option value="M/2">M/2</option>
+                <option value="L/3">L/3</option>
+                <option value="XL/4">XL/4</option>
+                <option value="XXL/5">XXL/5</option>
+            </select>
+
+            <label for="expectedSize">Tamaño esperado:</label>
+            <select name="expectedSize" id="expectedSize" class="add-clothe_select" required>
+                <option value="S/1">S/1</option>
+                <option value="M/2">M/2</option>
+                <option value="L/3">L/3</option>
+                <option value="XL/4">XL/4</option>
+                <option value="XXL/5">XXL/5</option>
+            </select>
+
+            <label for="gender">Genero:</label>
+            <select name="gender" id="gender" class="add-clothe_select" required>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño/niña">Niño/Niña</option>
+            </select>
+
+            <label for="expectedGender">Genero esperado:</label>
+            <select name="expectedGender" id="expectedGender" class="add-clothe_select" required>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño/niña">Niño/Niña</option>
+            </select>
+
+            <label for="description">Descripción:</label>
+            <textarea name="description" id="description" placeholder="Descripción..." class="add-clothe_textarea" required></textarea>
+
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" placeholder="Color..." required>
+
+            <label for="expectedColor">Color esperado:</label>
+            <input type="text" id="expectedColor" name="expectedColor" placeholder="Color esperado..." required>
+
+            <label for="file">Imagen:</label>
+            <input type="file" id="file" name="file" placeholder="Imagen..." required>
+
+            <button class="button swap__card__button" id="add-btn">Crear</button>
+        </div>
+    </div>
+
+
+
     <script src="../js/detalleprenda.js" type="module"></script>
     <script src="../js/header.js"></script>
     <script src="../js/generales/navegacion.js"></script>
