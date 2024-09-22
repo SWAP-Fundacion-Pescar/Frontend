@@ -128,13 +128,17 @@ fetch(`${apiUrl}/${usuarioId}`)
         <div class="card-img">
             <img src="${clothe.media[0].url}" alt="${clothe.name}" class="card__img">
         </div>
-        <div class="card-content">
-            <h3>${clothe.name}</h3>
-            <p>${usuario.city}</p> 
+        <div class="card-content-perfil">
+            <div class="card-header-perfil">
+                <h3>${clothe.name}</h3>
+                <p>${usuario.city}</p> 
+            </div>
+            <div>
+                <a href="../pages/detalleprenda.html?id=${clothe.id}" class="swap__card__button button">Ver detalle</a> 
+            </div>
         </div>
         <div class="card-bottom">
-            ${heart}
-            <a href="../pages/detalleprenda.html?id=${clothe.id}" class="swap__card__button button">Intercambiar</a>                 
+                            
         </div>
     `;
             publicacionesContainer.appendChild(publicacionDiv);
