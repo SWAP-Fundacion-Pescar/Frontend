@@ -39,11 +39,13 @@ async function renderChatsCard() {
         }
         const unreadMessagesCount = chat.messages.filter(message => message.isRead === false).length;
         chatCard.innerHTML = `
-                    <img src="${receiverUserInfo.profilePictureUrl}" alt="" class="chat-pfp">
-                        <div class="chat-info">
-                            <h4 class="chat-name">${receiverUserInfo.username}</h4>
-                            <p class="chat-lastMessage">${lastMessage}</p>
-                        </div>
+                    <div class="chat-pfp-container">
+                        <img src="${receiverUserInfo.profilePictureUrl}" alt="" class="chat-pfp">
+                    </div>
+                    <div class="chat-info">
+                        <h4 class="chat-name">${receiverUserInfo.username}</h4>
+                        <p class="chat-lastMessage">${lastMessage}</p>
+                    </div>
             `;
         const messageCounter = document.createElement('div');
         messageCounter.classList.add('message-counter');
@@ -81,25 +83,7 @@ function renderCurrentChatMessages(chatId) {
         receiverUserId = currentChat.senderUserId;
     }
     currentChat.messages.forEach(message => {
-        renderMessage(message);
-        // const messageContainer = document.createElement('div');
-        // messageContainer.classList.add('message');
-        // if (message.userId == userId) {
-        //     messageContainer.classList.add('sender')
-        // }
-        // else {
-        //     messageContainer.classList.add('receiver');
-        //     if (message.isRead == false) {
-        //         readMessage(message);
-        //     };
-        // }
-        // const date = new Date(message.createdAt)
-        // const formattedTime = formatter.format(date);
-        // messageContainer.innerHTML = `
-        //     <p class="message-content">${message.content}</p>
-        //     <span class="message-time">${formattedTime}</span>
-        // `;
-        // currentChatContainer.append(messageContainer);
+        renderMessage(message);        
     });
     const input = document.querySelector('.currentChat-input');
     input.addEventListener('keypress', (e) => {
@@ -111,7 +95,7 @@ function renderCurrentChatMessages(chatId) {
     renderCurrentChatMessagesHeader(chatId)
     scrollToBottom()
 }
-function renderCurrentChatMessagesHeader(chatId) {
+function renderCurrentChatMessagesHeader(chatId) {    
     const currentPFP = document.querySelector('.currentChat-pfp');
     currentPFP.src = usersInfo[chatId].profilePictureUrl;
     const currentChatName = document.querySelector('.currentChat-name');
@@ -161,11 +145,7 @@ function renderMessage(msg) {
             <img src=${msg.media.url} class="message-media">
             <p class="message-content">${msg.content}</p>
             <span class="message-time">${formattedTime}</span>
-        `;
-        // const img = document.createElement('img');
-        // img.classList.add('message-media');
-        // img.src = msg.media.url;
-        // messageContainer.appendChild(img)
+        `;        
     }
     else {
         messageContainer.innerHTML = `
