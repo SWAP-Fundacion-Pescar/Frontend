@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = handleUrl();
     renderCards(url);
     getQueryParams();
+    const searchBtn = document.getElementById('search-btn')
+    const cleanBtn = document.getElementById('clean-btn')
+    searchBtn.addEventListener('click', ()=>{getFilteredClothes() })
+    cleanBtn.addEventListener('click', ()=>{cleanFilters()})
 });
 async function renderCards(url) {
     try {
@@ -84,4 +88,39 @@ function handleUrl() {
         baseClotheUrl += `&name=${search}`;
     }
     return baseClotheUrl;
+}
+
+function getFilteredClothes() {
+    const baseUrl = 'https://microservicio-prendas.vercel.app/api/clothes';
+    const category = document.getElementById('category').value
+    const gender = document.getElementById('gender').value
+    const size = document.getElementById('size').value
+    
+    // Construir los query params
+    const params = new URLSearchParams();
+    console.log(params)
+    
+    // Solo agregar los parámetros si tienen un valor
+    if (category) params.append('category', category);
+    if (size) params.append('size', size);
+    if (gender) params.append('gender', gender);
+    const stringParams = params.toString()
+    
+    // Construir la URL final con los query params
+    const url = `${baseUrl}?${stringParams}`;
+    console.log(url)
+    fetch(url)
+        .then(response => response.json())
+        .then(prendas => {
+            console.log(prendas)
+            prendas.length>0 ? renderCards(url) : catalogContainer.innerHTML=`<p> No hay prendas que coincidan con todos tus criterios de búsqueda </p>`
+        })
+        .catch(error=> console.error('Error al cargar prendas relacionadas:', error))
+}
+function cleanFilters(){
+    document.getElementById('category').value = '';
+    document.getElementById('gender').value = '';
+    document.getElementById('size').value = '';
+    
+    getFilteredClothes(); 
 }

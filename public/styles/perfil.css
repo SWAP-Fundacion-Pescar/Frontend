@@ -88,7 +88,6 @@
         font-size: 18px;
         padding: 10px 20px;
     }
-
     .tab-content {
         display: flex;
         justify-content: center;
@@ -105,10 +104,9 @@
     .resenas-container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 2vw;
+        gap: .5rem;
         background-color: #727A4B;
         padding: 3vw 5vw;
-        margin: 0 2rem;
         width: 100%;
     }
 
@@ -218,14 +216,17 @@
         background-color: rgba(255, 255, 255, 0.5);
         border: 1px solid transparent;
     }
-    .modal-content input{
+    .modal-content input, .add-clothe_select, .add-clothe_textarea{
         border-radius: .5rem;  
         border: 1px solid transparent;
         padding-left: .5rem;
         height: 3vh;
         font-size: .9rem;
+        color: var(--c_gray);
     }
-
+    .modal-content input:focus, .add-clothe_select:focus, .add-clothe_textarea:focus{
+        outline: none;
+    }
     .modal-content {
         display: flex;
         flex-direction: column;
@@ -244,7 +245,10 @@
     #add-btn{
         align-self: end;
     }
-
+    /* Modal: Agregar */
+    
+    /* Modal: Editar */
+    /* Modal: Eliminar */
     .delete-modal{
         width: 25%;
         padding: 2rem;

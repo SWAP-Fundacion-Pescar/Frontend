@@ -111,44 +111,46 @@
         <h2>Filtros</h2>
         <ul>
             <li>
-                <select name="categoria" id="categoria" class="filters__select">
+                <select name="category" id="category" class="filters__select">
                         <option value="" disabled selected hidden>Categoria</option>
-                        <option value="">Parte de arriba</option>
-                        <option value="">Parte de abajo</option>
-                        <option value="">Abrigo</option>
+                        <option value="parte de arriba">Parte de arriba</option>
+                        <option value="parte de abajo">Parte de abajo</option>
+                        <option value="abrigo">Abrigo</option>
                 </select>
             </li>
             <li>
-                <select name="categoria" id="categoria" class="filters__select">
+                <select name="gender" id="gender" class="filters__select">
                         <option value="" disabled selected hidden>Género</option>
-                        <option value="">Hombre</option>
-                        <option value="">Mujer</option>
-                        <option value="">Niño/Niña</option>
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                        <option value="niño/niña">Niño/Niña</option>
                 </select>
             </li>
             <li>
-                <select name="categoria" id="categoria" class="filters__select">
+                <select name="size" id="size" class="filters__select">
                         <option value="" disabled selected hidden>Talle</option>
-                        <option value="">S/1</option>
-                        <option value="">M/2</option>
-                        <option value="">L/3</option>
-                        <option value="">XL/4</option>
-                        <option value="">XXL/5</option>
+                        <option value="S/1">S/1</option>
+                        <option value="M/2">M/2</option>
+                        <option value="L/3">L/3</option>
+                        <option value="XL/4">XL/4</option>
+                        <option value="XXL/5">XXL/5</option>
                 </select>
             </li>
             <li>
-                <label for="lugar" class="filters__label">Lugar</label>
-                <input type="text" id="lugar">
+                <label for="location" class="filters__label">Lugar</label>
+                <input type="text" id="location">
             </li>
         </ul>
+        <button id="clean-btn" class="button button--filled">Limpiar filtros</button>
+        <button id="search-btn" class="button button--filled">Buscar</button>
     </section>
 
     <section id="catalogo">
-        <div class="actions">
+        <!-- <div class="actions">
             <button class="favorite"><i class="fa fa-heart"></i></button>
             <button class="exchange">Intercambiar</button>
-        </div>
-        </div>
+        </div> -->
+        
         <!-- Repetir según sea necesario -->
     </section>
 

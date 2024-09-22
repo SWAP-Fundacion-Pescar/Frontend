@@ -198,7 +198,7 @@
             <!-- Aquí se cargarán las publicaciones del usuario -->
             <div class="publicaciones-container" id="publicaciones-container">
                 <div class="add-clothe">
-                    <svg id="add-clothe-btn" width="174" height="173" viewBox="0 0 174 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg id="add-clothe-btn" width="150" height="150" viewBox="0 0 174 173" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M87.001 52.9871V119.917M53.001 86.4518H121.001M172.001 86.4518C172.001 132.657 133.945 170.114 87.001 170.114C40.0568 170.114 2.00098 132.657 2.00098 86.4518C2.00098 40.2467 40.0568 2.79004 87.001 2.79004C133.945 2.79004 172.001 40.2467 172.001 86.4518Z"
                             stroke="#F3E8DA" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
@@ -225,25 +225,53 @@
             <input type="text" id="name" name="name" placeholder="Nombre..." required>
 
             <label for="category">Categoria:</label>
-            <input type="text" id="category" name="category" placeholder="Categoria..." required>
+            <select name="category" id="category" class="add-clothe_select" required>
+                <option value="parte de arriba">Parte de arriba</option>
+                <option value="parte de abajo">Parte de abajo</option>
+                <option value="abrigo">Abrigo</option>
+            </select>
 
             <label for="expectedCategory">Categoria esperada:</label>
-            <input type="text" id="expectedCategory" name="expectedCategory" placeholder="Categoria esperada..." required>
+            <select name="expectedCategory" id="expectedCategory" class="add-clothe_select" required>
+                <option value="parte de arriba">Parte de arriba</option>
+                <option value="parte de abajo">Parte de abajo</option>
+                <option value="abrigo">Abrigo</option>
+            </select>
 
             <label for="size">Tamaño:</label>
-            <input type="text" id="size" name="size" placeholder="Tamaño..." required>
+            <select name="size" id="size" class="add-clothe_select" required>
+                <option value="S/1">S/1</option>
+                <option value="M/2">M/2</option>
+                <option value="L/3">L/3</option>
+                <option value="XL/4">XL/4</option>
+                <option value="XXL/5">XXL/5</option>
+            </select>
 
             <label for="expectedSize">Tamaño esperado:</label>
-            <input type="text" id="expectedSize" name="expectedSize" placeholder="Tamaño esperado..." required>
+            <select name="expectedSize" id="expectedSize" class="add-clothe_select" required>
+                <option value="S/1">S/1</option>
+                <option value="M/2">M/2</option>
+                <option value="L/3">L/3</option>
+                <option value="XL/4">XL/4</option>
+                <option value="XXL/5">XXL/5</option>
+            </select>
 
             <label for="gender">Genero:</label>
-            <input type="text" id="gender" name="gender" placeholder="Genero..." required>
+            <select name="gender" id="gender" class="add-clothe_select" required>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño/niña">Niño/Niña</option>
+            </select>
 
             <label for="expectedGender">Genero esperado:</label>
-            <input type="text" id="expectedGender" name="expectedGender" placeholder="Genero esperado..." required>
+            <select name="expectedGender" id="expectedGender" class="add-clothe_select" required>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño/niña">Niño/Niña</option>
+            </select>
 
             <label for="description">Descripción:</label>
-            <input type="textarea" id="description" name="description" placeholder="Descripción..." required>
+            <textarea name="description" id="description" placeholder="Descripción..." class="add-clothe_textarea" required></textarea>
 
             <label for="color">Color:</label>
             <input type="text" id="color" name="color" placeholder="Color..." required>
@@ -262,37 +290,65 @@
         <div class="modal-content">
             <h2>Modificar prenda</h2>
             <label for="name">Nombre de la prenda:</label>
-            <input type="text" id="newName" name="name" placeholder="Nombre...">
+            <input type="text" id="name" name="name" placeholder="Nombre...">
 
             <label for="category">Categoria:</label>
-            <input type="text" id="newCategory" name="category" placeholder="Categoria...">
+            <select name="category" id="category" class="add-clothe_select">
+                <option value="parte de arriba">Parte de arriba</option>
+                <option value="parte de abajo">Parte de abajo</option>
+                <option value="abrigo">Abrigo</option>
+            </select>
 
             <label for="expectedCategory">Categoria esperada:</label>
-            <input type="text" id="newExpectedCategory" name="expectedCategory" placeholder="Categoria esperada...">
+            <select name="expectedCategory" id="expectedCategory" class="add-clothe_select">
+                <option value="parte de arriba">Parte de arriba</option>
+                <option value="parte de abajo">Parte de abajo</option>
+                <option value="abrigo">Abrigo</option>
+            </select>
 
             <label for="size">Tamaño:</label>
-            <input type="text" id="newSize" name="size" placeholder="Tamaño...">
+            <select name="size" id="size" class="add-clothe_select">
+                <option value="S/1">S/1</option>
+                <option value="M/2">M/2</option>
+                <option value="L/3">L/3</option>
+                <option value="XL/4">XL/4</option>
+                <option value="XXL/5">XXL/5</option>
+            </select>
 
             <label for="expectedSize">Tamaño esperado:</label>
-            <input type="text" id="newExpectedSize" name="expectedSize" placeholder="Tamaño esperado...">
+            <select name="expectedSize" id="expectedSize" class="add-clothe_select">
+                <option value="S/1">S/1</option>
+                <option value="M/2">M/2</option>
+                <option value="L/3">L/3</option>
+                <option value="XL/4">XL/4</option>
+                <option value="XXL/5">XXL/5</option>
+            </select>
 
             <label for="gender">Genero:</label>
-            <input type="text" id="newGender" name="gender" placeholder="Genero...">
+            <select name="gender" id="gender" class="add-clothe_select">
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño/niña">Niño/Niña</option>
+            </select>
 
             <label for="expectedGender">Genero esperado:</label>
-            <input type="text" id="newExpectedGender" name="expectedGender" placeholder="Genero esperado...">
+            <select name="expectedGender" id="expectedGender" class="add-clothe_select">
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño/niña">Niño/Niña</option>
+            </select>
 
             <label for="description">Descripción:</label>
-            <input type="textarea" id="newDescription" name="description" placeholder="Descripción...">
+            <textarea name="description" id="description" placeholder="Descripción..." class="add-clothe_textarea"></textarea>
 
             <label for="color">Color:</label>
-            <input type="text" id="newColor" name="color" placeholder="Color...">
+            <input type="text" id="color" name="color" placeholder="Color...">
 
             <label for="expectedColor">Color esperado:</label>
-            <input type="text" id="newExpectedColor" name="expectedColor" placeholder="Color esperado...">
+            <input type="text" id="expectedColor" name="expectedColor" placeholder="Color esperado...">
 
             <label for="file">Imagen:</label>
-            <input type="file" id="newFile" name="file" placeholder="Imagen...">
+            <input type="file" id="file" name="file" placeholder="Imagen...">
 
             <button class="button swap__card__button" id="modify-btn">Modificar</button>
         </div>

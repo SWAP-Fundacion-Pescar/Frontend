@@ -55,7 +55,17 @@
 .filters ul li:hover a {
     color: var(--c_white);
 }
-
+#clean-btn{
+    background-color: var(--c_white);
+}
+#search-btn{
+    background-color: var(--c_green-primary);
+    color: var(--c_beige-secondary);
+    border: 1px solid var(--c_beige-secondary);
+}
+#clean-btn, #search-btn{
+    width: 5vw;
+}
 /* Catálogo */
 #catalogo {
     display: grid;

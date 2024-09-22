@@ -2,10 +2,25 @@ import { addEventToSearchBar } from "./helpers.js";
 document.addEventListener('DOMContentLoaded', function () {
     addEventToSearchBar();
     const url = handleUrl();
-    const { category } = renderCard(url);
-    getRelatedClothes('https://microservicio-prendas.vercel.app/api/clothes', category)
+    renderTotal(url)
 });
 
+function irADetalle(prendaId) {
+    window.location.href = `detalle.html?id=${prendaId}`;
+}
+
+function getQueryParams() {
+    const currentUrl = window.location.href;
+    const url = new URL(currentUrl);
+    const params = new URLSearchParams(url.search);
+    return Object.fromEntries(params.entries());
+}
+function handleUrl() {
+    let baseClotheUrl = 'https://microservicio-prendas.vercel.app/api/clothes';
+    const { id } = getQueryParams();
+    baseClotheUrl += `/${id}`;
+    return baseClotheUrl;
+}
 async function renderCard(url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -36,27 +51,30 @@ async function renderCard(url) {
     document.getElementById('intercambio-categoria').textContent = clothe.expectedCategory;
     return clothe.category
 }
+async function renderTotal(initialUrl) {
+    try {
+        const category = await renderCard(initialUrl);
 
-function irADetalle(prendaId) {
-    window.location.href = `detalle.html?id=${prendaId}`;
+        const baseUrl = `https://microservicio-prendas.vercel.app/api/clothes`
+        const params = new URLSearchParams();
+        params.append('category', category)
+        const stringParams = params.toString()
+        console.log(stringParams)
+        const relatedClothesUrl = `${baseUrl}?${stringParams}`
+        
+        getRelatedClothes(relatedClothesUrl)
+        
+    } catch (error) {
+        console.error('Error en renderCard:', error);
+    }
 }
 
-function getQueryParams() {
-    const currentUrl = window.location.href;
-    const url = new URL(currentUrl);
-    const params = new URLSearchParams(url.search);
-    return Object.fromEntries(params.entries());
-}
-function handleUrl() {
-    let baseClotheUrl = 'https://microservicio-prendas.vercel.app/api/clothes';
-    const { id } = getQueryParams();
-    baseClotheUrl += `/${id}`;
-    return baseClotheUrl;
-}
-function getRelatedClothes(apiUrl, category) {
-    fetch(`${apiUrl}?categoria=${category}`)
+function getRelatedClothes(relatedClothesUrl) {
+    fetch(relatedClothesUrl)
         .then(response => response.json())
         .then(prendas => {
+            console.log(relatedClothesUrl)
+            console.log(prendas)
             const carrusel = document.getElementById('carrusel-items');
             carrusel.innerHTML = '';
 
@@ -76,9 +94,7 @@ function getRelatedClothes(apiUrl, category) {
                         <a href="../pages/detalleprenda.html?id=${prenda._id}" class="swap__card__button button" id="detalle_prenda_btn">Intercambiar</a>      
                     </div>
                 `;
-
                 carrusel.appendChild(itemDiv);
-
             });
         })
         .catch(error => console.error('Error al cargar prendas relacionadas:', error));
