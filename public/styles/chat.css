@@ -110,10 +110,11 @@ main {
     border-radius: 10px;
     background-color: var(--c_green-primary);
     width: fit-content;
-    max-width: 50%;
+    max-width: 40%;
     align-items: center;
     padding: 0.25rem 0.5rem;
     flex-wrap: wrap; 
+    align-items: flex-start;
 }
 .message-content
 {
@@ -121,6 +122,7 @@ main {
     overflow-wrap: break-word; 
     margin-bottom: -10px;
     width: 100%;
+    margin-left: 0.25rem;
 }
 .receiver
 {
@@ -139,19 +141,35 @@ main {
     width: 100%;
     text-align: end;
 }
+.message-media
+{
+    border-radius: 0.5rem;
+    /* margin: 0.5rem; */
+    margin: 0.5rem 0;
+    max-width: 100%;
+    height: auto;    /* Maintain aspect ratio */
+    flex: 1 1 auto;  /* Allow the image to shrink if necessary */
+    /* max-width: 50%; */
+}
 .currentChat-input {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     margin-top: auto;
+    /* position: relative; */
+    align-items: center;
 }
 
 .newMessage {
     border-color: var(--c_green-primary);
     background-color: var(--c_beige-secondary);
     border-radius: 20px;
-    padding-left: 1rem;
+    padding-left: 2rem;
     height: 2rem;
-    width: 70vw;
+    /* width: 70vw; */
+    width: 100%;
+    margin: 0 2rem;
+    /* padding-right: 40px; */
+    justify-self: center;
 }
 
 .top {
@@ -176,4 +194,10 @@ main {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: var(--c_gray);
+}
+.media-label {
+    position: absolute;
+    /* left: 10px; */
+    margin-left: 2.75rem;
+    cursor: pointer;
 }
