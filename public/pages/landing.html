@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/nav+footer.css">
     <link rel="stylesheet" href="../styles/landing.css">
+    <link rel="stylesheet" href="../styles/hamburger.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Landing Page</title>
 </head>
@@ -13,7 +16,8 @@
         <nav class="nav">
             <!-- Logo -->
             <div class="nav__logo">
-                <img src="../assets/img/ImagenLogo.png" alt="Logo Swap">
+                <img src="../assets/img/ImagenLogo.png" alt="Logo Swap" class="nav__logo__img">
+                <button class="nav__btnHamburger--open" id="abrirMenu"><i class="fa-solid fa-bars"></i></button>
             </div>
             <div class="nav__containerMenu">
                 <!-- Search bar -->
@@ -24,17 +28,25 @@
                     </button>
                 </div>
                 <!-- Nav bar links -->
-                <div class="nav__containerMenu__menu">
-                    <a href="#home">Home</a>
-                    <a href="#intercambiar">Intercambiar</a>
+                <div class="nav__containerMenu__menu" id="menu">
+                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
+                    <a href="../pages/landing.html">Home</a>
+                    <a href="../pages/catalogo.html">Intercambiar</a>
                     <a href="#reseñas">Reseñas</a>
                     <a href="#quienesSomos">Quienes somos</a>
                 </div>
             </div>
             <!-- Botones de usuario -->
-            <div class="nav__userButton">
-                <button class="button--outlined">Iniciar Sesión</button>
-                <button class="button--filled">Registrate</button>
+            <div class="nav__userButton" id="nav__userButton">
+                <a href="../pages/logIn.html" class="button--outlined button">Iniciar Sesión</a>
+                <a href="../pages/signIn.html" class="button--filled button">Registrate</a>
+            </div>
+            <div class="nav__userButton-logged" id="nav__userButton-logged">
+                <i class="fa-regular fa-bell"></i>
+                <i class="fa-regular fa-message"></i>
+                <i class="fa-solid fa-gear"></i>
+                <a href="../pages/perfil.html"><i class="fa-solid fa-user"></i></a>
+                <button class="button button--filled" id="logoutBtn">Salir</button>
             </div>
         </nav>
     </header>
@@ -48,16 +60,269 @@
                 <p>
                     Te invitamos a unirte, <b>recibí</b> algo que<br> necesitas y <b>da</b> algo que no usas.
                 </p>
-                <div class="presentation__button"><button class="button--filled">Sumate</button></div>
+                <div class="presentation__button"><button class="button--filled button">Sumate</button></div>
             </div>
         </section>
         <section id="home">
         </section>
-        <section id="intercambiar">
+        <section class="step">
+            <article class="step__item">
+                <div class="step__item__info">
+                    <div class="step__item__num">
+                        <p>1</p>
+                    </div>
+                    <div class="step__item__text">
+                        <h3>Explora</h3>
+                        <p>Descubre la amplia variedad de prendas disponibles en el sitio para intercambiar. </p>
+                    </div>
+                </div>
+                <div class="step__item__img">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </article>
+            <article class="step__item">
+                <div class="step__item__info">
+                    <div class="step__item__num">
+                        <p>2</p>
+                    </div>
+                    <div class="step__item__text">
+                        <h3>Publica</h3>
+                        <p>Revisa tu guardarropas y publica las prendas que ya no utilices.</p>
+                    </div>
+                </div>
+                <div class="step__item__img">
+                    <i class="fa-solid fa-upload"></i>
+                </div>
+            </article>
+            <article class="step__item">
+                <div class="step__item__info">
+                    <div class="step__item__num">
+                        <p>3</p>
+                    </div>
+                    <div class="step__item__text">
+                        <h3>Intercambia</h3>
+                        <p>Usa nuestro chat, contáctate con el publicador de la prenda que te interese y realiza el intercambio.</p>
+                    </div>
+                </div>
+                <div class="step__item__img">
+                    <i class="fa-regular fa-handshake"></i>
+                </div>
+            </article>
         </section>
-        <section id="reseñas"></section>
+        <section id="intercambiar" class="swap">
+            <div class="swap__title">
+                <h3>Intercambia</h3>
+                <p>Las prendas que ya no uses</p>
+            </div>
+            <div class="swap__carrousel">
+                <!-- Boton: previo -->
+                <i class="fa-solid fa-chevron-left" id="swap__prevBtn"></i>
+                <!-- Inicio contenedor general -->
+                <div class="swap__card--container">
+                    <!-- Subcontenedor -->
+                    <div class="swap__card--subcontainer">
+                        <div class="swap__card">
+                            <i class="fa-solid fa-ellipsis-vertical swap__card__dots"></i>
+                            <div class="swap__card__img"><img src="../assets/img/swap__img01.png" alt="Remera de algodón"></div>
+                            <p class="swap__card__title">Remera de algodón</p>
+                            <p class="swap__card__text">Morón, GBA</p>
+                            <button class="swap__like"><i class="fa-regular fa-heart"></i></button>
+                            <a href="" class="swap__card__button button">Intercambiar</a>
+                        </div>
+                        <div class="swap__card">
+                            <i class="fa-solid fa-ellipsis-vertical swap__card__dots"></i>
+                            <div class="swap__card__img"><img src="../assets/img/swap__img02.png" alt="Campera de cuero"></div>
+                            <p class="swap__card__title">Campera de cuero</p>
+                            <p class="swap__card__text">Caballito, C.A.B.A.</p>
+                            <button class="swap__like"><i class="fa-regular fa-heart"></i></button>
+                            <a href="" class="swap__card__button button">Intercambiar</a>
+                        </div>
+                        <div class="swap__card">
+                            <i class="fa-solid fa-ellipsis-vertical swap__card__dots"></i>
+                            <div class="swap__card__img"><img src="../assets/img/swap__img03.png" alt="Short de jean"></div>
+                            <p class="swap__card__title">Short de jean</p>
+                            <p class="swap__card__text">Boedo, C.A.B.A.</p>
+                            <button class="swap__like"><i class="fa-regular fa-heart"></i></button>
+                            <a href="" class="swap__card__button button">Intercambiar</a>
+                        </div>
+                    </div>
+                    <!-- Subcontenedor -->
+                    <div class="swap__card--subcontainer">
+                        <div class="swap__card">
+                            <i class="fa-solid fa-ellipsis-vertical swap__card__dots"></i>
+                            <div class="swap__card__img"><img src="../assets/img/swap__img04.png" alt="Pantalón de jean"></div>
+                            <p class="swap__card__title">Pantalón de jean</p>
+                            <p class="swap__card__text">Quilmes, C.A.B.A.</p>
+                            <button class="swap__like"><i class="fa-regular fa-heart"></i></button>
+                            <a href="" class="swap__card__button button">Intercambiar</a>
+                        </div>
+                    </div>
+                    <div class="swap__card--subcontainer">
+                        <div class="swap__card">
+                            <i class="fa-solid fa-ellipsis-vertical swap__card__dots"></i>
+                            <div class="swap__card__img"><img src="../assets/img/swap__img05.jpg" alt="Remera de algodón"></div>
+                            <p class="swap__card__title">Remera de algodón</p>
+                            <p class="swap__card__text">Ramos Mejía, GBA</p>
+                            <button class="swap__like"><i class="fa-regular fa-heart"></i></button>
+                            <a href="" class="swap__card__button button">Intercambiar</a>
+                        </div>
+                    </div>
+                    <div class="swap__card--subcontainer">
+                        <div class="swap__card">
+                            <i class="fa-solid fa-ellipsis-vertical swap__card__dots"></i>
+                            <div class="swap__card__img"><img src="../assets/img/swap__img06.jpg" alt="Short de jean"></div>
+                            <p class="swap__card__title">Short de jean</p>
+                            <p class="swap__card__text">Ezeiza, GBA</p>
+                            <button class="swap__like"><i class="fa-regular fa-heart"></i></button>
+                            <a href="" class="swap__card__button button">Intercambiar</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin contenedor general -->
+                <!-- Boton: siguiente -->
+                <i class="fa-solid fa-chevron-right" id="swap__nextBtn"></i>
+            </div>
+            
+        </section>
+        <section id="reseñas" class="reviews">
+            <div class="reviews__top">
+                <!-- Reseñas top -->
+                <div id="reviews__top--left">
+                    <!-- Reseña 01 -->
+                    <div class="reviews__card">
+                        <p class="reviews_card_title">Camila Ruiz</p>
+                        <p class="reviews_card_coment">Realicé un intercambio con una chica que tenía mi mismo talle, sus
+                            prendas estaban muy cuidadas y fueron justo lo que estaba buscando.</p>
+                    </div>
+                    <!-- Reseña 02 -->
+                    <div class="reviews__card right">
+                        <p class="reviews_card_title">Paula Gomez</p>
+                        <p class="reviews_card_coment">Intercambié con Camila una remera que ya no usaba, a cambio recibí una
+                            bufanda del color que necesitaba. <br>Le quiero agradecer por su buena onda!</p>
+                    </div>
+                </div>
+                <!-- Img + Titulo -->
+                <div id="reviews__top--right">
+                    <!-- Img 01 -->
+                    <img src="../assets/img/reviews__female.svg" alt="Ilustración mujer">
+                    <!-- Titulo reseñas 01 -->
+                    <div class="reviews__title">
+                        <h3>Comunicate</h3>
+                        <p>y arreglá tu encuentro</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews__bottom">
+                <div id="reviews__bottom--left">
+                    <!-- Titulo reseñas 02 -->
+                    <div class="reviews__title">
+                        <h3>Comentanos</h3>
+                        <p>tu experiencia</p>
+                    </div>
+                    <!-- Img 02 -->
+                    <img src="../assets/img/reviews__male.png" alt="Ilustración hombre">
+                </div>
+                <!-- Reseñas bottom -->
+                <div class="reviews__bottom--right">
+                    <!-- Reseña 03 -->
+                    <div class="reviews__card right">
+                        <p class="reviews_card_title">José García</p>
+                        <p class="reviews_card_coment">Hablé con Mario por el chat y por suerte estábamos cerca. Nos encontramos
+                            e intercambiamos camperas.</p>
+                    </div>
+                    <!-- Reseña 04 -->
+                    <div class="reviews__card">
+                        <p class="reviews_card_title">Mario Rodriguez</p>
+                        <p class="reviews_card_coment">Queria agradecer por la buena onda de José, se acercó a mi lugar de
+                            trabajo y chequeamos ambas prendas sin problema.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quienesSomos" class="team">
+            <div class="team__text">
+                <h3 class="team__text__title">¿Quienes somos?</h3>
+                <p class="team__text__p">SWAP es un proyecto que surge de un grupo de estudiantes de programación becados por Fundación Pescar y JP Morgan. Nos emociona poder hacer un aporte a un estilo de vida mas sustentable y consciente sobre las formas de consumo. </p>
+                <div class="team__members__logo--container">
+                    <img src="../assets/img/team__logo--pescar.png" alt="Logo Fundación Pescar" class="team__members__logo">
+                    <img src="../assets/img/team__logo--Morgan.png" alt="Logo JP Morgan" class="team__members__logo">     
+                </div>
+                
+            </div>
+            
+            <div class="team__members">
+                <div class="team__members__first">
+                    <div class="team__members__item">
+                        <img src="../assets/img/team__member--Santiago.jpg" alt="Foto de perfil miembro Swap" class="team__members__img">
+                        <div class="team__members__profile">
+                            <p>Santiago <b>Aguirre</b></p>
+                            <a href="">Linkedin</a>
+                        </div>
+                    </div>
+                    <div class="team__members__item">
+                        <img src="../assets/img/team__member--Luna.jfif" alt="Foto de perfil miembro Swap" class="team__members__img">
+                        <div class="team__members__profile">
+                            <p>Luna <b>Alejandro</b></p>
+                            <a href="https://www.linkedin.com/in/luna-reiriz-63112b22a/">Linkedin</a>
+                        </div>
+                    </div>
+                    <div class="team__members__item">
+                        <img src="../assets/img/team__member--Agustina.jpeg" alt="Foto de perfil miembro Swap" class="team__members__img">
+                        <div class="team__members__profile">
+                            <p>Agustina <b>Caceres Perez</b></p>
+                            <a href="https://www.linkedin.com/in/agustina-c%C3%A1ceres-358132237/">Linkedin</a>
+                        </div>
+                    </div>
+                    <div class="team__members__item">
+                        <img src="../assets/img/team__member--Francisco.jfif" alt="Foto de perfil miembro Swap" class="team__members__img">
+                        <div class="team__members__profile">
+                            <p>Francisco <b>Marcote</b></p>
+                            <a href="https://www.linkedin.com/in/francisco-marcote-157858313/">Linkedin</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team__members__second">
+                    <div class="team__members__item">
+                        <img src="../assets/img/team__member--Alan.jpeg" alt="Foto de perfil miembro Swap" class="team__members__img">
+                        <div class="team__members__profile">
+                            <p>Alan <b>Vargas</b></p>
+                            <a href="https://www.linkedin.com/in/vargasalan03/">Linkedin</a>
+                        </div>
+                    </div>
+                    <div class="team__members__item">
+                        <img src="" alt="Foto de perfil miembro Swap" class="team__members__img">
+                        <div class="team__members__profile">
+                            <p>Nicolas <b>Villanueva</b></p>
+                            <a href="https://www.linkedin.com/in/nicolas-villanueva-058169235/">Linkedin</a>
+                        </div>
+                    </div>
+                    <div class="team__members__item">
+                        <img src="../assets/img/team__member--Lucia.jpg" alt="Foto de perfil miembro Swap" class="team__members__img">
+                        <div class="team__members__profile">
+                            <p>Lucia <b>Zucarello</b></p>
+                            <a href="https://www.linkedin.com/in/lucia-zuccarello-134a592bb/">Linkedin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
     <!-- Comienzo footer -->
-    <footer></footer>
+    <footer class="footer">
+        <div class="footer__contact">
+            <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+            <i class="fa-brands fa-square-whatsapp"></i>
+            <i class="fa-brands fa-square-x-twitter"></i>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/landing.js" type="module"></script>
+    <script src="../js/header.js"></script>
+    <!-- <script src="../js/notificationSockets.js" type="module"></script> -->
 </body>
 </html>

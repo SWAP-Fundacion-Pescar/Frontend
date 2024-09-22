@@ -1,0 +1,140 @@
+/* NAV */
+/*Menú hamburguesa*/
+.nav__btnHamburger--open, .nav__btnHamburger--close{
+    display: none;
+    }
+
+/* Nav general */
+.nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    justify-items: center;
+    /* display: flex;
+    justify-content: space-between; */
+    align-items: center;
+    padding: 0 1rem;
+    background-color: var(--c_green-primary);
+    height: 12vh;
+}
+    /* Logo */
+    .nav__logo img {
+        grid-column: 1/2;
+        width: 5vw;
+        height: auto;
+    }
+
+    /* Menu, buscador */
+.nav__containerMenu {
+    grid-column: 3/4;
+    margin-top: .5rem;
+}
+
+.nav__containerMenu__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+    width: 22vw;
+    margin-top: .5rem;
+}
+
+    .nav__containerMenu__menu a {
+        text-decoration: none;
+        color: var(--c_beige-secondary);
+        margin: 0 .8rem 0 0 ;
+    }
+
+.nav__containerMenu__searchBar {
+    display: flex;
+    justify-content: center;
+    
+}
+
+    .nav__containerMenu__searchBar button {
+        border-style: none;
+        background-color: transparent;
+    }
+
+        .nav__containerMenu__searchBar button i {
+            color: var(--c_beige-secondary);
+            transform: scale(1.5);
+            margin-left: .5rem;
+            cursor: pointer;
+        }
+
+    .nav__containerMenu__searchBar input:focus{
+        outline: none;
+    }
+
+    #searchBar {
+        width: 20vw;
+        height: 3vh;
+        border-radius: 50px;
+        padding-left: .5rem;
+        border: none;
+    }
+    /* Botones usuario */
+
+    /* Usuario logueado */
+    .nav__userButton-logged{
+        grid-column: 5/6;
+        grid-row: 1/2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        padding: .3rem;
+        cursor: pointer;
+    }
+    .nav__userButton-logged i{
+        color: var(--c_beige-secondary);
+        transform: scale(2);
+    }
+    #logoutBtn{
+        margin: 0;
+        cursor: pointer;
+    }
+    /* Visibilidad gral */
+    .nav__userButton--visible{
+            opacity: 1;
+            visibility: visible;
+        }
+    .nav__userButton--invisible{
+            opacity: 0;
+            visibility: hidden;
+        }
+    
+    /* Usuario no logueado */
+    .nav__userButton{
+        grid-column: 5/6;
+        grid-row: 1/2;
+        display: flex;
+        flex-wrap: nowrap;
+        cursor: pointer;
+    }
+    .button{
+        margin: 0 1rem;
+        padding: .5rem;
+        border-radius: .5rem;
+        font-weight: bold;
+    }
+    .nav__userButton a{
+        text-decoration: none;
+        align-self: center;
+        text-align: center;
+        width: 8rem;
+    }
+    .button--outlined {
+        border: 1px solid var(--c_beige-secondary);
+        background-color: transparent;
+        color: var(--c_beige-secondary);
+    }
+
+    .button--filled{
+        border: 1px solid var(--c_beige-secondary);
+        background-color: var(--c_beige-secondary);
+        color: var(--c_green-primary);
+    }
+
+/* FOOTER */

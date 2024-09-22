@@ -1,0 +1,124 @@
+@import url(../styles/catalogo/card.css);
+*{
+    box-sizing:content-box;
+}
+/* Filtros */
+.filters {
+    padding: 20px;
+    background-color: var(--c_beige-secondary);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filters h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--c_green-primary);
+}
+
+.filters ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.filters ul li {
+    background-color: var(--c_white);
+    border-radius: 5px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.filters ul li a {
+    text-decoration: none;
+    color: var(--c_gray);
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    line-height: 1.5;
+}
+
+.filters ul li:hover {
+    background-color: var(--c_green-primary);
+}
+
+.filters ul li:hover a {
+    color: var(--c_white);
+}
+
+/* Catálogo */
+#catalogo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+    background-color: #727A4B;
+    padding: 3vw 5vw;
+}
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.actions button {
+    background-color: #9ab189;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.actions button.favorite {
+    background-color: transparent;
+    color: #a58e68;
+}
+
+/* Paginacion */
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--c_beige-secondary);
+}
+
+.pagination {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.pagination li {
+    background-color: var(--c_white);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: var(--c_gray);
+    display: block;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.pagination li:hover {
+    background-color: var(--c_green-primary);
+}
+
+.pagination li:hover a {
+    color: var(--c_white);
+}

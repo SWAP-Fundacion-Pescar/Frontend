@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/nav+footer.css">
+    <link rel="stylesheet" href="../styles/landing.css">
+    <link rel="stylesheet" href="../styles/signIn.css">
+    <title>Registro</title>
+</head>
+
+<body>
+    <main class="signIn">
+        <div class="signIn__container">
+            <section class="signIn__title">
+                <h1>swap</h1>
+            </section>
+            <section class="signIn__window">
+                <form id="signIn">
+                    
+                    <div class="signIn__field--container">
+                        <label for="signIn__username" class="signIn__field--label">Nombre de usuario:</label>
+                        <input type="text" id="signIn__username" name="username" placeholder="Ingrese su nombre de usuario" class="signIn__field--input">
+                    </div>
+
+                    <div class="signIn__field--container">
+                        <label for="signIn__email" class="signIn__field--label">Email: </label>
+                        <input type="email" id="signIn__email" name="email" placeholder="Ingrese su email" class="signIn__field--input">
+                    </div>
+
+                    <div class="signIn__field--container">
+                        <label for="signIn__name" class="signIn__field--label">Nombre: </label>
+                        <input type="text" id="signIn__name" name="name" placeholder="Ingrese su nombre" class="signIn__field--input">
+                    </div>
+
+                    <div class="signIn__field--container">
+                        <label for="signIn__lastname" class="signIn__field--label">Apellido: </label>
+                        <input type="text" id="signIn__lastname" name="lastName" placeholder="Ingrese su apellido" class="signIn__field--input">
+                    </div>
+
+                    <div class="signIn__field--container">
+                        <label for="signIn__password" class="signIn__field--label">Contraseña: </label>
+                        <input type="password" id="signIn__password" name="password" placeholder="Ingrese su contraseña" class="signIn__field--input">
+                    </div>
+
+                    <div class="signIn__field--container">
+                        <label for="signIn__city" class="signIn__field--label">Ciudad:</label>
+                        <input type="text" id="signIn__city" name="city" placeholder="Ingrese su ciudad" class="signIn__field--input">
+                    </div>
+
+                    <!-- <div class="signIn__field--container">
+                        <label for="signIn__birthday" class="signIn__field--label">Fecha de nacimiento</label>
+                        <input type="date" id="signIn__birthday" name="birthDay" class="signIn__field--input">
+                    </div> -->
+                    
+                    <input type="submit" value="Registrate" class="signIn__button button">
+                    
+                    <div class="signIn__window__check">
+                        <input type="checkbox" id="terms_cbox" value="terms_checkbox" />
+                        <label for="terms_cbox">Al registrarte, aceptas nuestras
+                            <a href="#">Condiciones</a>,
+                            nuestra
+                            <a href="#">Política de privacidad</a> y nuestra
+                            <a href="#">Política de cookies</a>.
+                        </label>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+    <script src="../js/signIn.js"></script>
+    <script src="../js/header.js"></script>
+</body>
+
+</html>

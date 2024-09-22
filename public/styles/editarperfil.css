@@ -1,0 +1,133 @@
+/* EDITAR PERFIL */
+    .container {
+        display: flex;
+        min-height: 100vh;
+    }
+    
+    .sidebar {
+        padding: 20px;
+        width: 300px;
+    }
+    
+    .profile-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+    }
+    
+    .profile-picture {
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+    .profile-picture img{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    
+    .profile-initial {
+        font-size: 36px;
+        color: white;
+    }
+    
+    h2 {
+        margin-top: 10px;
+        font-size: 24px;
+    }
+    
+    .changePhoto-btn {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        background-color: var(--c_gray);
+        cursor: pointer;
+        font-size: 1rem;
+        color: var(--c_beige-secondary);
+    }
+    
+    .main-content {
+        padding: 40px;
+        width: 100%;
+        background-color: white;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header h2 {
+        font-size: 28px;
+    }
+    
+    .header p {
+        font-size: 16px;
+        color: #555;
+    }
+    
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: .9rem;
+    }
+    
+    .discard-btn {
+        background-color: #F3E8DA;
+        color: #333;
+        text-decoration: none;
+    }
+    
+    .save-btn {
+        background-color: #727A4B;
+        color: white;
+    }
+    
+    .personal-info,
+    .session-info {
+        margin-top: 30px;
+    }
+    
+    .personal-info h3,
+    .session-info h3 {
+        font-size: 22px;
+    }
+    
+    .personal-info p,
+    .session-info p {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .form-group {
+        margin-top: 15px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    .form-group input:focus {
+        border-color: #91b783;
+        outline: none;
+    }

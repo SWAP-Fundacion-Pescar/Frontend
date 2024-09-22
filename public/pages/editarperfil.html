@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/nav+footer.css">
+    <link rel="stylesheet" href="../styles/editarperfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <!-- Logo -->
+            <div class="nav__logo">
+                <img src="../assets/img/ImagenLogo.png" alt="Logo Swap" class="nav__logo__img">
+                <button class="nav__btnHamburger--open" id="abrirMenu"><i class="fa-solid fa-bars"></i></button>
+            </div>
+            <div class="nav__containerMenu">
+                <!-- Search bar -->
+                <div class="nav__containerMenu__searchBar">
+                    <input id="searchBar" name="searchBar" type="text" placeholder="Buscar productos">
+                    <button>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <!-- Nav bar links -->
+                
+                <div class="nav__containerMenu__menu" id="menu">
+                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
+                    <a href="../pages//landing.html">Home</a>
+                    <a href="../pages/catalogo.html">Intercambiar</a>
+                    <a href="#reseñas">Reseñas</a>
+                    <a href="#quienesSomos">Quienes somos</a>
+                </div>
+            </div>
+            <!-- Botones de usuario -->
+            <div class="nav__userButton-logged" id="nav__userButton-logged">
+                <i class="fa-regular fa-bell"></i>
+                <i class="fa-regular fa-message"></i>
+                <i class="fa-solid fa-gear"></i>
+                <a href="../pages/perfil.html"><i class="fa-solid fa-user"></i></a>
+                <button class="button button--filled" id="logoutBtn">Salir</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-section">
+                <div class="profile-picture">
+                    <img src="../assets/img/userPhoto_example.jpg" alt="Imagen Perfil">
+                    <span class="profile-initial" id="profile-initial">N</span>
+                </div>
+                <h2 id="nombre-completo"></h2>
+                <button class="changePhoto-btn">+</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h2>Cuenta</h2>
+                <p>Mira y edita tu información personal.</p>
+                <div class="actions">
+                    <a href="../pages/perfil.html" class="btn discard-btn">Descartar</a>
+                    <button class="btn save-btn" id="save-btn">Actualizar información</button>
+                </div>
+            </div>
+
+            <div class="personal-info">
+                <h3>Información personal</h3>
+                <p>Actualiza tu información personal.</p>
+                <form id="personal-info-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" placeholder="Ingrese su nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" placeholder="Ingrese su apellido">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Ciudad</label>
+                        <input type="text" id="city" placeholder="Ingrese su ciudad">
+                    </div>
+                    <div class="form-group">
+                        <label for="user">Usuario</label>
+                        <input type="text" id="user" placeholder="Ingrese su nombre de usuario">
+                    </div>                    
+                </form>
+            </div>
+
+            <div class="session-info">
+                <h3>Información de inicio de sesión</h3>
+                <p>Revisa y actualiza tu email de inicio de sesión y contraseña.</p>
+                <p><strong>Email de inicio de sesión:</strong> <span id="email-usuario"></span></p>
+                <p><strong>Contraseña:</strong> ••••••••</p>
+            </div>
+        </div>
+    </div>
+    </main>
+    <script src="../js/editarperfil.js" type="module"></script>
+    <script src="../js/header.js"></script>
+</body>
+</html>
