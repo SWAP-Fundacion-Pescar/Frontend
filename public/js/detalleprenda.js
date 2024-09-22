@@ -22,14 +22,17 @@ function handleUrl() {
     return baseClotheUrl;
 }
 async function renderCard(url) {
+    const preloader = document.getElementById('preloader')
+    if(preloader) preloader.style.display = 'flex';
+
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error('Network response was not ok');
-
     }
     const clothe = await response.json()
     let userInfo;
     try {
+        
         const response = await fetch(`https://microservicio-usuarios-three.vercel.app/api/users/${clothe.userId}`)
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -38,7 +41,11 @@ async function renderCard(url) {
     }
     catch (error) {
         console.error('Error al cargar informacion del usuario: ', error);
+    } 
+    finally {
+        if(preloader) preloader.style.display = 'none';
     }
+
     document.getElementById('prenda-imagen').src = clothe.media[0].url;
     document.getElementById('prenda-nombre').textContent = clothe.name;
     document.getElementById('prenda-lugar').textContent = userInfo.city;
@@ -70,6 +77,9 @@ async function renderTotal(initialUrl) {
 }
 
 function getRelatedClothes(relatedClothesUrl) {
+    const preloader = document.getElementById('preloader-prendasRelacionadas')
+    if(preloader) preloader.style.display = 'flex';
+    
     fetch(relatedClothesUrl)
         .then(response => response.json())
         .then(prendas => {
@@ -97,5 +107,6 @@ function getRelatedClothes(relatedClothesUrl) {
                 carrusel.appendChild(itemDiv);
             });
         })
-        .catch(error => console.error('Error al cargar prendas relacionadas:', error));
+        .catch(error => console.error('Error al cargar prendas relacionadas:', error))
+        .finally(()=>{if(preloader) preloader.style.display = 'none'})
 }

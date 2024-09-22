@@ -137,9 +137,6 @@ fetch(`${apiUrl}/${usuarioId}`)
                 <a href="../pages/detalleprenda.html?id=${clothe.id}" class="swap__card__button button">Ver detalle</a> 
             </div>
         </div>
-        <div class="card-bottom">
-                            
-        </div>
     `;
             publicacionesContainer.appendChild(publicacionDiv);
             crearDesplegable(clothe.id);

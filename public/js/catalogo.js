@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     searchBtn.addEventListener('click', ()=>{getFilteredClothes() })
     cleanBtn.addEventListener('click', ()=>{cleanFilters()})
 });
+
 async function renderCards(url) {
+    const preloader = document.getElementById('preloader')
+    if(preloader) preloader.style.display = 'flex';
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -33,6 +36,8 @@ async function renderCards(url) {
     } catch (error) {
         console.error('Error al cargar las prendas:', error);
         catalogContainer.innerHTML = '<p>No se pudieron cargar las prendas. Inténtalo de nuevo más tarde.</p>';
+    } finally{
+        if(preloader) preloader.style.display = 'none';
     }
 }
 
@@ -121,6 +126,6 @@ function cleanFilters(){
     document.getElementById('category').value = '';
     document.getElementById('gender').value = '';
     document.getElementById('size').value = '';
-    
+
     getFilteredClothes(); 
 }
