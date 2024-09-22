@@ -1,14 +1,5 @@
 import { addEventToSearchBar, getQueryParams } from "./helpers.js";
 const catalogContainer = document.getElementById('catalogo');
-const threeDotsSVG = `<svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0_384_1261" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="26">
-<rect x="0.410156" y="0.901367" width="24.15" height="24.2769" fill="#D9D9D9"/>
-</mask>
-<g mask="url(#mask0_384_1261)">
-<path d="M12.4852 21.1319C11.9317 21.1319 11.4579 20.9338 11.0638 20.5376C10.6697 20.1414 10.4727 19.6651 10.4727 19.1088C10.4727 18.5525 10.6697 18.0762 11.0638 17.68C11.4579 17.2838 11.9317 17.0857 12.4852 17.0857C13.0386 17.0857 13.5124 17.2838 13.9065 17.68C14.3006 18.0762 14.4977 18.5525 14.4977 19.1088C14.4977 19.6651 14.3006 20.1414 13.9065 20.5376C13.5124 20.9338 13.0386 21.1319 12.4852 21.1319ZM12.4852 15.0626C11.9317 15.0626 11.4579 14.8646 11.0638 14.4684C10.6697 14.0722 10.4727 13.5959 10.4727 13.0396C10.4727 12.4832 10.6697 12.007 11.0638 11.6108C11.4579 11.2146 11.9317 11.0165 12.4852 11.0165C13.0386 11.0165 13.5124 11.2146 13.9065 11.6108C14.3006 12.007 14.4977 12.4832 14.4977 13.0396C14.4977 13.5959 14.3006 14.0722 13.9065 14.4684C13.5124 14.8646 13.0386 15.0626 12.4852 15.0626ZM12.4852 8.99342C11.9317 8.99342 11.4579 8.79533 11.0638 8.39914C10.6697 8.00295 10.4727 7.52669 10.4727 6.97034C10.4727 6.414 10.6697 5.93773 11.0638 5.54154C11.4579 5.14536 11.9317 4.94727 12.4852 4.94727C13.0386 4.94727 13.5124 5.14536 13.9065 5.54154C14.3006 5.93773 14.4977 6.414 14.4977 6.97034C14.4977 7.52669 14.3006 8.00295 13.9065 8.39914C13.5124 8.79533 13.0386 8.99342 12.4852 8.99342Z" fill="#727A4B"/>
-</g>
-</svg>
-`;
 const heart = `<svg width="40" height="40" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0_384_1259" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="50">
 <rect width="50" height="50" fill="#D9D9D9"/>
@@ -23,8 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = handleUrl();
     renderCards(url);
     getQueryParams();
+    const searchBtn = document.getElementById('search-btn')
+    const cleanBtn = document.getElementById('clean-btn')
+    searchBtn.addEventListener('click', ()=>{getFilteredClothes() })
+    cleanBtn.addEventListener('click', ()=>{cleanFilters()})
 });
+
 async function renderCards(url) {
+    const preloader = document.getElementById('preloader')
+    if(preloader) preloader.style.display = 'flex';
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -38,6 +36,8 @@ async function renderCards(url) {
     } catch (error) {
         console.error('Error al cargar las prendas:', error);
         catalogContainer.innerHTML = '<p>No se pudieron cargar las prendas. Inténtalo de nuevo más tarde.</p>';
+    } finally{
+        if(preloader) preloader.style.display = 'none';
     }
 }
 
@@ -57,9 +57,6 @@ async function createCard(clothe) {
     }
     console.log(userInfo)
     clotheContainer.innerHTML = `
-        <div class="dots-container">
-            ${threeDotsSVG}
-        </div>
         <div class="card-img">
             <img src="${clothe.media[0].url}" alt="${clothe.name}" class="card__img">
         </div>
@@ -88,4 +85,39 @@ function handleUrl() {
         baseClotheUrl += `&name=${search}`;
     }
     return baseClotheUrl;
+}
+
+function getFilteredClothes() {
+    const baseUrl = 'https://microservicio-prendas.vercel.app/api/clothes';
+    const category = document.getElementById('category').value
+    const gender = document.getElementById('gender').value
+    const size = document.getElementById('size').value
+    
+    // Construir los query params
+    const params = new URLSearchParams();
+    console.log(params)
+    
+    // Solo agregar los parámetros si tienen un valor
+    if (category) params.append('category', category);
+    if (size) params.append('size', size);
+    if (gender) params.append('gender', gender);
+    const stringParams = params.toString()
+    
+    // Construir la URL final con los query params
+    const url = `${baseUrl}?${stringParams}`;
+    console.log(url)
+    fetch(url)
+        .then(response => response.json())
+        .then(prendas => {
+            console.log(prendas)
+            prendas.length>0 ? renderCards(url) : catalogContainer.innerHTML=`<p> No hay prendas que coincidan con todos tus criterios de búsqueda </p>`
+        })
+        .catch(error=> console.error('Error al cargar prendas relacionadas:', error))
+}
+function cleanFilters(){
+    document.getElementById('category').value = '';
+    document.getElementById('gender').value = '';
+    document.getElementById('size').value = '';
+
+    getFilteredClothes(); 
 }

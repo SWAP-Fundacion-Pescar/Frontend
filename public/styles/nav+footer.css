@@ -28,6 +28,10 @@
 .nav__containerMenu {
     grid-column: 3/4;
     margin-top: .5rem;
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }
 
 .nav__containerMenu__menu {
@@ -37,6 +41,8 @@
     padding: .5rem;
     width: 22vw;
     margin-top: .5rem;
+    grid-column: 1/2;
+    grid-row: 2/3;
 }
 
     .nav__containerMenu__menu a {
@@ -48,6 +54,10 @@
 .nav__containerMenu__searchBar {
     display: flex;
     justify-content: center;
+    
+    grid-column: 1/2;
+    grid-row: 1/2;
+
     
 }
 
@@ -73,6 +83,7 @@
         border-radius: 50px;
         padding-left: .5rem;
         border: none;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     }
     /* Botones usuario */
 
@@ -95,6 +106,55 @@
         margin: 0;
         cursor: pointer;
     }
+    
+    /* Desplegable */
+    .dropdown__container{
+        position: relative;
+    }
+    .dropdown__btn {
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        margin-left: 80%;
+    }
+    
+    .dropdown__window {
+        position: absolute;
+        right: -1px;
+        width: 8vw;
+        border-radius: .5rem;
+        margin-top: 1rem;
+        background: var(--c_white);
+        box-shadow: 1px 1px 15px var(--c_gray);
+        
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+
+        visibility: hidden;
+        opacity: 0;
+    }
+    
+    .dropdown__window a {
+        display: flex;
+        padding: 0.5rem .8rem;
+        color: var(--c_gray);
+        text-decoration: none;
+    }
+    
+    .dropdown__window a:hover {
+        color: var(--c_green-primary);
+        font-weight: 600;
+    }
+    
+    .show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+
+
+
     /* Visibilidad gral */
     .nav__userButton--visible{
             opacity: 1;
@@ -105,6 +165,8 @@
             visibility: hidden;
         }
     
+
+
     /* Usuario no logueado */
     .nav__userButton{
         grid-column: 5/6;
@@ -118,6 +180,7 @@
         padding: .5rem;
         border-radius: .5rem;
         font-weight: bold;
+        cursor: pointer;
     }
     .nav__userButton a{
         text-decoration: none;

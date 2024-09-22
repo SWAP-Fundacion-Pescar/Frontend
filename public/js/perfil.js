@@ -17,70 +17,203 @@ const heart = `<svg width="40" height="40" viewBox="0 0 41 41" fill="none" xmlns
 </g>
 </svg>
 `;
-const userMS = 'https://microservicio-usuarios-three.vercel.app/api/users';
-const clotheMS = `https://microservicio-prendas.vercel.app/api/clothes/users`;
-document.addEventListener('DOMContentLoaded', async () => {
-    addEventToSearchBar();
-    addEventListeners();
-    const { id } = getQueryParams();
-    loadUserData(id);
-})
-async function loadUserData(userId) {
-    const response = await fetch(`${userMS}/${userId}`);
-    if (!response) console.error('Ocurrio un error');
-    const user = await response.json();
-    document.getElementById('foto-perfil').src = user.media;
-    document.getElementById('nombre-usuario').innerText = user.name + " " + user.lastName;
-    document.getElementById('ubicacion-usuario').innerText = user.city;
-    document.getElementById('foto-perfil').src = user.profilePictureUrl;
+// const userMS = 'https://microservicio-usuarios-three.vercel.app/api/users';
+// const clotheMS = `https://microservicio-prendas.vercel.app/api/clothes/users`;
+// document.addEventListener('DOMContentLoaded', async () => {
+//     addEventToSearchBar();
+//     addEventListeners();
+//     const { id } = getQueryParams();
+//     loadUserData(id);
+// })
+// async function loadUserData(userId) {
+//     const response = await fetch(`${userMS}/${userId}`);
+//     if (!response) console.error('Ocurrio un error');
+//     const user = await response.json();
+//     document.getElementById('foto-perfil').src = user.media;
+//     document.getElementById('nombre-usuario').innerText = user.name + " " + user.lastName;
+//     document.getElementById('ubicacion-usuario').innerText = user.city;
+//     document.getElementById('foto-perfil').src = user.profilePictureUrl;
 
-    const clothes = await retrieveUserClothes(userId);
-    renderCards(clothes, user);
-}
-async function retrieveUserClothes(userId) {
-    const response = await fetch(`${clotheMS}/${userId}`)
-    if (!response) throw new Error('Error al obtener prendas');
-    const clothes = await response.json();
-    return clothes;
-}
+//     const clothes = await retrieveUserClothes(userId);
+//     renderCards(clothes, user);
+// }
+// async function retrieveUserClothes(userId) {
+//     const response = await fetch(`${clotheMS}/${userId}`)
+//     if (!response) throw new Error('Error al obtener prendas');
+//     const clothes = await response.json();
+//     return clothes;
+// }
 
-function renderCards(clothes, user) {
-    const publicacionesContainer = document.getElementById('publicaciones-container');
-    clothes.forEach(clothe => {
-        const publicacionDiv = document.createElement('div');
-        publicacionDiv.classList.add('card');
-        publicacionDiv.innerHTML = `
-    <div class="dots-container">
-        ${threeDotsSVG}
-    </div>
-    <div class="card-img">
-        <img src="${clothe.media[0].url}" alt="${clothe.name}" class="card__img">
-    </div>
-    <div class="card-content">
-        <h3>${clothe.name}</h3>
-        <p>${user.city}</p> 
-    </div>
-    <div class="card-bottom">
-        ${heart}
-        <a href="../pages/detalleprenda.html?id=${clothe.id}" class="swap__card__button button">Intercambiar</a>                 
-    </div>
-`;
-        publicacionesContainer.appendChild(publicacionDiv);
-    });
-}
-function addEventListeners() {
-    document.getElementById('add-clothe-btn').addEventListener('click', () => {
-        document.querySelector('.modal').style.display = 'flex';
-    })
-    document.getElementById('add-btn').addEventListener('click', () => {
-        addClothe();
-    })
-    window.onclick = function (event) {
-        if (event.target === document.querySelector('.modal')) {
-            document.querySelector('.modal').style.display = 'none';
+// function renderCards(clothes, user) {
+//     const publicacionesContainer = document.getElementById('publicaciones-container');
+//     clothes.forEach(clothe => {
+//         const publicacionDiv = document.createElement('div');
+//         publicacionDiv.classList.add('card');
+//         publicacionDiv.innerHTML = `
+//     <div class="dots-container">
+//         ${threeDotsSVG}
+//     </div>
+//     <div class="card-img">
+//         <img src="${clothe.media[0].url}" alt="${clothe.name}" class="card__img">
+//     </div>
+//     <div class="card-content">
+//         <h3>${clothe.name}</h3>
+//         <p>${user.city}</p> 
+//     </div>
+//     <div class="card-bottom">
+//         ${heart}
+//         <a href="../pages/detalleprenda.html?id=${clothe.id}" class="swap__card__button button">Intercambiar</a>                 
+//     </div>
+// `;
+//         publicacionesContainer.appendChild(publicacionDiv);
+//     });
+// }
+// function addEventListeners() {
+//     document.getElementById('add-clothe-btn').addEventListener('click', () => {
+//         document.querySelector('.modal').style.display = 'flex';
+//     })
+//     document.getElementById('add-btn').addEventListener('click', () => {
+//         addClothe();
+//     })
+//     window.onclick = function (event) {
+//         if (event.target === document.querySelector('.modal')) {
+//             document.querySelector('.modal').style.display = 'none';
+//         }
+//     }
+// }
+
+
+//USUARIO LOGUEADO: Iconos desplegables 
+function crearDesplegable(prendaId) {
+    let dropdownBtnDots;
+    let dropdownMenuDots;
+
+        dropdownBtnDots = document.getElementById(`btn_${prendaId}`);
+        dropdownMenuDots = document.getElementById(`${prendaId}`);
+
+        // Toggle dropdown se abre/cierra con click
+        dropdownBtnDots.addEventListener('click', function(e){
+            e.stopPropagation();
+            const padre = dropdownMenuDots.parentElement
+            const dropdownMenu = padre.children[1];
+            toggleDropdown(dropdownMenu);
+        })
+
+
+    //Cerrar si se cliquea por fuera
+    document.documentElement.addEventListener("click", function () {
+        if (dropdownMenuDots.classList.contains("show")) {
+            toggleDropdown(dropdownMenuDots);
         }
-    }
+    });
+
+    
 }
+
+const toggleDropdown = function (menu) {
+        menu.classList.toggle("show");
+    }
+
+// USUARIO LOGUEADO: Editar y eliminar prenda
+
+function editarPrenda(prendaId){
+    let editBtn
+
+    const modal = document.getElementById('edit-clothe')
+    const confirmBtn = document.getElementById('modify-btn')
+
+    // Mostrar modal
+    editBtn = document.getElementById(`edit_${prendaId}`)
+    editBtn.addEventListener('click', function(){
+        modal.style.display="flex";
+        confirmBtn.addEventListener('click', function(){
+            editClothe(prendaId)
+        })
+    }) 
+}
+
+function eliminarPrenda(prendaId){
+    let deleteBtn
+    const confirmBtn = document.getElementById('delete-btn')
+    const modal = document.getElementById('delete-clothe')
+    const closeModal = document.getElementById('close-modal')
+    console.log(closeModal)
+    deleteBtn = document.getElementById(`delete_${prendaId}`)
+    deleteBtn.addEventListener('click', function(){
+        modal.style.display="flex";
+        confirmBtn.addEventListener('click', ()=>{
+            deleteClothe(prendaId)
+        })
+        closeModal.addEventListener('click', ()=>{
+            modal.style.display="none";
+        })
+    }) 
+}
+
+// USUARIO NO LOGUEADO/LOGUEADO: 
+addEventToSearchBar()
+
+// USUARIO LOGUEADO: Generación de cards
+addEventListeners();
+const apiUrl = 'https://microservicio-usuarios-three.vercel.app/api/users';
+const usuarioId = '66e8e9faa5db0b49c0a600e3';
+const clotheUrl = `https://microservicio-prendas.vercel.app/api/clothes/users`
+// carga los datos del usuario
+fetch(`${apiUrl}/${usuarioId}`)
+    .then(response => response.json())
+    .then(async usuario => {
+        //  datos al HTML
+        document.getElementById('foto-perfil').src = usuario.media;
+        document.getElementById('nombre-usuario').innerText = usuario.name + " " + usuario.lastName;
+        document.getElementById('ubicacion-usuario').innerText = usuario.city;
+        document.getElementById('foto-perfil').src = usuario.profilePictureUrl;
+        // carga publicaciones
+        const response = await fetch(`${clotheUrl}/${usuarioId}`)
+        if (!response) throw new Error('Error al obtener prendas');
+        const clothes = await response.json();
+        console.log(clothes)
+        const publicacionesContainer = document.getElementById('publicaciones-container');
+        clothes.forEach(clothe => {
+            const publicacionDiv = document.createElement('div');
+            publicacionDiv.classList.add('card');
+            publicacionDiv.innerHTML = `
+        
+        <div class="dropdown__container">
+            <button class="dropdown__btn" id="btn_${clothe.id}">
+                <div class="dots-container">
+                    ${threeDotsSVG}
+                </div>
+            </button>
+            <div class="dropdown__window dropdown__window-perfil menu_dots" id=${clothe.id}>
+                <p id="edit_${clothe.id}">Editar prenda</p>
+                <p id="delete_${clothe.id}">Eliminar prenda</p>
+            </div>
+        </div>
+        
+        <div class="card-img">
+            <img src="${clothe.media[0].url}" alt="${clothe.name}" class="card__img">
+        </div>
+        <div class="card-content-perfil">
+            <div class="card-header-perfil">
+                <h3>${clothe.name}</h3>
+                <p>${usuario.city}</p> 
+            </div>
+            <div>
+                <a href="../pages/detalleprenda.html?id=${clothe.id}" class="swap__card__button button">Ver detalle</a> 
+            </div>
+        </div>
+    `;
+            publicacionesContainer.appendChild(publicacionDiv);
+            crearDesplegable(clothe.id);
+            editarPrenda(clothe.id);
+            eliminarPrenda(clothe.id)
+        });
+    
+        // carga favoritos 
+    })
+    .catch(error => console.error('Error al cargar el perfil:', error));
+
+
 async function addClothe() {
     const name = document.getElementById('name').value;
     const category = document.getElementById('category').value;
@@ -121,8 +254,120 @@ async function addClothe() {
         console.error('Error:', error)
     }
 }
+
+async function editClothe(prendaId) {
+    let body = {
+        userId: getCookie('ID'),
+        clotheId: prendaId
+    };
+    const name = document.getElementById('newName');
+    const category = document.getElementById('newCategory');
+    const expectedCategory = document.getElementById('newExpectedCategory');
+    const size = document.getElementById('newSize');
+    const expectedSize = document.getElementById('newExpectedSize');
+    const gender = document.getElementById('newGender');
+    const expectedGender = document.getElementById('newExpectedGender');
+    const description = document.getElementById('newDescription');
+    const color = document.getElementById('newColor');
+    const expectedColor = document.getElementById('newExpectedColor');
+    // const media = document.getElementById('newFile').files[0];
+
+    if(name.value) body.name = name.value; 
+    if(category.value) body.category = category.value;
+    if(expectedCategory.value) body.expectedCategory = expectedCategory.value;
+    if(size.value) body.size = size.value;
+    if(expectedSize.value) body.expectedSize = expectedSize.value;
+    if(gender.value) body.gender = gender.value;
+    if(expectedGender.value) body.expectedGender = expectedGender.value;
+    if(description.value) body.description = description.value;
+    if(color.value) body.color = color.value;
+    if(expectedColor.value) body.expectedColor = expectedColor.value;
+
+    try {
+        const response = await fetch(`http://localhost:3001/api/clothes/update`,
+        {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${getCookie('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body),
+        })
+        if (!response) console.log('Error')
+        const result = await response.json();
+        console.log(result);
+        // window.location.reload();
+    }
+    catch (error) {
+        console.error('Error:', error)
+    }
+}
+
+async function deleteClothe(prendaId) {
+    let body = {
+        userId: getCookie('ID'),
+        clotheId: prendaId
+    };
+
+    try {   //Modificar endpoint 
+        const response = await fetch(`http://localhost:3001/api/clothes/delete`, 
+        {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${getCookie('token')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body),
+        })
+        if (!response) console.log('Error')
+        const result = await response.json();
+        console.log(result);
+        // window.location.reload();
+    }
+    catch (error) {
+        console.error('Error:', error)
+    }
+}
+
+function getCookie(name) {
+    let value = (`; ${document.cookie}`);
+    let parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+
+
+
+/*A REVISAR*/
+// para alternar entre las secciones (publicaciones, favoritos, reseñas)
 function mostrarSeccion(seccionId) {
     const secciones = document.querySelectorAll('.tab-content');
     secciones.forEach(seccion => seccion.classList.add('hidden'));
+
     document.getElementById(seccionId).classList.remove('hidden');
 }
+function addEventListeners() {
+    document.getElementById('add-clothe-btn').addEventListener('click', () => {
+        document.querySelector('.modal').style.display = 'flex';
+    })
+    document.getElementById('add-btn').addEventListener('click', () => {
+        addClothe();
+    })
+    window.onclick = function (event) {
+        const modales = document.querySelectorAll('.modal')
+        modales.forEach(modal=>{
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        })}
+}
+
+
+
+
+
+
+
+
+
+
