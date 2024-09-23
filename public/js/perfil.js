@@ -298,6 +298,51 @@ function addEventListeners() {
             }
         })}
 }
+async function cargarFavoritos() {
+    const userToken = getCookie('userToken');  // token de usuario
+
+    if (!userToken) {
+        alert("Debes iniciar sesión para ver tus favoritos.");
+        return;
+    }
+
+    try {
+        const response = await fetch('micro usuarios', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.favoritos.length > 0) {
+            const favoritosContainer = document.getElementById('favoritos-container');
+            favoritosContainer.innerHTML = '';  //limpia contenedor
+
+            data.favoritos.forEach(prenda => {
+                const prendaElement = document.createElement('div');
+                prendaElement.classList.add('prenda');
+                prendaElement.innerHTML = `
+                    <img src="${prenda.imagen}" alt="${prenda.nombre}" />
+                    <h3>${prenda.nombre}</h3>
+                `;
+                favoritosContainer.appendChild(prendaElement);
+            });
+        } else {
+            document.getElementById('favoritos-container').innerHTML = "<p>No tienes prendas favoritas.</p>";
+        }
+
+    } catch (error) {
+        console.error('Error al cargar favoritos:', error);
+        alert("Error en la conexión con el servidor.");
+    }
+}
+// FUNCIOIN CARGAR FAVS
+window.onload = function() {
+    cargarFavoritos();
+}
 
 
 
