@@ -6,7 +6,7 @@ function addEventToSearchBar() {
     })
 }
 
-async function addClothe() {
+async function addClotheExchange() {
     const name = document.getElementById('name').value;
     const category = document.getElementById('category').value;
     const expectedCategory = document.getElementById('expectedCategory').value;
@@ -40,9 +40,11 @@ async function addClothe() {
             body: formData,
         })
         if (!response) console.log('Error')
-        // const result = await response.json();
-        // console.log(result);
-        window.location.reload();
+            // console.log(response)
+            // const result = JSON.parse(response);
+            // console.log(result);
+        const result = await response.json()
+        return result
     }
     catch (error) {
         console.error('Error:', error)
@@ -53,5 +55,5 @@ async function addClothe() {
 
 export 
 {
-    addEventToSearchBar, addClothe
+    addEventToSearchBar, addClotheExchange
 };

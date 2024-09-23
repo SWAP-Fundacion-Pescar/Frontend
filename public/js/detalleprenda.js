@@ -1,12 +1,19 @@
 import { addEventToSearchBar } from "./helpers.js";
-import { addClothe } from '../js/helpers.js';
+import { addClotheExchange } from '../js/helpers.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     addEventToSearchBar();
-    const url = handleUrl();
-    renderTotal(url)
-    startExchange(url);
+    globalUrl = handleUrl();
+    renderTotal(globalUrl)
+    startExchange();
 });
+let clotheId 
+let globalUrl 
+newClotheOption()
+
+
+
+
 
 function irADetalle(prendaId) {
     window.location.href = `detalle.html?id=${prendaId}`;
@@ -113,7 +120,9 @@ function getRelatedClothes(relatedClothesUrl) {
         .finally(()=>{if(preloader) preloader.style.display = 'none'})
 }
 
-async function startExchange(urlReceiverInfo){
+
+// INTERCAMBIO
+async function startExchange(){
     // Mostrar modal
     const exchangeBtn = document.getElementById('intercambiar-btn');
     const exchangeModal = document.getElementById('exchange-modal');
@@ -122,28 +131,29 @@ async function startExchange(urlReceiverInfo){
         exchangeModal.style.display="flex";
     })
 
-    const oldClotheId = await oldClotheOption();
-    const newClotheId = await newClotheOption(exchangeModal);
-    console.log(oldClotheId)
-    console.log(newClotheId)
+    oldClotheOption();
+    newClotheOption()
+}
 
+async function createExchange(urlReceiverInfo) {
     // Iniciar intercambio
     const exchangeUrl = `https://microservicio-intercambios.vercel.app/api/exchange`
-    const usuarioId = '66e8e9faa5db0b49c0a600e3';
-    const{clotheId, userId} = getReceiverInfo(urlReceiverInfo)
+    const senderUserId = getCookie('ID');
+    const { receiverClotheId, receiverUserId } = await getReceiverInfo(urlReceiverInfo)
 
     let body = {
-        senderUserId: usuarioId,
-        senderClotheId: oldClotheId && newClotheId,
-        receiverUserId: userId,
-        receiverClotheId: clotheId
+        senderUserId: senderUserId,
+        senderClotheId: clotheId,
+        receiverUserId: receiverUserId,
+        receiverClotheId: receiverClotheId
     }
-
-    try{
+    console.log(body)
+    try {
         const response = await fetch(exchangeUrl, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${getCookie('token')}`
+                'Authorization': `Bearer ${getCookie('token')}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)
         })
@@ -153,10 +163,11 @@ async function startExchange(urlReceiverInfo){
         const message = await response.json();
         console.log(message)
     }
-    catch (error){
+    catch (error) {
         console.log(error)
-    }   
+    }
 }
+
 
 async function getReceiverInfo(url){
     // Obtener datos de prenda
@@ -181,20 +192,22 @@ async function getReceiverInfo(url){
 
     // Devolver lo obtenido
     const receiverInfo = {
-        clotheId: clothe.id,
-        userId: clothe.userId
+        receiverClotheId: clothe.id,
+        receiverUserId: clothe.userId
     }
+    console.log(receiverInfo)
     return receiverInfo
+    
 }
 
 // Opcion: Prenda propia
 async function oldClotheOption(){
     const clotheUrl = `https://microservicio-prendas.vercel.app/api/clothes/users`
-    const usuarioId = '66e8e9faa5db0b49c0a600e3';
-
+    const userId = getCookie('ID')
+    
     return new Promise(async (resolve, reject) => {  
         try {
-            const response = await fetch(`${clotheUrl}/${usuarioId}`);
+            const response = await fetch(`${clotheUrl}/${userId}`);
             if (!response.ok) throw new Error('Error al obtener prendas');
             const clothes = await response.json();
             console.log(clothes);
@@ -214,7 +227,8 @@ async function oldClotheOption(){
             oldClotheBtn.addEventListener('click', () => {
                 const selectedValue = oldClothesSelect.value; 
                 console.log('Valor seleccionado:', selectedValue);
-                resolve(selectedValue); // Se resuelve la promesa
+                clotheId = selectedValue; // Se resuelve la promesa
+                createExchange(globalUrl)
             });
         } catch (error) {
             reject(error); // Se rechaza la promesa en caso de error
@@ -224,31 +238,34 @@ async function oldClotheOption(){
 }
 
 // Opcion: Nueva prenda
-async function newClotheOption(modal){
+function newClotheOption(){
     const newClotheBtn = document.getElementById('newClothe-btn');
     const addClotheModal = document.getElementById('add-clothe-modal');
     const addClotheBtn = document.getElementById('add-btn');
+    const exchangeModal = document.getElementById('exchange-modal');
+    console.log(newClotheBtn)
 
-    newClotheBtn.addEventListener('click', async ()=>{
-        modal.style.display="none";
+    newClotheBtn.addEventListener('click', ()=>{
+        console.log("hola")
+        exchangeModal.style.display="none";
         addClotheModal.style.display="flex";
     })
     addClotheBtn.addEventListener('click', async ()=>{
-        
         try{
-            await addClothe()
-            console.log("se deberia haber creado")
+            const response = await addClotheExchange()
+            clotheId = response._id
+            createExchange(globalUrl)
         }catch(error) {
             console.error('Error:', error);
         }
     })
 }
 
-// FALTA: Cerrar el modal cuando se cliquea por fuera
-// document.documentElement.addEventListener("click", function () {
-    //     if (modal.style.display="flex") {
-    //         modal.style.display="none";
-    //     } else if(addClotheModal.style.display="flex"){
-    //         addClotheModal.style.display="none"
-    //     }
-    // });
+
+function closeModal(){
+    // document.documentElement.addEventListener("click", function () {
+    //         if (exchangeModal.style.display="flex") {
+    //             exchangeModal.style.display="none";
+    //         } 
+    //     });
+}
