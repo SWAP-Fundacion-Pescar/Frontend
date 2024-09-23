@@ -8,6 +8,5 @@ function logoutUser() {
 // Evento de cierre de sesión
 const botonSalir = document.getElementById('logoutBtn')
 botonSalir.addEventListener('click', ()=>{
-    updateNav();
     logoutUser();
 }); 

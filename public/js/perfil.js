@@ -329,13 +329,6 @@ async function deleteClothe(prendaId) {
 }
 
 /*A REVISAR*/
-// para alternar entre las secciones (publicaciones, favoritos, reseñas)
-function mostrarSeccion(seccionId) {
-    const secciones = document.querySelectorAll('.tab-content');
-    secciones.forEach(seccion => seccion.classList.add('hidden'));
-
-    document.getElementById(seccionId).classList.remove('hidden');
-}
 function addEventListeners() {
     document.getElementById('add-clothe-btn').addEventListener('click', () => {
         document.querySelector('.modal').style.display = 'flex';
@@ -352,6 +345,116 @@ function addEventListeners() {
         })
     }
 }
+
+
+// CARGAR FAVS
+async function cargarFavoritos() {
+    const userToken = getCookie('token');  // token de usuario
+
+    if (!userToken) {
+        alert("Debes iniciar sesión para ver tus favoritos.");
+        return;
+    }
+
+    try {
+        const response = await fetch('https://microservicio-usuarios-three.vercel.app/api/users/favorite', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userToken}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.favoritos.length > 0) {
+            const favoritosContainer = document.getElementById('favoritos-container');
+            favoritosContainer.innerHTML = '';  //limpia contenedor
+
+            data.favoritos.forEach(prenda => {
+                const prendaElement = document.createElement('div');
+                prendaElement.classList.add('prenda');
+                prendaElement.innerHTML = `
+                    <img src="${prenda.media}" alt="${prenda.name}" />
+                    <h3>${prenda.name}</h3>
+                `;
+                favoritosContainer.appendChild(prendaElement);
+            });
+        } else {
+            document.getElementById('favoritos-container').innerHTML = "<p>No tienes prendas favoritas.</p>";
+        }
+
+    } catch (error) {
+        console.error('Error al cargar favoritos:', error);
+        alert("Error en la conexión con el servidor.");
+    }
+}
+// CARGAR RESEÑAS 
+async function cargarReseñas(usuarioId) {
+    try {
+        const response = await fetch(`https://microservicio-prendas.vercel.app/api/clothes/review/${usuarioId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        const data = await response.json();
+        console.log(data)
+        const reseñasContainer = document.getElementById('resenas-container');
+        reseñasContainer.innerHTML = ''; // limpia contenido
+
+        if (response.ok && data.reseñas.length > 0) {
+            data.reseñas.forEach(reseña => {
+                const reseñaElement = document.createElement('div');
+                reseñaElement.classList.add('reseña');
+                reseñaElement.innerHTML = `
+                    <p><strong>${reseña.autorNombre}:</strong> ${reseña.comment}</p>
+                    <p><small>Calificación: ${reseña.puntuation} estrellas</small></p>
+                `;
+                reseñasContainer.appendChild(reseñaElement);
+            });
+        } else {
+            reseñasContainer.innerHTML = "<p>No hay reseñas para mostrar.</p>";
+        }
+
+    } catch (error) {
+        console.error('Error al cargar reseñas:', error);
+        document.getElementById('reseñas-container').innerHTML = "<p>Error al cargar reseñas.</p>";
+    }
+}
+
+// VER SECCIONES
+const btnViewReviews = document.getElementById('btnReviews')
+const btnViewPosts = document.getElementById('btnPost');
+const btnViewFavs = document.getElementById('btnFav');
+
+const reviewsSection = document.getElementById('resenas');
+const favSection = document.getElementById('favoritos');
+const postSection = document.getElementById('publicaciones');
+
+btnViewReviews.addEventListener('click', ()=>{
+    reviewsSection.style.display = "grid";
+    favSection.style.display = "none";
+    postSection.style.display = "none";
+})
+btnViewFavs.addEventListener('click', ()=>{
+    reviewsSection.style.display = "none";
+    favSection.style.display = "grid";
+    postSection.style.display = "none";
+})
+btnViewPosts.addEventListener('click', ()=>{
+    reviewsSection.style.display = "none";
+    favSection.style.display = "none";
+    postSection.style.display = "grid";
+})
+
+//llama a la funcion cuando se cargue la pagina
+window.onload = function() {
+    const usuarioId = getCookie('ID'); // id del usuario del perfil
+    cargarReseñas(usuarioId);
+    cargarFavoritos();
+};
 
 
 

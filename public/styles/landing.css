@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     margin: auto;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url(../assets/img/pesentation__background.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../assets/img/pesentation__background.png);
     background-size: cover;
     height: 88vh;
 }
@@ -12,7 +12,7 @@
 .presentation h1 {
     margin: 2rem;
     font-size: 8rem;
-    color: var(--c_green-primary); 
+    color: var(--c_beige-secondary); 
 }
 .presentation h1, .presentation__button {
     display: flex;
@@ -23,7 +23,7 @@
     font-size: 1.8rem;
     width: 40vw;
     text-align: center;
-    color: var(--c_green-primary);
+    color: var(--c_beige-secondary);
 }
 
 .presentation__button button {
@@ -289,8 +289,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 5rem;
-
     color: var(--c_gray);
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)), url("../assets/img/team__background.jpg");
     background-size: cover;
@@ -319,11 +317,10 @@
     }
 .team__members{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
 }
-    .team__members__first{
-        
-    }
     .team__members__item{
         display: flex;
         align-items: center;

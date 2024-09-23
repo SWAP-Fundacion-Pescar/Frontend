@@ -64,12 +64,6 @@
                             <i class="fa-regular fa-bell"></i>
                         </button>
                         <div class="dropdown__window" id="menu_bell">
-                            <a href="#">
-                                Not. General 1
-                            </a>
-                            <a href="#">
-                                Not. General 2
-                            </a>
                         </div>
                     </div>
 
@@ -78,12 +72,6 @@
                             <i class="fa-regular fa-message"></i>
                         </button>
                         <div class="dropdown__window" id="menu_chat">
-                            <a href="#">
-                                Not. Chat 1
-                            </a>
-                            <a href="#">
-                                Not. Chat 2
-                            </a>
                         </div>
                     </div>
 
@@ -229,7 +217,7 @@
 
                 <div class="prenda-bottom">
                     <button id="rechazar-intercambio-btn">Rechazar</button>
-                    <button id="aceptar-intercambiao-btn">Aceptar</button>
+                    <button id="aceptar-intercambio-btn">Aceptar</button>
                 </div>
             </div>
         </section>
@@ -247,10 +235,11 @@
     <footer>
         <!-- Tu código de footer aquí -->
     </footer>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="../js/detalleprendaintercambio.js" type="module"></script>
     <script src="../js/header.js"></script>
-    <script src="../js/generales/navegacion.js"></script>
-    <script src="../js/generales/sesion.js"></script>
+    <script src="../js/generales/navegacion.js" type="module"></script>
+    <script src="../js/generales/sesion.js" type="module"></script>
 </body>
 
 </html>

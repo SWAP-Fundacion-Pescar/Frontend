@@ -94,6 +94,14 @@ function renderCurrentChatMessages(chatId) {
     })
     renderCurrentChatMessagesHeader(chatId)
     scrollToBottom()
+
+    // Mostrar modal de confirmacion de intercambio
+    const confirmModal = document.getElementById('confirmModal');
+    confirmModal.style.display="flex";
+
+    if(currentChat.receiverUserExchangeConfirmation === true || currentChat.senderUserExchangeConfirmation === true){
+        
+    }
 }
 function renderCurrentChatMessagesHeader(chatId) {    
     const currentPFP = document.querySelector('.currentChat-pfp');
@@ -200,3 +208,99 @@ chatSocket.on('msg', (content) => {
     console.log(content);
     isUserInTheSameChat(content);
 });
+
+// Modal
+const btnConfirmExchange = document.getElementById('confirmate');
+const reviewModal = document.getElementById('reviewModal');
+const btnCancelExchange = document.getElementById('cancel');
+const btnSendReview = document.getElementById('sendReview');
+const confirmModal = document.getElementById('confirmModal');
+
+btnConfirmExchange.addEventListener('click', ()=>{
+    reviewModal.style.display = "flex"
+})
+btnCancelExchange.addEventListener('click', ()=>{
+    reviewModal.style.display = "none"
+})
+btnSendReview.addEventListener('click', async () => {
+    const comment = document.getElementById('review').value;
+    const rating = document.getElementById('reviewRating').value;
+
+    if (comment === '' || rating === '') {
+        alert('Por favor, completa todos los campos de la reseña.');
+        return;
+    }
+
+    try {
+        await submitReview(comment, rating);
+        reviewModal.style.display = 'none'; 
+        modifyChatState()
+        confirmModal.style.display = "flex"
+    } catch (error) {
+        console.error('Error al enviar la reseña:', error);
+        alert('Hubo un problema al enviar la reseña. Inténtalo nuevamente.');
+    }
+});
+
+async function submitReview(comment, rating) {
+    const reviewData = {
+        senderUserId: userId, // ID usuario 1
+        receiverUserId: receiverUserId, // ID usuario 2
+        clotheId: currentChatId, // ID chat
+        puntuation: rating,
+        comment: comment
+    };
+    console.log(reviewData)
+    const response = await fetch (`https://microservicio-prendas.vercel.app/api/clothes/review`, 
+        {
+            method: 'PUT', 
+            headers: {
+                'Authorization': `Bearer ${getCookie('token')}`,
+                'Content-Type': 'application/json'},
+            body: JSON.stringify(reviewData)
+        })
+    console.log( await response.json())
+}
+
+async function modifyChatState(){
+    const currentUser = getCookie('ID');
+    const currentChat = chats.find(chat => chat._id == currentChatId);
+    const body = {
+        chatId: currentChatId
+    }
+
+    if(currentUser==currentChat.senderUserId){
+        body.senderUserExchangeConfirmation = true;
+    }else{
+        body.receiverUserExchangeConfirmation = true;
+    }
+
+    const response = await fetch (`https://microservicio-chats.onrender.com/api/chat/state`, 
+        {
+            method: 'PUT', 
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        }
+    )
+    if(!response.ok){
+        console.error("error:", response.status)
+    }
+    console.log(await response.json())
+}
+
+//  // peticion al microservicio
+// const response = await fetch('https://microservicio-usuarios-three.vercel.app/api/clothes/review/:userId', {
+//     method: 'PUT',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(reviewData)
+// });
+
+// if (!response.ok) {
+//     throw new Error('No se pudo enviar la reseña.');
+// }
+
+// const result = await response.json();
+// console.log('Reseña enviada con éxito:', result);
+

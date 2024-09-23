@@ -121,3 +121,36 @@ function cleanFilters(){
 
     getFilteredClothes(); 
 }
+// FAVORITOS
+async function marcarComoFavorito(prendaId) {
+    const userToken = getCookie('userToken');  // token de usuario
+
+    if (!userToken) {
+        alert("Debes iniciar sesión para añadir prendas a favoritos.");
+        return;
+    }
+
+    try {
+        // solicitud al microservicio
+        const response = await fetch('https://microservicio-usuarios-three.vercel.app/api/users/favorite', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization':` Bearer ${userToken}`
+            },
+            body: JSON.stringify({ prendaId })  // id de la prenda 
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Prenda añadida a favoritos.");
+        } else {
+            alert(data.message || "Error al añadir a favoritos.");
+        }
+
+    } catch (error) {
+        console.error('Error al añadir a favoritos:', error);
+        alert("Error en la conexión con el servidor.");
+    }
+}

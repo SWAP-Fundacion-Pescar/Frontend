@@ -1,7 +1,15 @@
+import {notificationSocket} from '../notificationSockets.js'
+
 document.addEventListener('DOMContentLoaded', () => 
     {
         updateNav();
-    })
+        const userId = getCookie('ID');
+        if (userId) {
+        notificationSocket.emit('join', userId)
+        notificationSocket.emit('getNotificationsChat', userId);
+        notificationSocket.emit('getNotificationsExchange', userId);
+    }
+})
 //NAV
 
 //USUARIO LOGUEADO - NO LOGUEADO
@@ -88,3 +96,36 @@ document.documentElement.addEventListener("click", function () {
         toggleDropdown(dropdownMenuBell)
     }
 });
+
+// NOTIFICACIONES
+
+notificationSocket.on('connect', () => {
+    console.log('Connected to the Socket.IO server.');
+});
+notificationSocket.on('notificationsChat', (content) => {
+    //TODO Actualizar icono de chats en base a la cantidad de mensajes y rellenar un div invisible con el contenido
+    console.log(content)
+})
+notificationSocket.on('notificationsExchange', (notification) => {
+    //TODO Actualizar icono de notificaciones en base a la cantidad y rellenar un div invisible con el contenido
+    notification.forEach(notification => {
+        renderNotification(notification)
+    });
+})
+
+function renderNotification(notification){
+    const a = document.createElement('a')
+    a.href = `../../pages/detalleprendaintercambio.html?exchangeId=${notification.content.exchangeId}&id=${notification.content.senderClotheId}`
+    const p = document.createElement('p')
+    p.innerText = notification.message
+    a.appendChild(p)
+    dropdownMenuBell.append(a)
+
+}
+
+// Renderizado en pagina 
+notificationSocket.on('notification', (notification)=>{
+    renderNotification(notification)
+})
+
+export {updateNav}

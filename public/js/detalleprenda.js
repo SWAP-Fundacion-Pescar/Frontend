@@ -1,5 +1,5 @@
-import { addEventToSearchBar } from "./helpers.js";
-import { addClotheExchange } from '../js/helpers.js';
+import { addEventToSearchBar, getCookie, addClotheExchange } from "./helpers.js";
+
 
 document.addEventListener('DOMContentLoaded', function () {
     addEventToSearchBar();

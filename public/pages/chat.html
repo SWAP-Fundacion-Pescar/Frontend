@@ -32,7 +32,8 @@
                 <!-- Nav bar links -->
                 <!-- No logueado -->
                 <div class="nav__containerMenu__menu" id="nav__menu">
-                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i> </button>
+                    <button class="nav__btnHamburger--close" id="cerrarMenu"> <i class="fa-solid fa-xmark"></i>
+                    </button>
                     <a href="#intercambiar">Intercambiar</a>
                     <a href="#reseñas">Reseñas</a>
                     <a href="#quienesSomos">Quienes somos</a>
@@ -47,7 +48,7 @@
                 </div>
             </div>
             <!-- Botones de usuario -->
-            
+
             <!-- No logueado -->
             <div class="nav__userButton" id="nav__userButton">
                 <a href="../pages/logIn.html" class="button--outlined button">Iniciar Sesión</a>
@@ -56,32 +57,20 @@
 
             <!-- Logueado -->
             <div class="nav__userButton-logged" id="nav__userButton-logged">
-        
+
                 <div class="dropdown__container">
                     <button class="dropdown__btn" id="btn_bell">
                         <i class="fa-regular fa-bell"></i>
                     </button>
                     <div class="dropdown__window" id="menu_bell">
-                        <a href="#">
-                            Not. General 1
-                        </a>
-                        <a href="#">
-                            Not. General 2
-                        </a>
                     </div>
                 </div>
-                
+
                 <div class="dropdown__container">
                     <button class="dropdown__btn" id="btn_chat">
                         <i class="fa-regular fa-message"></i>
                     </button>
                     <div class="dropdown__window" id="menu_chat">
-                        <a href="#">
-                            Not. Chat 1
-                        </a>
-                        <a href="#">
-                            Not. Chat 2
-                        </a>
                     </div>
                 </div>
 
@@ -101,7 +90,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- <button class="button button--filled" id="logoutBtn">Salir</button> -->
             </div>
         </nav>
@@ -109,7 +98,7 @@
     <main>
         <div class="chats-section">
             <h3>Mensajes</h3>
-            <div class="chats">               
+            <div class="chats">
             </div>
         </div>
         <div class="currentChat">
@@ -120,6 +109,9 @@
                     </div>
                     <div class="currentChat-header-info-details">
                         <h4 class="currentChat-name"></h4>
+                    </div>
+                    <div class="confirmationBtnContainer">
+                        <button id="confirmate">Confirmar intercambio</button>
                     </div>
                 </div>
             </div>
@@ -133,10 +125,29 @@
                 <input class="newMessage" type="text" placeholder="Envía un mensaje...">
             </div>
         </div>
+
+        <!-- Modal -->
+        <div id="reviewModal" class="reviewModal-container">
+            <div class="reviewModal">
+                <h3>Agrega una <strong>review</strong> y una <strong>puntuacion</strong> al usuario!</h3>
+                <textarea name="review" id="review" placeholder="Escribi una reseña..."></textarea>
+                <input id="reviewRating" type="number" placeholder="Puntea del 1 al 5">
+                <div class="btnContainer">
+                    <button id="sendReview">Enviar</button>
+                    <button id="cancel">Cancelar</button>
+                </div>
+            </div>
+        </div>
+        <div id="confirmModal" class="reviewModal-container"></div>
+            <div class="reviewModal">
+                <p>El intercambio ha sido cerrado. Gracias por utilizar SWAP!</p>
+            </div>
+        </div>
     </main>
     <script src="/socket.io/socket.io.js"></script>
     <script src="../js/chat.js" type="module"></script>
-    <script src="../js/generales/navegacion.js"></script>
+    <script src="../js/generales/navegacion.js" type="module"></script>
+    <script src="../js/generales/sesion.js" type="module"></script>
 </body>
 
 </html>
