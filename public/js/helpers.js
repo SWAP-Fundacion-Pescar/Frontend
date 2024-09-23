@@ -16,7 +16,7 @@ function getQueryParams() {
     const params = new URLSearchParams(url.search);
     return Object.fromEntries(params.entries());
 }
-async function addClothe() {
+async function addClotheExchange() {
     const name = document.getElementById('name').value;
     const category = document.getElementById('category').value;
     const expectedCategory = document.getElementById('expectedCategory').value;
@@ -52,7 +52,8 @@ async function addClothe() {
         if (!response) console.log('Error')
         // const result = await response.json();
         // console.log(result);
-        window.location.reload();
+        const result = await response.json()
+        return result
     }
     catch (error) {
         console.error('Error:', error)
@@ -64,7 +65,7 @@ async function addClothe() {
 export 
 {
     addEventToSearchBar, 
-    addClothe,
+    addClotheExchange,
     getCookie,
     getQueryParams
 };
